@@ -1,0 +1,1379 @@
+#+Title: Unicode declarations for LaTeX documents.
+#+Author: Mark Armstrong
+#+Description: Generating ~newunicodechar~ declarations for
+#+Description: LaTeX documents which use unicode.
+#+Property: header-args:emacs-lisp :noweb yes :tangle no :exports results :wrap src latex
+#+Property: header-args:latex :tangle unicode.sty :exports code
+#+LaTeX_header: \usepackage{unicode}
+
+* About this file
+
+In order to write LaTeX documents using unicode in the source code,
+we must often tell LaTeX what we want the unicode characters
+to be rendered as.
+
+** Usage
+
+This file generates (via Org Babel tangling)
+the file ~unicode.sty~.
+
+#+begin_src latex :exports none
+\ProvidesPackage{unicode}
+#+end_src
+
+To use it, either place it in the same directory as your ~.tex~ file,
+and require it via ~\usepackage{unicode}~.
+
+Alternatively, place it in your ~texmf~ directory
+to allow global usage on your system.
+That directory is commonly located at the following locations
+on various OS's.
+- Linux
+  - =~/texmf/tex/latex/local/=
+- Mac OS X
+  - =/Users/<user name>/Library/texmf/tex/latex/local/=
+- Windows 10 (and miktex)
+  - =C:\Users\<user name>\Appdata\Local\MikTex\<number>\tex\latex\local\=
+- Windows Vista/7
+  - =C:\Users\<user name>\texmf\tex\latex\local\=
+- Windows XP
+  - =C:\Documents and Settings\<user name>\texmf\tex\latex\local\=
+
+** Requirements
+
+This package depends upon the packages listed herein.
+
+There are two ways to inform LaTeX of unicode character translations;
+- ~\DeclareUnicodeCharacter~; this command does not work with
+  XeLaTeX or LuaLaTeX, which I use.
+- ~\newunicodechar~; this command is provided by the
+  newunicodechar package, which may not be pre-installed for all LaTeX users.
+This collection uses the second.
+#+begin_src latex
+\usepackage{newunicodechar}
+#+end_src
+
+The unicode-math package “provides a complete implementation of
+unicode maths for XeLaTeX and LuaLaTeX”.
+#+begin_src latex
+\usepackage{unicode-math}
+#+end_src
+
+** Contributing to this document
+
+This document is written in Emacs using Org mode.
+While the exported PDF version, etc., show a collection of
+LaTeX source blocks, these are in fact generated
+by an Emacs Lisp script below.
+
+That means that contributions to this document
+should modify the Emacs Lisp script,
+not ~unicode.sty~ or the LaTeX source blocks themselves.
+
+** The Emacs Lisp script
+
+In this document, several lists of
+unicode character, LaTeX translation pairs
+are declared, and then “wrapped” into ~latex~ source blocks,
+using this function to map the pairs into ~newunicodechar~ declarations.
+#+Name: generator
+#+begin_src emacs-lisp
+(defun generate-newunicodechars (translation-pairs &optional lwrapper rwrapper)
+  ;; Set the left and right portions of the wrapper
+  (or lwrapper (setq lwrapper "\\ensuremath{"))
+  (or rwrapper (setq rwrapper "}")) 
+  ;; Build the string
+  (s-join "\n"
+    (loop for (character . translation) in translation-pairs
+          collect (format "\\newunicodechar{%s}{%s%s%s}"
+                          character
+                          lwrapper
+                          translation
+                          rwrapper))))
+#+end_src
+
+* Notes
+
+:TODO: move the comments about missing characters here?
+
+As discussed
+[[https://tex.stackexchange.com/questions/486120/][here]],
+the prime characters are redefined
+by unicode-math at ~\begindocument~.
+To redefine them, we would need to override that
+by wrapping out ~\newunicodechar~ declarations
+in ~\AtBeginDocument~.
+Unfortunately we would then lose prime collapsing.
+The better solution is to use a font which has prime,
+or else avoid using double primes, etc..
+
+* Blackboard, calligraphic, etc.                :possiblycomplete:
+
+#+begin_src latex
+%---------------------------------------------------------------------
+% Blackboard, calligraphic, etc.
+%---------------------------------------------------------------------
+#+end_Src
+
+These lists are most likely complete,
+unless I have missed some characters aside from
+latin letters, greek letters and arabic numerals
+which should be included.
+
+** Blackboard                                  :possiblycomplete:
+
+#+begin_src latex
+%-----------------------------------------------------------
+% Blackboard
+%-----------------------------------------------------------
+#+end_Src
+
+*** Lowercase latin                           :complete:
+
+#+begin_src latex
+%-------------------------------------------------
+% Lowercase latin
+%-------------------------------------------------
+#+end_Src
+
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((𝕒 . \\mathbb{a})
+          (𝕓 . \\mathbb{b})
+          (𝕔 . \\mathbb{c})
+          (𝕕 . \\mathbb{d})
+          (𝕖 . \\mathbb{e})
+          (𝕗 . \\mathbb{f})
+          (𝕘 . \\mathbb{g})
+          (𝕙 . \\mathbb{h})
+          (𝕚 . \\mathbb{i})
+          (𝕛 . \\mathbb{j})
+          (𝕜 . \\mathbb{k})
+          (𝕝 . \\mathbb{l})
+          (𝕞 . \\mathbb{m})
+          (𝕟 . \\mathbb{n})
+          (𝕠 . \\mathbb{o})
+          (𝕡 . \\mathbb{p})
+          (𝕢 . \\mathbb{q})
+          (𝕣 . \\mathbb{r})
+          (𝕤 . \\mathbb{s})
+          (𝕥 . \\mathbb{t})
+          (𝕦 . \\mathbb{u})
+          (𝕧 . \\mathbb{v})
+          (𝕨 . \\mathbb{w})
+          (𝕩 . \\mathbb{x})
+          (𝕪 . \\mathbb{y})
+          (𝕫 . \\mathbb{z}))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{𝕒}{\ensuremath{\mathbb{a}}}
+\newunicodechar{𝕓}{\ensuremath{\mathbb{b}}}
+\newunicodechar{𝕔}{\ensuremath{\mathbb{c}}}
+\newunicodechar{𝕕}{\ensuremath{\mathbb{d}}}
+\newunicodechar{𝕖}{\ensuremath{\mathbb{e}}}
+\newunicodechar{𝕗}{\ensuremath{\mathbb{f}}}
+\newunicodechar{𝕘}{\ensuremath{\mathbb{g}}}
+\newunicodechar{𝕙}{\ensuremath{\mathbb{h}}}
+\newunicodechar{𝕚}{\ensuremath{\mathbb{i}}}
+\newunicodechar{𝕛}{\ensuremath{\mathbb{j}}}
+\newunicodechar{𝕜}{\ensuremath{\mathbb{k}}}
+\newunicodechar{𝕝}{\ensuremath{\mathbb{l}}}
+\newunicodechar{𝕞}{\ensuremath{\mathbb{m}}}
+\newunicodechar{𝕟}{\ensuremath{\mathbb{n}}}
+\newunicodechar{𝕠}{\ensuremath{\mathbb{o}}}
+\newunicodechar{𝕡}{\ensuremath{\mathbb{p}}}
+\newunicodechar{𝕢}{\ensuremath{\mathbb{q}}}
+\newunicodechar{𝕣}{\ensuremath{\mathbb{r}}}
+\newunicodechar{𝕤}{\ensuremath{\mathbb{s}}}
+\newunicodechar{𝕥}{\ensuremath{\mathbb{t}}}
+\newunicodechar{𝕦}{\ensuremath{\mathbb{u}}}
+\newunicodechar{𝕧}{\ensuremath{\mathbb{v}}}
+\newunicodechar{𝕨}{\ensuremath{\mathbb{w}}}
+\newunicodechar{𝕩}{\ensuremath{\mathbb{x}}}
+\newunicodechar{𝕪}{\ensuremath{\mathbb{y}}}
+\newunicodechar{𝕫}{\ensuremath{\mathbb{z}}}
+#+end_src
+
+*** Uppercase latin                           :complete:
+
+#+begin_src latex
+%-------------------------------------------------
+% Uppercase latin
+%-------------------------------------------------
+#+end_Src
+
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((𝔸 . \\mathbb{A})
+          (𝔹 . \\mathbb{B})
+          (ℂ . \\mathbb{C})
+          (𝔻 . \\mathbb{D})
+          (𝔼 . \\mathbb{E})
+          (𝔽 . \\mathbb{F})
+          (𝔾 . \\mathbb{G})
+          (ℍ . \\mathbb{H})
+          (𝕀 . \\mathbb{I})
+          (𝕁 . \\mathbb{J})
+          (𝕂 . \\mathbb{K})
+          (𝕃 . \\mathbb{L})
+          (𝕄 . \\mathbb{M})
+          (ℕ . \\mathbb{N})
+          (𝕆 . \\mathbb{O})
+          (ℙ . \\mathbb{P})
+          (ℚ . \\mathbb{Q})
+          (ℝ . \\mathbb{R})
+          (𝕊 . \\mathbb{S})
+          (𝕋 . \\mathbb{T})
+          (𝕌 . \\mathbb{U})
+          (𝕍 . \\mathbb{V})
+          (𝕎 . \\mathbb{W})
+          (𝕏 . \\mathbb{X})
+          (𝕐 . \\mathbb{Y})
+          (ℤ . \\mathbb{Z}))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{𝔸}{\ensuremath{\mathbb{A}}}
+\newunicodechar{𝔹}{\ensuremath{\mathbb{B}}}
+\newunicodechar{ℂ}{\ensuremath{\mathbb{C}}}
+\newunicodechar{𝔻}{\ensuremath{\mathbb{D}}}
+\newunicodechar{𝔼}{\ensuremath{\mathbb{E}}}
+\newunicodechar{𝔽}{\ensuremath{\mathbb{F}}}
+\newunicodechar{𝔾}{\ensuremath{\mathbb{G}}}
+\newunicodechar{ℍ}{\ensuremath{\mathbb{H}}}
+\newunicodechar{𝕀}{\ensuremath{\mathbb{I}}}
+\newunicodechar{𝕁}{\ensuremath{\mathbb{J}}}
+\newunicodechar{𝕂}{\ensuremath{\mathbb{K}}}
+\newunicodechar{𝕃}{\ensuremath{\mathbb{L}}}
+\newunicodechar{𝕄}{\ensuremath{\mathbb{M}}}
+\newunicodechar{ℕ}{\ensuremath{\mathbb{N}}}
+\newunicodechar{𝕆}{\ensuremath{\mathbb{O}}}
+\newunicodechar{ℙ}{\ensuremath{\mathbb{P}}}
+\newunicodechar{ℚ}{\ensuremath{\mathbb{Q}}}
+\newunicodechar{ℝ}{\ensuremath{\mathbb{R}}}
+\newunicodechar{𝕊}{\ensuremath{\mathbb{S}}}
+\newunicodechar{𝕋}{\ensuremath{\mathbb{T}}}
+\newunicodechar{𝕌}{\ensuremath{\mathbb{U}}}
+\newunicodechar{𝕍}{\ensuremath{\mathbb{V}}}
+\newunicodechar{𝕎}{\ensuremath{\mathbb{W}}}
+\newunicodechar{𝕏}{\ensuremath{\mathbb{X}}}
+\newunicodechar{𝕐}{\ensuremath{\mathbb{Y}}}
+\newunicodechar{ℤ}{\ensuremath{\mathbb{Z}}}
+#+end_src
+
+*** Arabic numerals                           :complete:
+
+#+begin_src latex
+%-------------------------------------------------
+% Arabic numerals
+%-------------------------------------------------
+#+end_Src
+
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((𝟙 . \\mathbb{1})
+          (𝟚 . \\mathbb{2})
+          (𝟛 . \\mathbb{3})
+          (𝟜 . \\mathbb{4})
+          (𝟝 . \\mathbb{5})
+          (𝟞 . \\mathbb{6})
+          (𝟟 . \\mathbb{7})
+          (𝟠 . \\mathbb{8})
+          (𝟡 . \\mathbb{9})
+          (𝟘 . \\mathbb{0}))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{𝟙}{\ensuremath{\mathbb{1}}}
+\newunicodechar{𝟚}{\ensuremath{\mathbb{2}}}
+\newunicodechar{𝟛}{\ensuremath{\mathbb{3}}}
+\newunicodechar{𝟜}{\ensuremath{\mathbb{4}}}
+\newunicodechar{𝟝}{\ensuremath{\mathbb{5}}}
+\newunicodechar{𝟞}{\ensuremath{\mathbb{6}}}
+\newunicodechar{𝟟}{\ensuremath{\mathbb{7}}}
+\newunicodechar{𝟠}{\ensuremath{\mathbb{8}}}
+\newunicodechar{𝟡}{\ensuremath{\mathbb{9}}}
+\newunicodechar{𝟘}{\ensuremath{\mathbb{0}}}
+#+end_src
+
+*** Greek                                     :complete:
+
+#+begin_src latex
+%-------------------------------------------------
+% Greek
+%-------------------------------------------------
+#+end_Src
+
+There are unfortunately not many included in Unicode.
+
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((ℾ . \\mathbb{\\Gamma})
+          (ℽ . \\mathbb{\\gamma})
+          (ℿ . \\mathbb{\\Pi})
+          (ℼ . \\mathbb{\\pi})
+          (⅀ . \\mathbb{\\Sum}))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{ℾ}{\ensuremath{\mathbb{\Gamma}}}
+\newunicodechar{ℽ}{\ensuremath{\mathbb{\gamma}}}
+\newunicodechar{ℿ}{\ensuremath{\mathbb{\Pi}}}
+\newunicodechar{ℼ}{\ensuremath{\mathbb{\pi}}}
+\newunicodechar{⅀}{\ensuremath{\mathbb{\Sum}}}
+#+end_src
+
+** Math calligraphic                           :possiblycomplete:
+
+#+begin_src latex
+%-----------------------------------------------------------
+% Math calligraphic
+%-----------------------------------------------------------
+#+end_Src
+
+*** Lowercase latin                           :complete:
+
+#+begin_src latex
+%-------------------------------------------------
+% Uppercase latin
+%-------------------------------------------------
+#+end_Src
+
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((𝒶 . \\mathcal{a})
+          (𝒷 . \\mathcal{b})
+          (𝒸 . \\mathcal{c})
+          (𝒹 . \\mathcal{d})
+          (ℯ . \\mathcal{e})
+          (𝒻 . \\mathcal{f})
+          (ℊ . \\mathcal{g})
+          (𝒽 . \\mathcal{h})
+          (𝒾 . \\mathcal{i})
+          (𝒿 . \\mathcal{j})
+          (𝓀 . \\mathcal{k})
+          (𝓁 . \\mathcal{l})
+          (𝓂 . \\mathcal{m})
+          (𝓃 . \\mathcal{n})
+          (ℴ . \\mathcal{o})
+          (𝓅 . \\mathcal{p})
+          (𝓆 . \\mathcal{q})
+          (𝓇 . \\mathcal{r})
+          (𝓈 . \\mathcal{s})
+          (𝓉 . \\mathcal{t})
+          (𝓊 . \\mathcal{u})
+          (𝓋 . \\mathcal{v})
+          (𝓌 . \\mathcal{w})
+          (𝓍 . \\mathcal{x})
+          (𝓎 . \\mathcal{y})
+          (𝓏 . \\mathcal{z}))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{𝒶}{\ensuremath{\mathcal{a}}}
+\newunicodechar{𝒷}{\ensuremath{\mathcal{b}}}
+\newunicodechar{𝒸}{\ensuremath{\mathcal{c}}}
+\newunicodechar{𝒹}{\ensuremath{\mathcal{d}}}
+\newunicodechar{ℯ}{\ensuremath{\mathcal{e}}}
+\newunicodechar{𝒻}{\ensuremath{\mathcal{f}}}
+\newunicodechar{ℊ}{\ensuremath{\mathcal{g}}}
+\newunicodechar{𝒽}{\ensuremath{\mathcal{h}}}
+\newunicodechar{𝒾}{\ensuremath{\mathcal{i}}}
+\newunicodechar{𝒿}{\ensuremath{\mathcal{j}}}
+\newunicodechar{𝓀}{\ensuremath{\mathcal{k}}}
+\newunicodechar{𝓁}{\ensuremath{\mathcal{l}}}
+\newunicodechar{𝓂}{\ensuremath{\mathcal{m}}}
+\newunicodechar{𝓃}{\ensuremath{\mathcal{n}}}
+\newunicodechar{ℴ}{\ensuremath{\mathcal{o}}}
+\newunicodechar{𝓅}{\ensuremath{\mathcal{p}}}
+\newunicodechar{𝓆}{\ensuremath{\mathcal{q}}}
+\newunicodechar{𝓇}{\ensuremath{\mathcal{r}}}
+\newunicodechar{𝓈}{\ensuremath{\mathcal{s}}}
+\newunicodechar{𝓉}{\ensuremath{\mathcal{t}}}
+\newunicodechar{𝓊}{\ensuremath{\mathcal{u}}}
+\newunicodechar{𝓋}{\ensuremath{\mathcal{v}}}
+\newunicodechar{𝓌}{\ensuremath{\mathcal{w}}}
+\newunicodechar{𝓍}{\ensuremath{\mathcal{x}}}
+\newunicodechar{𝓎}{\ensuremath{\mathcal{y}}}
+\newunicodechar{𝓏}{\ensuremath{\mathcal{z}}}
+#+end_src
+
+*** Uppercase latin                           :complete:
+
+#+begin_src latex
+%-------------------------------------------------
+% Uppercase latin
+%-------------------------------------------------
+#+end_Src
+
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((𝒜 . \\mathcal{A})
+          (ℬ . \\mathcal{B})
+          (𝒞 . \\mathcal{C})
+          (𝒟 . \\mathcal{D})
+          (ℰ . \\mathcal{E})
+          (ℱ . \\mathcal{F})
+          (𝒢 . \\mathcal{G})
+          (ℋ . \\mathcal{H})
+          (ℐ . \\mathcal{I})
+          (𝒥 . \\mathcal{J})
+          (𝒦 . \\mathcal{K})
+          (ℒ . \\mathcal{L})
+          (ℳ . \\mathcal{M})
+          (𝒩 . \\mathcal{N})
+          (𝒪 . \\mathcal{O})
+          (𝒫 . \\mathcal{P})
+          (𝒬 . \\mathcal{Q})
+          (ℛ . \\mathcal{R})
+          (𝒮 . \\mathcal{S})
+          (𝒯 . \\mathcal{T})
+          (𝒰 . \\mathcal{U})
+          (𝒱 . \\mathcal{V})
+          (𝒲 . \\mathcal{W})
+          (𝒳 . \\mathcal{X})
+          (𝒴 . \\mathcal{Y})
+          (𝒵 . \\mathcal{Z}))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{𝒜}{\ensuremath{\mathcal{A}}}
+\newunicodechar{ℬ}{\ensuremath{\mathcal{B}}}
+\newunicodechar{𝒞}{\ensuremath{\mathcal{C}}}
+\newunicodechar{𝒟}{\ensuremath{\mathcal{D}}}
+\newunicodechar{ℰ}{\ensuremath{\mathcal{E}}}
+\newunicodechar{ℱ}{\ensuremath{\mathcal{F}}}
+\newunicodechar{𝒢}{\ensuremath{\mathcal{G}}}
+\newunicodechar{ℋ}{\ensuremath{\mathcal{H}}}
+\newunicodechar{ℐ}{\ensuremath{\mathcal{I}}}
+\newunicodechar{𝒥}{\ensuremath{\mathcal{J}}}
+\newunicodechar{𝒦}{\ensuremath{\mathcal{K}}}
+\newunicodechar{ℒ}{\ensuremath{\mathcal{L}}}
+\newunicodechar{ℳ}{\ensuremath{\mathcal{M}}}
+\newunicodechar{𝒩}{\ensuremath{\mathcal{N}}}
+\newunicodechar{𝒪}{\ensuremath{\mathcal{O}}}
+\newunicodechar{𝒫}{\ensuremath{\mathcal{P}}}
+\newunicodechar{𝒬}{\ensuremath{\mathcal{Q}}}
+\newunicodechar{ℛ}{\ensuremath{\mathcal{R}}}
+\newunicodechar{𝒮}{\ensuremath{\mathcal{S}}}
+\newunicodechar{𝒯}{\ensuremath{\mathcal{T}}}
+\newunicodechar{𝒰}{\ensuremath{\mathcal{U}}}
+\newunicodechar{𝒱}{\ensuremath{\mathcal{V}}}
+\newunicodechar{𝒲}{\ensuremath{\mathcal{W}}}
+\newunicodechar{𝒳}{\ensuremath{\mathcal{X}}}
+\newunicodechar{𝒴}{\ensuremath{\mathcal{Y}}}
+\newunicodechar{𝒵}{\ensuremath{\mathcal{Z}}}
+#+end_src
+
+* Other letters or letterlike symbols           :incomplete:
+
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((ℓ . \\ell))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{ℓ}{\ensuremath{\ell}}
+#+end_src
+
+* Greek alphabet                                :incomplete:
+
+** Normal                                      :complete:
+
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((α . \\alpha)
+          (Α . \\Alpha)
+          (β . \\beta)
+          (Β . \\Beta)
+          (γ . \\gamma)
+          (Γ . \\Gamma)
+          (δ . \\delta)
+          (Δ . \\Delta)
+          (ϵ . \\epsilon)
+          (Ε . \\Epsilon)
+          (ζ . \\zeta)
+          (Ζ . \\Zeta)
+          (η . \\eta)
+          (Η . \\Eta)
+          (θ . \\theta)
+          (Θ . \\Theta)
+          (ι . \\iota)
+          (Ι . \\Iota)
+          (κ . \\kappa)
+          (Κ . \\Kappa)
+          (λ . \\lambda)
+          (Λ . \\Lambda)
+          (μ . \\mu)
+          (Μ . \\Mu)
+          (ν . \\nu)
+          (Ν . \\Nu)
+          (ξ . \\xi)
+          (Ξ . \\Xi)
+          (ο . \\omicron)
+          (Ο . \\Omicron)
+          (π . \\pi)
+          (Π . \\Pi)
+          (ρ . \\rho)
+          (Ρ . \\Rho)
+          (σ . \\sigma)
+          (Σ . \\Sigma)
+          (τ . \\tau)
+          (Τ . \\Tau)
+          (υ . \\upsilon)
+          (Υ . \\Upsilon)
+          (ϕ . \\phi)
+          (Φ . \\Phi)
+          (χ . \\chi)
+          (Χ . \\Chi)
+          (ψ . \\psi)
+          (Ψ . \\Psi)
+          (ω . \\omega)
+          (Ω . \\Omega))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{α}{\ensuremath{\alpha}}
+\newunicodechar{Α}{\ensuremath{\Alpha}}
+\newunicodechar{β}{\ensuremath{\beta}}
+\newunicodechar{Β}{\ensuremath{\Beta}}
+\newunicodechar{γ}{\ensuremath{\gamma}}
+\newunicodechar{Γ}{\ensuremath{\Gamma}}
+\newunicodechar{δ}{\ensuremath{\delta}}
+\newunicodechar{Δ}{\ensuremath{\Delta}}
+\newunicodechar{ϵ}{\ensuremath{\epsilon}}
+\newunicodechar{Ε}{\ensuremath{\Epsilon}}
+\newunicodechar{ζ}{\ensuremath{\zeta}}
+\newunicodechar{Ζ}{\ensuremath{\Zeta}}
+\newunicodechar{η}{\ensuremath{\eta}}
+\newunicodechar{Η}{\ensuremath{\Eta}}
+\newunicodechar{θ}{\ensuremath{\theta}}
+\newunicodechar{Θ}{\ensuremath{\Theta}}
+\newunicodechar{ι}{\ensuremath{\iota}}
+\newunicodechar{Ι}{\ensuremath{\Iota}}
+\newunicodechar{κ}{\ensuremath{\kappa}}
+\newunicodechar{Κ}{\ensuremath{\Kappa}}
+\newunicodechar{λ}{\ensuremath{\lambda}}
+\newunicodechar{Λ}{\ensuremath{\Lambda}}
+\newunicodechar{μ}{\ensuremath{\mu}}
+\newunicodechar{Μ}{\ensuremath{\Mu}}
+\newunicodechar{ν}{\ensuremath{\nu}}
+\newunicodechar{Ν}{\ensuremath{\Nu}}
+\newunicodechar{ξ}{\ensuremath{\xi}}
+\newunicodechar{Ξ}{\ensuremath{\Xi}}
+\newunicodechar{ο}{\ensuremath{\omicron}}
+\newunicodechar{Ο}{\ensuremath{\Omicron}}
+\newunicodechar{π}{\ensuremath{\pi}}
+\newunicodechar{Π}{\ensuremath{\Pi}}
+\newunicodechar{ρ}{\ensuremath{\rho}}
+\newunicodechar{Ρ}{\ensuremath{\Rho}}
+\newunicodechar{σ}{\ensuremath{\sigma}}
+\newunicodechar{Σ}{\ensuremath{\Sigma}}
+\newunicodechar{τ}{\ensuremath{\tau}}
+\newunicodechar{Τ}{\ensuremath{\Tau}}
+\newunicodechar{υ}{\ensuremath{\upsilon}}
+\newunicodechar{Υ}{\ensuremath{\Upsilon}}
+\newunicodechar{φ}{\ensuremath{\phi}}
+\newunicodechar{Φ}{\ensuremath{\Phi}}
+\newunicodechar{χ}{\ensuremath{\chi}}
+\newunicodechar{Χ}{\ensuremath{\Chi}}
+\newunicodechar{ψ}{\ensuremath{\psi}}
+\newunicodechar{Ψ}{\ensuremath{\Psi}}
+\newunicodechar{ω}{\ensuremath{\omega}}
+\newunicodechar{Ω}{\ensuremath{\Omega}}
+#+end_src
+
+** ~var~-variants                                :incomplete:
+
+Note that some of the default Agda input entries
+are in this list, rather than the default above.
+
+Also, ~varbeta~ is missing here; it requires a choice
+of some other package to add support for it.
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((ε . \\varepsilon)
+          (ϑ . \\vartheta)
+          (ϰ . \\varkappa)
+          (ϖ . \\varpi)
+          (ς . \\varsigma)
+          (φ . \\varphi))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{ε}{\ensuremath{\varepsilon}}
+\newunicodechar{ϑ}{\ensuremath{\vartheta}}
+\newunicodechar{ϰ}{\ensuremath{\varkappa}}
+\newunicodechar{ϖ}{\ensuremath{\varpi}}
+\newunicodechar{ς}{\ensuremath{\varsigma}}
+\newunicodechar{φ}{\ensuremath{\varphi}}
+#+end_src
+
+* Subscripts, superscripts, underscripts, and overscripts :incomplete:
+
+Note that while the alphabetic lists
+are complete, *there are missing letters*,
+because unfortunately Unicode does not have characters
+for every letter subscript and superscript.
+
+** Subscripts                                  :incomplete:
+
+Note there are no uppercase letter subscripts.
+
+*** Lowercase alphabet                        :complete:
+
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((ₐ . {}_{a})
+          (ₑ . {}_{e})
+          (ₕ . {}_{h})
+          (ᵢ . {}_{i})
+          (ⱼ . {}_{j})
+          (ₖ . {}_{k})
+          (ₗ . {}_{l})
+          (ₘ . {}_{m})
+          (ₙ . {}_{n})
+          (ₒ . {}_{o})
+          (ₚ . {}_{p})
+          (ᵣ . {}_{r})
+          (ₛ . {}_{s})
+          (ₜ . {}_{t})
+          (ᵤ . {}_{u})
+          (ᵥ . {}_{v})
+          (ₓ . {}_{x}))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{ₐ}{\ensuremath{{}_{a}}}
+\newunicodechar{ₑ}{\ensuremath{{}_{e}}}
+\newunicodechar{ₕ}{\ensuremath{{}_{h}}}
+\newunicodechar{ᵢ}{\ensuremath{{}_{i}}}
+\newunicodechar{ⱼ}{\ensuremath{{}_{j}}}
+\newunicodechar{ₖ}{\ensuremath{{}_{k}}}
+\newunicodechar{ₗ}{\ensuremath{{}_{l}}}
+\newunicodechar{ₘ}{\ensuremath{{}_{m}}}
+\newunicodechar{ₙ}{\ensuremath{{}_{n}}}
+\newunicodechar{ₒ}{\ensuremath{{}_{o}}}
+\newunicodechar{ₚ}{\ensuremath{{}_{p}}}
+\newunicodechar{ᵣ}{\ensuremath{{}_{r}}}
+\newunicodechar{ₛ}{\ensuremath{{}_{s}}}
+\newunicodechar{ₜ}{\ensuremath{{}_{t}}}
+\newunicodechar{ᵤ}{\ensuremath{{}_{u}}}
+\newunicodechar{ᵥ}{\ensuremath{{}_{v}}}
+\newunicodechar{ₓ}{\ensuremath{{}_{x}}}
+#+end_src
+
+*** Numeric                                   :complete:
+
+#+begin_src emacs-lisp :wrap src latex
+(let ((the-translations
+        '((₀ . {}_{0})
+          (₁ . {}_{1})
+          (₂ . {}_{2})
+          (₃ . {}_{3})
+          (₄ . {}_{4})
+          (₅ . {}_{5})
+          (₆ . {}_{6})
+          (₇ . {}_{7})
+          (₈ . {}_{8})
+          (₉ . {}_{9}))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{₀}{\ensuremath{{}_{0}}}
+\newunicodechar{₁}{\ensuremath{{}_{1}}}
+\newunicodechar{₂}{\ensuremath{{}_{2}}}
+\newunicodechar{₃}{\ensuremath{{}_{3}}}
+\newunicodechar{₄}{\ensuremath{{}_{4}}}
+\newunicodechar{₅}{\ensuremath{{}_{5}}}
+\newunicodechar{₆}{\ensuremath{{}_{6}}}
+\newunicodechar{₇}{\ensuremath{{}_{7}}}
+\newunicodechar{₈}{\ensuremath{{}_{8}}}
+\newunicodechar{₉}{\ensuremath{{}_{9}}}
+#+end_src
+
+*** Other                                     :incomplete:
+
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((₊ . {}_{+}))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{₊}{\ensuremath{{}_{+}}}
+#+end_src
+
+** Superscripts                                :incomplete:
+
+*** Uppercase alphabet 
+
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((ᴬ . {}^{A})
+          (ᴮ . {}^{B})
+          (ᴰ . {}^{D})
+          (ᴱ . {}^{E})
+          (ᴳ . {}^{G})
+          (ᴴ . {}^{H})
+          (ᴵ . {}^{I})
+          (ᴶ . {}^{J})
+          (ᴷ . {}^{K})
+          (ᴸ . {}^{L})
+          (ᴹ . {}^{M})
+          (ᴺ . {}^{N})
+          (ᴼ . {}^{O})
+          (ᴾ . {}^{P})
+          (ᴿ . {}^{R})
+          (ᵀ . {}^{T})
+          (ᵁ . {}^{U})
+          (ⱽ . {}^{V})
+          (ᵂ . {}^{W}))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{ᴬ}{\ensuremath{{}^{A}}}
+\newunicodechar{ᴮ}{\ensuremath{{}^{B}}}
+\newunicodechar{ᴰ}{\ensuremath{{}^{D}}}
+\newunicodechar{ᴱ}{\ensuremath{{}^{E}}}
+\newunicodechar{ᴳ}{\ensuremath{{}^{G}}}
+\newunicodechar{ᴴ}{\ensuremath{{}^{H}}}
+\newunicodechar{ᴵ}{\ensuremath{{}^{I}}}
+\newunicodechar{ᴶ}{\ensuremath{{}^{J}}}
+\newunicodechar{ᴷ}{\ensuremath{{}^{K}}}
+\newunicodechar{ᴸ}{\ensuremath{{}^{L}}}
+\newunicodechar{ᴹ}{\ensuremath{{}^{M}}}
+\newunicodechar{ᴺ}{\ensuremath{{}^{N}}}
+\newunicodechar{ᴼ}{\ensuremath{{}^{O}}}
+\newunicodechar{ᴾ}{\ensuremath{{}^{P}}}
+\newunicodechar{ᴿ}{\ensuremath{{}^{R}}}
+\newunicodechar{ᵀ}{\ensuremath{{}^{T}}}
+\newunicodechar{ᵁ}{\ensuremath{{}^{U}}}
+\newunicodechar{ⱽ}{\ensuremath{{}^{V}}}
+\newunicodechar{ᵂ}{\ensuremath{{}^{W}}}
+#+end_src
+
+*** Lowercase alphabet
+
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((ᵃ . {}^{a})
+          (ᵇ . {}^{b})
+          (ᶜ . {}^{c})
+          (ᵈ . {}^{d})
+          (ᵉ . {}^{e})
+          (ᶠ . {}^{f})
+          (ᵍ . {}^{g})
+          (ʰ . {}^{h})
+          (ⁱ . {}^{i})
+          (ʲ . {}^{j})
+          (ᵏ . {}^{k})
+          (ˡ . {}^{l})
+          (ᵐ . {}^{m})
+          (ⁿ . {}^{n})
+          (ᵒ . {}^{o})
+          (ᵖ . {}^{p})
+          (ʳ . {}^{r})
+          (ˢ . {}^{s})
+          (ᵗ . {}^{t})
+          (ᵘ . {}^{u})
+          (ᵛ . {}^{v})
+          (ʷ . {}^{w})
+          (ˣ . {}^{x})
+          (ʸ . {}^{y})
+          (ᶻ . {}^{z}))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{ᵃ}{\ensuremath{{}^{a}}}
+\newunicodechar{ᵇ}{\ensuremath{{}^{b}}}
+\newunicodechar{ᶜ}{\ensuremath{{}^{c}}}
+\newunicodechar{ᵈ}{\ensuremath{{}^{d}}}
+\newunicodechar{ᵉ}{\ensuremath{{}^{e}}}
+\newunicodechar{ᶠ}{\ensuremath{{}^{f}}}
+\newunicodechar{ᵍ}{\ensuremath{{}^{g}}}
+\newunicodechar{ʰ}{\ensuremath{{}^{h}}}
+\newunicodechar{ⁱ}{\ensuremath{{}^{i}}}
+\newunicodechar{ʲ}{\ensuremath{{}^{j}}}
+\newunicodechar{ᵏ}{\ensuremath{{}^{k}}}
+\newunicodechar{ˡ}{\ensuremath{{}^{l}}}
+\newunicodechar{ᵐ}{\ensuremath{{}^{m}}}
+\newunicodechar{ⁿ}{\ensuremath{{}^{n}}}
+\newunicodechar{ᵒ}{\ensuremath{{}^{o}}}
+\newunicodechar{ᵖ}{\ensuremath{{}^{p}}}
+\newunicodechar{ʳ}{\ensuremath{{}^{r}}}
+\newunicodechar{ˢ}{\ensuremath{{}^{s}}}
+\newunicodechar{ᵗ}{\ensuremath{{}^{t}}}
+\newunicodechar{ᵘ}{\ensuremath{{}^{u}}}
+\newunicodechar{ᵛ}{\ensuremath{{}^{v}}}
+\newunicodechar{ʷ}{\ensuremath{{}^{w}}}
+\newunicodechar{ˣ}{\ensuremath{{}^{x}}}
+\newunicodechar{ʸ}{\ensuremath{{}^{y}}}
+\newunicodechar{ᶻ}{\ensuremath{{}^{z}}}
+#+end_src
+
+*** Numeric
+
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((⁰ . {}^{0})
+          (¹ . {}^{1})
+          (² . {}^{2})
+          (³ . {}^{3})
+          (⁴ . {}^{4})
+          (⁵ . {}^{5})
+          (⁶ . {}^{6})
+          (⁷ . {}^{7})
+          (⁸ . {}^{8})
+          (⁹ . {}^{9}))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{⁰}{\ensuremath{{}^{0}}}
+\newunicodechar{¹}{\ensuremath{{}^{1}}}
+\newunicodechar{²}{\ensuremath{{}^{2}}}
+\newunicodechar{³}{\ensuremath{{}^{3}}}
+\newunicodechar{⁴}{\ensuremath{{}^{4}}}
+\newunicodechar{⁵}{\ensuremath{{}^{5}}}
+\newunicodechar{⁶}{\ensuremath{{}^{6}}}
+\newunicodechar{⁷}{\ensuremath{{}^{7}}}
+\newunicodechar{⁸}{\ensuremath{{}^{8}}}
+\newunicodechar{⁹}{\ensuremath{{}^{9}}}
+#+end_src
+
+*** Other
+
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((⁺ . {}^{+}))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{⁺}{\ensuremath{{}^{+}}}
+#+end_src
+
+* Punctuation and delimiters                    :incomplete:
+
+** Dots                                        :incomplete:
+
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((… . \\ldots)
+          (⋯ . \\cdots)
+          (⋮ . \\vdots))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{…}{\ensuremath{\ldots}}
+\newunicodechar{⋯}{\ensuremath{\cdots}}
+\newunicodechar{⋮}{\ensuremath{\vdots}}
+#+end_src
+
+** Dashes                                      :incomplete:
+
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((– . \\text{--})
+          (— . \\text{---}))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{–}{\ensuremath{\text{--}}}
+\newunicodechar{—}{\ensuremath{\text{---}}}
+#+end_src
+
+** Parentheses, braces and brackets            :incomplete:
+
+# This section will yell at you if you have parentheses matching
+# turned on for these symbols.
+
+Note there are a few different braces I translate the same way.
+Braces and parentheses themselves are special characters in Agda,
+so they cannot be used in names.
+
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((⦅ . \(\\!|)
+          (⦆ . |\\!\))
+          (⟨ . \\langle)
+          (⟩ . \\rangle)
+          (⟪ . \\langle\\!\\langle)
+          (⟫ . \\rangle\\!\\rangle)
+          (⁅ . \\{)
+          (⁆ . \\})
+          (｛ . \\{)
+          (｝ . \\}))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{⦅}{\ensuremath{(\!|}}
+\newunicodechar{⦆}{\ensuremath{|\!)}}
+\newunicodechar{⟨}{\ensuremath{\langle}}
+\newunicodechar{⟩}{\ensuremath{\rangle}}
+\newunicodechar{⟪}{\ensuremath{\langle\!\langle}}
+\newunicodechar{⟫}{\ensuremath{\rangle\!\rangle}}
+\newunicodechar{⁅}{\ensuremath{\{}}
+\newunicodechar{⁆}{\ensuremath{\}}}
+\newunicodechar{｛}{\ensuremath{\{}}
+\newunicodechar{｝}{\ensuremath{\}}}
+#+end_src
+
+** Other paired delimiters
+
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((⌜ . \\ulcorner)
+          (⌝ . \\urcorner)
+          (⌞ . \\llcorner)
+          (⌟ . \\lrcorner)
+          (⌈ . \\lceil)
+          (⌉ . \\rceil)
+          (⌊ . \\lfloor)
+          (⌋ . \\rfloor))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{⌜}{\ensuremath{\ulcorner}}
+\newunicodechar{⌝}{\ensuremath{\urcorner}}
+\newunicodechar{⌞}{\ensuremath{\llcorner}}
+\newunicodechar{⌟}{\ensuremath{\lrcorner}}
+\newunicodechar{⌈}{\ensuremath{\lceil}}
+\newunicodechar{⌉}{\ensuremath{\rceil}}
+\newunicodechar{⌊}{\ensuremath{\lfloor}}
+\newunicodechar{⌋}{\ensuremath{\rfloor}}
+#+end_src
+
+** Whitespace
+
+# ~ is a special variable in Lisp, so the usual generator fails here.
+# We just write this manually.
+Non-breaking space. Though it may appear as a normal space,
+it is in fact a ~~~ in the LaTeX.
+#+begin_src latex
+\newunicodechar{ }{\ensuremath{~}}
+#+end_src
+
+I am a very long line whose words are separated by non-breaking spaces so I should run off the page at least at any reasonable font size 😀.
+
+* Logic                                         :incomplete:
+
+** Quantifiers                                 :incomplete:
+
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((∀ . \\forall)
+          (∃ . \\exists))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{∀}{\ensuremath{\forall}}
+\newunicodechar{∃}{\ensuremath{\exists}}
+#+end_src
+
+** Boolean algebra                             :incomplete:
+
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((≡ . \\equiv)
+          (¬ . \\lnot)
+          (≢ . \\nequiv)
+          (∨ . \\lor)
+          (∧ . \\land)
+          (⇒ . \\\;\\Rightarrow\\\;)
+          (⇐ . \\\;\\Rightarrow\\\;)
+          (⇔ . \\iff))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{≡}{\ensuremath{\equiv}}
+\newunicodechar{¬}{\ensuremath{\lnot}}
+\newunicodechar{≢}{\ensuremath{\nequiv}}
+\newunicodechar{∨}{\ensuremath{\lor}}
+\newunicodechar{∧}{\ensuremath{\land}}
+\newunicodechar{⇒}{\ensuremath{\;\Rightarrow\;}}
+\newunicodechar{⇐}{\ensuremath{\;\Rightarrow\;}}
+\newunicodechar{⇔}{\ensuremath{\iff}}
+#+end_src
+
+** Entailment
+
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((⊢ . \\vdash)
+          (⊣ . \\dashv)
+          (⊨ . \\vDash))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{⊢}{\ensuremath{\vdash}}
+\newunicodechar{⊣}{\ensuremath{\dashv}}
+\newunicodechar{⊨}{\ensuremath{\vDash}}
+#+end_src
+
+* Sets, relations and functions                 :incomplete:
+
+** Sets                                        :incomplete:
+
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((ø . \\emptyset)
+          (∅ . \\emptyset)
+          (∈ . \\in)
+          (∉ . \\not\\in)
+          (∋ . \\ni)
+          (∩ . \\cap)
+          (∪ . \\cup)
+          (⊍ . \\uplus) ;; u., as opposed to u+
+          (⊎ . \\uplus))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{ø}{\ensuremath{\emptyset}}
+\newunicodechar{∅}{\ensuremath{\emptyset}}
+\newunicodechar{∈}{\ensuremath{\in}}
+\newunicodechar{∉}{\ensuremath{\not\in}}
+\newunicodechar{∋}{\ensuremath{\ni}}
+\newunicodechar{∩}{\ensuremath{\cap}}
+\newunicodechar{∪}{\ensuremath{\cup}}
+\newunicodechar{⊍}{\ensuremath{\uplus}}
+\newunicodechar{⊎}{\ensuremath{\uplus}}
+#+end_src
+
+** Relation operators                          :incomplete:
+
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((⊤ . \\top)
+          (⊥ . \\bot)
+          (⊔ . \\sqcup)
+          (⊓ . \\sqcap))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{⊤}{\ensuremath{\top}}
+\newunicodechar{⊥}{\ensuremath{\bot}}
+\newunicodechar{⊔}{\ensuremath{\sqcup}}
+\newunicodechar{⊓}{\ensuremath{\sqcap}}
+#+end_src
+
+** Function operators                          :incomplete:
+
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((∘ . \\circ))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{∘}{\ensuremath{\circ}}
+#+end_src
+
+** Relations                                   :incomplete:
+
+*** Equality like
+
+Along with negations where they exist.
+Note that equivalences are within the [[Logic]] section.
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((≠ . \\neq)
+          (≐ . \\doteq)
+          (≟ . \\stackrel{?}{=})
+          (≅ . \\cong)
+          (≇ . \\ncong)
+          (≃ . \\simeq)
+          (≄ . \\nsimeq)
+          (≈ . \\approx)
+          (≉ . \\napprox)
+          (∼ . \\sim)
+          (≁ . \\nsim)
+          (≔ . :\\!=))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{≠}{\ensuremath{\neq}}
+\newunicodechar{≐}{\ensuremath{\doteq}}
+\newunicodechar{≟}{\ensuremath{\stackrel{?}{=}}}
+\newunicodechar{≅}{\ensuremath{\cong}}
+\newunicodechar{≇}{\ensuremath{\ncong}}
+\newunicodechar{≃}{\ensuremath{\simeq}}
+\newunicodechar{≄}{\ensuremath{\nsimeq}}
+\newunicodechar{≈}{\ensuremath{\approx}}
+\newunicodechar{≉}{\ensuremath{\napprox}}
+\newunicodechar{∼}{\ensuremath{\sim}}
+\newunicodechar{≁}{\ensuremath{\nsim}}
+\newunicodechar{≔}{\ensuremath{:\!=}}
+#+end_src
+
+*** Order like
+
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((≤ . \\leq)
+          (≰ . \\nleq)
+          (≥ . \\geq)
+          (≱ . \\ngeq)
+          (≮ . \\nless)
+          (≯ . \\ngtr)
+          (≦ . \\leqq)
+          (≨ . \\lneqq)
+          (≧ . \\geqq)
+          (≩ . \\gneqq)
+          (≲ . \\lesssim)
+          (≳ . \\gtrsim)
+          (⊏ . \\sqsubset)
+          (⊑ . \\sqsubseteq)
+          (⊐ . \\sqsupset)
+          (⊒ . \\sqsupseteq)
+          (∣ . \\mid))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{≤}{\ensuremath{\leq}}
+\newunicodechar{≰}{\ensuremath{\nleq}}
+\newunicodechar{≥}{\ensuremath{\geq}}
+\newunicodechar{≱}{\ensuremath{\ngeq}}
+\newunicodechar{≮}{\ensuremath{\nless}}
+\newunicodechar{≯}{\ensuremath{\ngtr}}
+\newunicodechar{≦}{\ensuremath{\leqq}}
+\newunicodechar{≨}{\ensuremath{\lneqq}}
+\newunicodechar{≧}{\ensuremath{\geqq}}
+\newunicodechar{≩}{\ensuremath{\gneqq}}
+\newunicodechar{≲}{\ensuremath{\lesssim}}
+\newunicodechar{≳}{\ensuremath{\gtrsim}}
+\newunicodechar{⊏}{\ensuremath{\sqsubset}}
+\newunicodechar{⊑}{\ensuremath{\sqsubseteq}}
+\newunicodechar{⊐}{\ensuremath{\sqsupset}}
+\newunicodechar{⊒}{\ensuremath{\sqsupseteq}}
+\newunicodechar{∣}{\ensuremath{\mid}}
+#+end_src
+
+* Generic or other operators
+
+** Arrows
+
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((→ . \\rightarrow)
+          (← . \\leftarrow)
+          (↑ . \\uparrow)
+          (↓ . \\downarrow)
+          (⟶ . \\longrightarrow)
+          (⟵ . \\longleftarrow))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{→}{\ensuremath{\rightarrow}}
+\newunicodechar{←}{\ensuremath{\leftarrow}}
+\newunicodechar{↑}{\ensuremath{\uparrow}}
+\newunicodechar{↓}{\ensuremath{\downarrow}}
+\newunicodechar{⟶}{\ensuremath{\longrightarrow}}
+\newunicodechar{⟵}{\ensuremath{\longleftarrow}}
+#+end_src
+
+** “o”-operators
+
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((⊕ . \\oplus)
+          (⊖ . \\ominus)
+          (⊗ . \\otimes)
+          (⊘ . \\oslash)
+          (⊙ . \\odot)
+          (⊚ . \\circledcirc)
+          (⊛ . \\circledast)
+          (⊜ . \\circledequal)
+          (⊝ . \\circleddash))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{⊕}{\ensuremath{\oplus}}
+\newunicodechar{⊖}{\ensuremath{\ominus}}
+\newunicodechar{⊗}{\ensuremath{\otimes}}
+\newunicodechar{⊘}{\ensuremath{\oslash}}
+\newunicodechar{⊙}{\ensuremath{\odot}}
+\newunicodechar{⊚}{\ensuremath{\circledcirc}}
+\newunicodechar{⊛}{\ensuremath{\circledast}}
+\newunicodechar{⊜}{\ensuremath{\circledequal}}
+\newunicodechar{⊝}{\ensuremath{\circleddash}}
+#+end_src
+
+** Puncuation like
+
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((∶ . \\ratio)
+          (⨾ . \\fcmp))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{∶}{\ensuremath{\ratio}}
+\newunicodechar{⨾}{\ensuremath{\fcmp}}
+#+end_src
+
+** Others
+
+Probably some of these belong somewhere else.
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((∙ . \\cdot)
+          (∞ . \\infty))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{∙}{\ensuremath{\cdot}}
+\newunicodechar{∞}{\ensuremath{\infty}}
+#+end_src
+
+* Emoticons
+
+I have not found a reliable way to produce emoticons in LaTeX.
+In LuaLaTeX and XeLaTeX, it should work to just use
+the unicode characters themselves,
+making sure to use a font that supports them.
+DejaVu Sans does so.
+#+begin_src latex
+\newfontfamily\DejaSans{DejaVu Sans}
+#+end_src
+
+So these characters can only be used if you use LuaLaTeX or XeLaTeX.
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((😀 . 😀)
+          (😁 . 😁)
+          (😐 . 😐)
+          (😵 . 😵)
+          (🙁 . 🙁))))
+  (generate-newunicodechars the-translations "{\\DejaSans "))
+#+end_src
+
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{😀}{{\DejaSans 😀}}
+\newunicodechar{😁}{{\DejaSans 😁}}
+\newunicodechar{😐}{{\DejaSans 😐}}
+\newunicodechar{😵}{{\DejaSans 😵}}
+\newunicodechar{🙁}{{\DejaSans 🙁}}
+#+end_src
+
+* COMMENT Old
+
+** Other operators                             :incomplete:
+
+#+begin_src latex
+%---------------------------------------------------------------------
+% Other operators
+%---------------------------------------------------------------------
+\newunicodechar{⊕}{\ensuremath{\mathrm{⊕}}}
+\newunicodechar{⊗}{\ensuremath{\mathrm{⊗}}}
+\newunicodechar{⊛}{\ensuremath{\mathrm{⊛}}}
+\newunicodechar{⊘}{\ensuremath{\mathrm{⊘}}}
+\newunicodechar{∣}{\ensuremath{\mathrm{∣}}}
+\newunicodechar{∷}{\ensuremath{\mathrm{∷}}}
+\newunicodechar{≟}{\ensuremath{\mathrm{≟}}}
+\newunicodechar{≔}{\ensuremath{\mathrm{≔}}}
+\newunicodechar{≈}{\ensuremath{\mathrm{≈}}}
+\newunicodechar{⟶}{\ensuremath{\mathrm{⟶}}}
+\newunicodechar{⇓}{\ensuremath{\mathrm{⇓}}}
+#+end_src
+* Package footer                                :noexport:
+
+#+begin_src latex
+\endinput
+#+end_src
