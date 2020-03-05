@@ -1,0 +1,7 @@
+# This file is tangled from a code in README.org.
+# It should not be modified directly.
+*~
+
+*.tex
+
+_minted-unicode

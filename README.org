@@ -1,0 +1,29 @@
+#+Title: Unicode characters for LaTeX
+#+Author: Mark Armstrong
+#+Description: A collection of ~\NewUnicodeChar~ declarations for use in LaTeX.
+
+* Introduction
+
+A collection of ~\NewUnicodeChar~ declarations for use in LaTeX.
+
+The below instructions are imported here from [[file:unicode.org]].
+See that file for more details.
+
+The file [[file:unicode.pdf]] is generated from [[file:unicode.org]] as
+evidence that the unicode characters are declared correctly.
+
+#+Include: "./unicode.org::*Usage"
+#+Include: "./unicode.org::*Requirements"
+#+Include: "./unicode.org::*Contributing to the document"
+
+* .gitignore :noexport:
+
+#+begin_src text :tangle .gitignore
+# This file is tangled from a code in README.org.
+# It should not be modified directly.
+*~
+
+*.tex
+
+_minted-unicode
+#+end_src
