@@ -14,7 +14,7 @@ evidence that the unicode characters are declared correctly.
 
 #+Include: "./unicode.org::*Usage"
 #+Include: "./unicode.org::*Requirements"
-#+Include: "./unicode.org::*Contributing to the document"
+#+Include: "./unicode.org::*Contributing to this document"
 
 * .gitignore :noexport:
 
