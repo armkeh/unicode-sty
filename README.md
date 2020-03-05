@@ -3,11 +3,11 @@
 A collection of `\NewUnicodeChar` declarations for use in LaTeX.
 
 The below instructions are imported here from
-[file:unicode.org](unicode.org). See that file for more details.
+[unicode.org](unicode.org). See that file for more details.
 
-The file [file:unicode.pdf](unicode.pdf) is generated from
-[file:unicode.org](unicode.org) as evidence that the unicode characters
-are declared correctly.
+The file [unicode.pdf](unicode.pdf) is generated from
+[unicode.org](unicode.org) as evidence that the unicode characters are
+declared correctly.
 
 ## Usage
 

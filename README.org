@@ -6,10 +6,10 @@
 
 A collection of ~\NewUnicodeChar~ declarations for use in LaTeX.
 
-The below instructions are imported here from [[file:unicode.org]].
+The below instructions are imported here from [[file:unicode.org][unicode.org]].
 See that file for more details.
 
-The file [[file:unicode.pdf]] is generated from [[file:unicode.org]] as
+The file [[file:unicode.pdf][unicode.pdf]] is generated from [[file:unicode.org][unicode.org]] as
 evidence that the unicode characters are declared correctly.
 
 #+Include: "./unicode.org::*Usage"
