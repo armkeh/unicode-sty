@@ -2,12 +2,55 @@
 
 A collection of `\NewUnicodeChar` declarations for use in LaTeX.
 
-The below instructions are imported here from
-[unicode.org](unicode.org). See that file for more details.
-
 The file [unicode.pdf](unicode.pdf) is generated from
 [unicode.org](unicode.org) as evidence that the unicode characters are
 declared correctly.
+
+# Instruction on using this repository
+
+There are at least three ways you could include of `unicode.sty` in your
+project(s).
+
+1.  Copy `unicode.sty` and add it to your repo.
+      - The disadvantage to this approach is that you must manually
+        update `unicode.sty` if it changes here, and any changes you
+        make to one local copy will not be carried over to other copies
+        you make.
+2.  Clone this project or copy `unicode.sty`, and place it —or a symlink
+    to it— in a directory where LaTeX will find it.
+      - The disadvantage to this approach is that it is machine local;
+        users of your project on other machines must also perform the
+        same setup.
+3.  Include this repository as a submodule of your repository, via, for
+    instance, Git submodules or Git subtrees.
+      - The disadvantage to this approach is you must learn how to use
+        submodules if you do not already know how.
+
+Option (3) seems the best option, and among Git's submodule mechanisms,
+subtrees are apparently the best choice. So this section describes how
+to include this repo as a subtree of your project.
+
+Adding the subtree is simple enough.
+
+``` shell
+git subtree add --prefix unicode-sty https://github.com/armkeh/unicode-sty.git master --squash
+```
+
+The `--squash` flag squashes the history of this repository; if you
+prefer to include the full history of this project, omit the flag.
+
+To update the subtree when changes occur to this repository, simply run
+
+``` shell
+git subtree pull --prefix unicode-sty https://github.com/armkeh/unicode-sty.git --squash
+```
+
+Again, note the `--squash` flag.
+
+# Instructions on using `unicode.sty`
+
+The below instructions are imported here from
+[unicode.org](unicode.org). See that file for more details.
 
 ## Usage
 
