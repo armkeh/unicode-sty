@@ -1286,7 +1286,90 @@ Note that equivalences are within the [[Logic]] section.
 \newunicodechar{⊝}{\ensuremath{\circleddash}}
 #+end_src
 
-** Puncuation like
+** Small, halfwidth and fullwidth math symbols
+
+For small characters, we use ~scalebox~ on the corresponding
+symbols, and ~raisebox~ to correct for height.
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((﹡ . \\raisebox{.4\\height}{\\scalebox{.6}{*}})
+          (﹢ . \\raisebox{.4\\height}{\\scalebox{.6}{+}})
+          (﹣ . \\raisebox{.4\\height}{\\scalebox{.6}{-}})
+          (﹤ . \\raisebox{.4\\height}{\\scalebox{.6}{<}})
+          (﹥ . \\raisebox{.4\\height}{\\scalebox{.6}{>}})
+          (﹦ . \\raisebox{.4\\height}{\\scalebox{.6}{=}})
+          (﹨ . \\raisebox{.4\\height}{\\scalebox{.6}{\\backslash}}))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{﹡}{\ensuremath{\raisebox{.4\height}{\scalebox{.6}{*}}}}
+\newunicodechar{﹢}{\ensuremath{\raisebox{.4\height}{\scalebox{.6}{+}}}}
+\newunicodechar{﹣}{\ensuremath{\raisebox{.4\height}{\scalebox{.6}{-}}}}
+\newunicodechar{﹤}{\ensuremath{\raisebox{.4\height}{\scalebox{.6}{<}}}}
+\newunicodechar{﹥}{\ensuremath{\raisebox{.4\height}{\scalebox{.6}{>}}}}
+\newunicodechar{﹦}{\ensuremath{\raisebox{.4\height}{\scalebox{.6}{=}}}}
+\newunicodechar{﹨}{\ensuremath{\raisebox{.4\height}{\scalebox{.6}{\backslash}}}}
+#+end_src
+
+For fullwidth characters, we place them in a ~1em~ box.
+Note the “plain TeX” method for obtaining a non-raised tilde here.
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+         '((＋ . \\makebox\[1em\]{+})
+          (＜ . \\makebox\[1em\]{<})
+          (＝ . \\makebox\[1em\]{=})
+          (＞ . \\makebox\[1em\]{>})
+          (＾ . \\makebox\[1em\]{\\textasciicircum})
+          (｜ . \\makebox\[1em\]{|})
+          (～ . \\makebox\[1em\]{\\char\`\\~})
+          (￢ . \\makebox\[1em\]{\\lnot}))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{﹡}{\ensuremath{\raisebox{.4\height}{\scalebox{.6}{*}}}}
+\newunicodechar{﹢}{\ensuremath{\raisebox{.4\height}{\scalebox{.6}{+}}}}
+\newunicodechar{﹣}{\ensuremath{\raisebox{.4\height}{\scalebox{.6}{-}}}}
+\newunicodechar{﹤}{\ensuremath{\raisebox{.4\height}{\scalebox{.6}{<}}}}
+\newunicodechar{﹥}{\ensuremath{\raisebox{.4\height}{\scalebox{.6}{>}}}}
+\newunicodechar{﹦}{\ensuremath{\raisebox{.4\height}{\scalebox{.6}{=}}}}
+\newunicodechar{﹨}{\ensuremath{\raisebox{.4\height}{\scalebox{.6}{\backslash}}}}
+\newunicodechar{＋}{\ensuremath{\makebox[1em]{+}}}
+\newunicodechar{＜}{\ensuremath{\makebox[1em]{<}}}
+\newunicodechar{＝}{\ensuremath{\makebox[1em]{=}}}
+\newunicodechar{＞}{\ensuremath{\makebox[1em]{>}}}
+\newunicodechar{＾}{\ensuremath{\makebox[1em]{\textasciicircum}}}
+\newunicodechar{｜}{\ensuremath{\makebox[1em]{|}}}
+\newunicodechar{～}{\ensuremath{\makebox[1em]{\char`\~}}}
+\newunicodechar{￢}{\ensuremath{\makebox[1em]{\lnot}}}
+#+end_src
+
+So far, I haven't devised a good solution for the halfwidth arrows.
+I just substitute the regular arrows in.
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((￩ . \\leftarrow)
+          (￪ . \\uparrow)
+          (￫ . \\rightarrow)
+          (￬ . \\downarrow))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{￩}{\ensuremath{\leftarrow}}
+\newunicodechar{￪}{\ensuremath{\uparrow}}
+\newunicodechar{￫}{\ensuremath{\rightarrow}}
+\newunicodechar{￬}{\ensuremath{\downarrow}}
+#+end_src
+
+** Punctuation like
 
 #+begin_src emacs-lisp
 <<generator>>
