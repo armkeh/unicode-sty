@@ -1404,7 +1404,25 @@ Probably some of these belong somewhere else.
 
 * Emoticons
 
-I have not found a reliable way to produce emoticons in LaTeX.
+** Check and X-marks
+
+#+begin_src emacs-lisp
+<<generator>>
+(let ((the-translations
+        '((✔ . \\checkmark)
+          (❌ . \\times))))
+  (generate-newunicodechars the-translations))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\newunicodechar{✔}{\ensuremath{\checkmark}}
+\newunicodechar{❌}{\ensuremath{\times}}
+#+end_src
+
+** Smilies
+
+I have not found a reliable way to produce smilies in LaTeX.
 In LuaLaTeX and XeLaTeX, it should work to just use
 the unicode characters themselves,
 making sure to use a font that supports them.
@@ -1424,7 +1442,6 @@ So these characters can only be used if you use LuaLaTeX or XeLaTeX.
           (🙁 . 🙁))))
   (generate-newunicodechars the-translations "{\\DejaSans "))
 #+end_src
-
 
 #+RESULTS:
 #+begin_src latex
