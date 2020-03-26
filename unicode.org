@@ -51,12 +51,26 @@ There are two ways to inform LaTeX of unicode character translations;
 This collection uses the second.
 #+begin_src latex
 \usepackage{newunicodechar}
+
+\usepackage{pifont}
+\usepackage{stmaryrd}
+\usepackage{amsmath, amssymb, amsthm, latexsym, amscd, enumerate, bbm, etex,nicefrac,mathrsfs}
+
+\newif\ifpdflatex
+\pdflatextrue
+% To use other typesetting engines, declare the following:
+% \pdflatexfalse
+
 #+end_src
 
-The unicode-math package “provides a complete implementation of
-unicode maths for XeLaTeX and LuaLaTeX”.
+# See here for more on LaTeX conditionals: http://handyfloss.net/2007.08/latex-programming-how-to-implement-conditionals/
+# +latex: \ifpdflatex HELLO \else WORLD \fi
+
+# The unicode-math package “provides a complete implementation of
+# unicode maths for XeLaTeX and LuaLaTeX”.
 #+begin_src latex
-\usepackage{unicode-math}
+% \usepackage{unicode-math}
+% \usepackage{unicodechar}
 #+end_src
 
 ** Contributing to this document
@@ -72,25 +86,24 @@ not ~unicode.sty~ or the LaTeX source blocks themselves.
 
 ** The Emacs Lisp script
 
-In this document, several lists of
-unicode character, LaTeX translation pairs
-are declared, and then “wrapped” into ~latex~ source blocks,
-using this function to map the pairs into ~newunicodechar~ declarations.
+In this document, several lists of unicode character, LaTeX translation pairs
+are declared, and then “wrapped” into ~latex~ source blocks, using this function
+to map the pairs into ~newunicodechar~ declarations.
 #+Name: generator
-#+begin_src emacs-lisp
-(defun generate-newunicodechars (translation-pairs &optional lwrapper rwrapper)
-  ;; Set the left and right portions of the wrapper
-  (or lwrapper (setq lwrapper "\\ensuremath{"))
-  (or rwrapper (setq rwrapper "}")) 
+#+begin_src emacs-lisp :tangle no
+(cl-defun generate-newunicodechars
+    (translation-lists &optional (lwrapper "\\ensuremath{") (rwrapper "}"))
   ;; Build the string
   (s-join "\n"
-    (loop for (character . translation) in translation-pairs
-          collect (format "\\newunicodechar{%s}{%s%s%s}"
-                          character
-                          lwrapper
-                          translation
-                          rwrapper))))
-#+end_src
+    (loop for (character pdflatex-translation other-translation) in translation-lists
+          for pdflatex-form = (format "\\newunicodechar{%s}{%s%s%s}" character  lwrapper pdflatex-translation rwrapper)
+          for other-form    = (format "\\newunicodechar{%s}{%s%s%s}" character  lwrapper other-translation rwrapper)
+          collect (if other-translation
+                      (format "\\ifpdflatex %s \n\t\t\t\\else %s \\fi\n" pdflatex-form other-form)
+                      pdflatex-form))))
+
+; (generate-newunicodechars '( (𝕩 \\mathbb{x})           (𝕪 t \\mathbb{y}) ))
+#+end_SRC
 
 * Notes
 
@@ -120,7 +133,7 @@ unless I have missed some characters aside from
 latin letters, greek letters and arabic numerals
 which should be included.
 
-** Blackboard                                  :possiblycomplete:
+** Blackboard                                              :possiblycomplete:
 
 #+begin_src latex
 %-----------------------------------------------------------
@@ -134,71 +147,124 @@ which should be included.
 %-------------------------------------------------
 % Lowercase latin
 %-------------------------------------------------
+
+\usepackage{bbm} % for double stroke lower case letters
 #+end_Src
 
 #+begin_src emacs-lisp
 <<generator>>
 (let ((the-translations
-        '((𝕒 . \\mathbb{a})
-          (𝕓 . \\mathbb{b})
-          (𝕔 . \\mathbb{c})
-          (𝕕 . \\mathbb{d})
-          (𝕖 . \\mathbb{e})
-          (𝕗 . \\mathbb{f})
-          (𝕘 . \\mathbb{g})
-          (𝕙 . \\mathbb{h})
-          (𝕚 . \\mathbb{i})
-          (𝕛 . \\mathbb{j})
-          (𝕜 . \\mathbb{k})
-          (𝕝 . \\mathbb{l})
-          (𝕞 . \\mathbb{m})
-          (𝕟 . \\mathbb{n})
-          (𝕠 . \\mathbb{o})
-          (𝕡 . \\mathbb{p})
-          (𝕢 . \\mathbb{q})
-          (𝕣 . \\mathbb{r})
-          (𝕤 . \\mathbb{s})
-          (𝕥 . \\mathbb{t})
-          (𝕦 . \\mathbb{u})
-          (𝕧 . \\mathbb{v})
-          (𝕨 . \\mathbb{w})
-          (𝕩 . \\mathbb{x})
-          (𝕪 . \\mathbb{y})
-          (𝕫 . \\mathbb{z}))))
+        '((𝕒 \\mathbbm{a} \\mathbb{a})
+          (𝕓 \\mathbbm{b} \\mathbb{b})
+          (𝕔 \\mathbbm{c} \\mathbb{c})
+          (𝕕 \\mathbbm{d} \\mathbb{d})
+          (𝕖 \\mathbbm{e} \\mathbb{e})
+          (𝕗 \\mathbbm{f} \\mathbb{f})
+          (𝕘 \\mathbbm{g} \\mathbb{g})
+          (𝕙 \\mathbbm{h} \\mathbb{h})
+          (𝕚 \\mathbbm{i} \\mathbb{i})
+          (𝕛 \\mathbbm{j} \\mathbb{j})
+          (𝕜 \\mathbbm{k} \\mathbb{k})
+          (𝕝 \\mathbbm{l} \\mathbb{l})
+          (𝕞 \\mathbbm{m} \\mathbb{m})
+          (𝕟 \\mathbbm{n} \\mathbb{n})
+          (𝕠 \\mathbbm{o} \\mathbb{o})
+          (𝕡 \\mathbbm{p} \\mathbb{p})
+          (𝕢 \\mathbbm{q} \\mathbb{q})
+          (𝕣 \\mathbbm{r} \\mathbb{r})
+          (𝕤 \\mathbbm{s} \\mathbb{s})
+          (𝕥 \\mathbbm{t} \\mathbb{t})
+          (𝕦 \\mathbbm{u} \\mathbb{u})
+          (𝕧 \\mathbbm{v} \\mathbb{v})
+          (𝕨 \\mathbbm{w} \\mathbb{w})
+          (𝕩 \\mathbbm{x} \\mathbb{x})
+          (𝕪 \\mathbbm{y} \\mathbb{y})
+          (𝕫 \\mathbbm{z} \\mathbb{z}))))
   (generate-newunicodechars the-translations))
 #+end_src
 
 #+RESULTS:
 #+begin_src latex
-\newunicodechar{𝕒}{\ensuremath{\mathbb{a}}}
-\newunicodechar{𝕓}{\ensuremath{\mathbb{b}}}
-\newunicodechar{𝕔}{\ensuremath{\mathbb{c}}}
-\newunicodechar{𝕕}{\ensuremath{\mathbb{d}}}
-\newunicodechar{𝕖}{\ensuremath{\mathbb{e}}}
-\newunicodechar{𝕗}{\ensuremath{\mathbb{f}}}
-\newunicodechar{𝕘}{\ensuremath{\mathbb{g}}}
-\newunicodechar{𝕙}{\ensuremath{\mathbb{h}}}
-\newunicodechar{𝕚}{\ensuremath{\mathbb{i}}}
-\newunicodechar{𝕛}{\ensuremath{\mathbb{j}}}
-\newunicodechar{𝕜}{\ensuremath{\mathbb{k}}}
-\newunicodechar{𝕝}{\ensuremath{\mathbb{l}}}
-\newunicodechar{𝕞}{\ensuremath{\mathbb{m}}}
-\newunicodechar{𝕟}{\ensuremath{\mathbb{n}}}
-\newunicodechar{𝕠}{\ensuremath{\mathbb{o}}}
-\newunicodechar{𝕡}{\ensuremath{\mathbb{p}}}
-\newunicodechar{𝕢}{\ensuremath{\mathbb{q}}}
-\newunicodechar{𝕣}{\ensuremath{\mathbb{r}}}
-\newunicodechar{𝕤}{\ensuremath{\mathbb{s}}}
-\newunicodechar{𝕥}{\ensuremath{\mathbb{t}}}
-\newunicodechar{𝕦}{\ensuremath{\mathbb{u}}}
-\newunicodechar{𝕧}{\ensuremath{\mathbb{v}}}
-\newunicodechar{𝕨}{\ensuremath{\mathbb{w}}}
-\newunicodechar{𝕩}{\ensuremath{\mathbb{x}}}
-\newunicodechar{𝕪}{\ensuremath{\mathbb{y}}}
-\newunicodechar{𝕫}{\ensuremath{\mathbb{z}}}
+\ifpdflatex \newunicodechar{𝕒}{\ensuremath{\mathbbm{a}}}
+      \else \newunicodechar{𝕒}{\ensuremath{\mathbb{a}}} \fi
+
+\ifpdflatex \newunicodechar{𝕓}{\ensuremath{\mathbbm{b}}}
+      \else \newunicodechar{𝕓}{\ensuremath{\mathbb{b}}} \fi
+
+\ifpdflatex \newunicodechar{𝕔}{\ensuremath{\mathbbm{c}}}
+      \else \newunicodechar{𝕔}{\ensuremath{\mathbb{c}}} \fi
+
+\ifpdflatex \newunicodechar{𝕕}{\ensuremath{\mathbbm{d}}}
+      \else \newunicodechar{𝕕}{\ensuremath{\mathbb{d}}} \fi
+
+\ifpdflatex \newunicodechar{𝕖}{\ensuremath{\mathbbm{e}}}
+      \else \newunicodechar{𝕖}{\ensuremath{\mathbb{e}}} \fi
+
+\ifpdflatex \newunicodechar{𝕗}{\ensuremath{\mathbbm{f}}}
+      \else \newunicodechar{𝕗}{\ensuremath{\mathbb{f}}} \fi
+
+\ifpdflatex \newunicodechar{𝕘}{\ensuremath{\mathbbm{g}}}
+      \else \newunicodechar{𝕘}{\ensuremath{\mathbb{g}}} \fi
+
+\ifpdflatex \newunicodechar{𝕙}{\ensuremath{\mathbbm{h}}}
+      \else \newunicodechar{𝕙}{\ensuremath{\mathbb{h}}} \fi
+
+\ifpdflatex \newunicodechar{𝕚}{\ensuremath{\mathbbm{i}}}
+      \else \newunicodechar{𝕚}{\ensuremath{\mathbb{i}}} \fi
+
+\ifpdflatex \newunicodechar{𝕛}{\ensuremath{\mathbbm{j}}}
+      \else \newunicodechar{𝕛}{\ensuremath{\mathbb{j}}} \fi
+
+\ifpdflatex \newunicodechar{𝕜}{\ensuremath{\mathbbm{k}}}
+      \else \newunicodechar{𝕜}{\ensuremath{\mathbb{k}}} \fi
+
+\ifpdflatex \newunicodechar{𝕝}{\ensuremath{\mathbbm{l}}}
+      \else \newunicodechar{𝕝}{\ensuremath{\mathbb{l}}} \fi
+
+\ifpdflatex \newunicodechar{𝕞}{\ensuremath{\mathbbm{m}}}
+      \else \newunicodechar{𝕞}{\ensuremath{\mathbb{m}}} \fi
+
+\ifpdflatex \newunicodechar{𝕟}{\ensuremath{\mathbbm{n}}}
+      \else \newunicodechar{𝕟}{\ensuremath{\mathbb{n}}} \fi
+
+\ifpdflatex \newunicodechar{𝕠}{\ensuremath{\mathbbm{o}}}
+      \else \newunicodechar{𝕠}{\ensuremath{\mathbb{o}}} \fi
+
+\ifpdflatex \newunicodechar{𝕡}{\ensuremath{\mathbbm{p}}}
+      \else \newunicodechar{𝕡}{\ensuremath{\mathbb{p}}} \fi
+
+\ifpdflatex \newunicodechar{𝕢}{\ensuremath{\mathbbm{q}}}
+      \else \newunicodechar{𝕢}{\ensuremath{\mathbb{q}}} \fi
+
+\ifpdflatex \newunicodechar{𝕣}{\ensuremath{\mathbbm{r}}}
+      \else \newunicodechar{𝕣}{\ensuremath{\mathbb{r}}} \fi
+
+\ifpdflatex \newunicodechar{𝕤}{\ensuremath{\mathbbm{s}}}
+      \else \newunicodechar{𝕤}{\ensuremath{\mathbb{s}}} \fi
+
+\ifpdflatex \newunicodechar{𝕥}{\ensuremath{\mathbbm{t}}}
+      \else \newunicodechar{𝕥}{\ensuremath{\mathbb{t}}} \fi
+
+\ifpdflatex \newunicodechar{𝕦}{\ensuremath{\mathbbm{u}}}
+      \else \newunicodechar{𝕦}{\ensuremath{\mathbb{u}}} \fi
+
+\ifpdflatex \newunicodechar{𝕧}{\ensuremath{\mathbbm{v}}}
+      \else \newunicodechar{𝕧}{\ensuremath{\mathbb{v}}} \fi
+
+\ifpdflatex \newunicodechar{𝕨}{\ensuremath{\mathbbm{w}}}
+      \else \newunicodechar{𝕨}{\ensuremath{\mathbb{w}}} \fi
+
+\ifpdflatex \newunicodechar{𝕩}{\ensuremath{\mathbbm{x}}}
+      \else \newunicodechar{𝕩}{\ensuremath{\mathbb{x}}} \fi
+
+\ifpdflatex \newunicodechar{𝕪}{\ensuremath{\mathbbm{y}}}
+      \else \newunicodechar{𝕪}{\ensuremath{\mathbb{y}}} \fi
+
+\ifpdflatex \newunicodechar{𝕫}{\ensuremath{\mathbbm{z}}}
+      \else \newunicodechar{𝕫}{\ensuremath{\mathbb{z}}} \fi
 #+end_src
 
-*** Uppercase latin                           :complete:
+*** Uppercase latin                                                :complete:
 
 #+begin_src latex
 %-------------------------------------------------
@@ -209,32 +275,32 @@ which should be included.
 #+begin_src emacs-lisp
 <<generator>>
 (let ((the-translations
-        '((𝔸 . \\mathbb{A})
-          (𝔹 . \\mathbb{B})
-          (ℂ . \\mathbb{C})
-          (𝔻 . \\mathbb{D})
-          (𝔼 . \\mathbb{E})
-          (𝔽 . \\mathbb{F})
-          (𝔾 . \\mathbb{G})
-          (ℍ . \\mathbb{H})
-          (𝕀 . \\mathbb{I})
-          (𝕁 . \\mathbb{J})
-          (𝕂 . \\mathbb{K})
-          (𝕃 . \\mathbb{L})
-          (𝕄 . \\mathbb{M})
-          (ℕ . \\mathbb{N})
-          (𝕆 . \\mathbb{O})
-          (ℙ . \\mathbb{P})
-          (ℚ . \\mathbb{Q})
-          (ℝ . \\mathbb{R})
-          (𝕊 . \\mathbb{S})
-          (𝕋 . \\mathbb{T})
-          (𝕌 . \\mathbb{U})
-          (𝕍 . \\mathbb{V})
-          (𝕎 . \\mathbb{W})
-          (𝕏 . \\mathbb{X})
-          (𝕐 . \\mathbb{Y})
-          (ℤ . \\mathbb{Z}))))
+        '((𝔸   \\mathbb{A})
+          (𝔹   \\mathbb{B})
+          (ℂ   \\mathbb{C})
+          (𝔻   \\mathbb{D})
+          (𝔼   \\mathbb{E})
+          (𝔽   \\mathbb{F})
+          (𝔾   \\mathbb{G})
+          (ℍ   \\mathbb{H})
+          (𝕀   \\mathbb{I})
+          (𝕁   \\mathbb{J})
+          (𝕂   \\mathbb{K})
+          (𝕃   \\mathbb{L})
+          (𝕄   \\mathbb{M})
+          (ℕ   \\mathbb{N})
+          (𝕆   \\mathbb{O})
+          (ℙ   \\mathbb{P})
+          (ℚ   \\mathbb{Q})
+          (ℝ   \\mathbb{R})
+          (𝕊   \\mathbb{S})
+          (𝕋   \\mathbb{T})
+          (𝕌   \\mathbb{U})
+          (𝕍   \\mathbb{V})
+          (𝕎   \\mathbb{W})
+          (𝕏   \\mathbb{X})
+          (𝕐   \\mathbb{Y})
+          (ℤ   \\mathbb{Z}))))
   (generate-newunicodechars the-translations))
 #+end_src
 
@@ -268,42 +334,63 @@ which should be included.
 \newunicodechar{ℤ}{\ensuremath{\mathbb{Z}}}
 #+end_src
 
-*** Arabic numerals                           :complete:
+*** TODO COMMENT Arabic numerals                                           :complete:
 
 #+begin_src latex
 %-------------------------------------------------
 % Arabic numerals
 %-------------------------------------------------
+
+\usepackage{dsfont} % For double stroke digits
 #+end_Src
 
 #+begin_src emacs-lisp
 <<generator>>
 (let ((the-translations
-        '((𝟙 . \\mathbb{1})
-          (𝟚 . \\mathbb{2})
-          (𝟛 . \\mathbb{3})
-          (𝟜 . \\mathbb{4})
-          (𝟝 . \\mathbb{5})
-          (𝟞 . \\mathbb{6})
-          (𝟟 . \\mathbb{7})
-          (𝟠 . \\mathbb{8})
-          (𝟡 . \\mathbb{9})
-          (𝟘 . \\mathbb{0}))))
+        '((𝟙 \\blackboard{1} \\mathbb{1})
+          (𝟚 \\blackboard{2} \\mathbb{2})
+          (𝟛 \\blackboard{3} \\mathbb{3})
+          (𝟜 \\blackboard{4} \\mathbb{4})
+          (𝟝 \\blackboard{5} \\mathbb{5})
+          (𝟞 \\blackboard{6} \\mathbb{6})
+          (𝟟 \\blackboard{7} \\mathbb{7})
+          (𝟠 \\blackboard{8} \\mathbb{8})
+          (𝟡 \\blackboard{9} \\mathbb{9})
+          (𝟘 \\blackboard{0} \\mathbb{0}))))
   (generate-newunicodechars the-translations))
 #+end_src
 
 #+RESULTS:
 #+begin_src latex
-\newunicodechar{𝟙}{\ensuremath{\mathbb{1}}}
-\newunicodechar{𝟚}{\ensuremath{\mathbb{2}}}
-\newunicodechar{𝟛}{\ensuremath{\mathbb{3}}}
-\newunicodechar{𝟜}{\ensuremath{\mathbb{4}}}
-\newunicodechar{𝟝}{\ensuremath{\mathbb{5}}}
-\newunicodechar{𝟞}{\ensuremath{\mathbb{6}}}
-\newunicodechar{𝟟}{\ensuremath{\mathbb{7}}}
-\newunicodechar{𝟠}{\ensuremath{\mathbb{8}}}
-\newunicodechar{𝟡}{\ensuremath{\mathbb{9}}}
-\newunicodechar{𝟘}{\ensuremath{\mathbb{0}}}
+\ifpdflatex \newunicodechar{𝟙}{\ensuremath{\blackboard{1}}}
+      \else \newunicodechar{𝟙}{\ensuremath{\mathbb{1}}} \fi
+
+\ifpdflatex \newunicodechar{𝟚}{\ensuremath{\blackboard{2}}}
+      \else \newunicodechar{𝟚}{\ensuremath{\mathbb{2}}} \fi
+
+\ifpdflatex \newunicodechar{𝟛}{\ensuremath{\blackboard{3}}}
+      \else \newunicodechar{𝟛}{\ensuremath{\mathbb{3}}} \fi
+
+\ifpdflatex \newunicodechar{𝟜}{\ensuremath{\blackboard{4}}}
+      \else \newunicodechar{𝟜}{\ensuremath{\mathbb{4}}} \fi
+
+\ifpdflatex \newunicodechar{𝟝}{\ensuremath{\blackboard{5}}}
+      \else \newunicodechar{𝟝}{\ensuremath{\mathbb{5}}} \fi
+
+\ifpdflatex \newunicodechar{𝟞}{\ensuremath{\blackboard{6}}}
+      \else \newunicodechar{𝟞}{\ensuremath{\mathbb{6}}} \fi
+
+\ifpdflatex \newunicodechar{𝟟}{\ensuremath{\blackboard{7}}}
+      \else \newunicodechar{𝟟}{\ensuremath{\mathbb{7}}} \fi
+
+\ifpdflatex \newunicodechar{𝟠}{\ensuremath{\blackboard{8}}}
+      \else \newunicodechar{𝟠}{\ensuremath{\mathbb{8}}} \fi
+
+\ifpdflatex \newunicodechar{𝟡}{\ensuremath{\blackboard{9}}}
+      \else \newunicodechar{𝟡}{\ensuremath{\mathbb{9}}} \fi
+
+\ifpdflatex \newunicodechar{𝟘}{\ensuremath{\blackboard{0}}}
+      \else \newunicodechar{𝟘}{\ensuremath{\mathbb{0}}} \fi
 #+end_src
 
 *** Greek                                     :complete:
@@ -319,24 +406,33 @@ There are unfortunately not many included in Unicode.
 #+begin_src emacs-lisp
 <<generator>>
 (let ((the-translations
-        '((ℾ . \\mathbb{\\Gamma})
-          (ℽ . \\mathbb{\\gamma})
-          (ℿ . \\mathbb{\\Pi})
-          (ℼ . \\mathbb{\\pi})
-          (⅀ . \\mathbb{\\Sum}))))
+        '((ℾ TODO \\mathbb{\\Gamma})
+          (ℽ TODO \\mathbb{\\gamma})
+          (ℿ TODO \\mathbb{\\Pi})
+          (ℼ TODO \\mathbb{\\pi})
+          (⅀ TODO \\mathbb{\\Sum}))))
   (generate-newunicodechars the-translations))
 #+end_src
 
 #+RESULTS:
 #+begin_src latex
-\newunicodechar{ℾ}{\ensuremath{\mathbb{\Gamma}}}
-\newunicodechar{ℽ}{\ensuremath{\mathbb{\gamma}}}
-\newunicodechar{ℿ}{\ensuremath{\mathbb{\Pi}}}
-\newunicodechar{ℼ}{\ensuremath{\mathbb{\pi}}}
-\newunicodechar{⅀}{\ensuremath{\mathbb{\Sum}}}
+\ifpdflatex \newunicodechar{ℾ}{\ensuremath{TODO}}
+      \else \newunicodechar{ℾ}{\ensuremath{\mathbb{\Gamma}}} \fi
+
+\ifpdflatex \newunicodechar{ℽ}{\ensuremath{TODO}}
+      \else \newunicodechar{ℽ}{\ensuremath{\mathbb{\gamma}}} \fi
+
+\ifpdflatex \newunicodechar{ℿ}{\ensuremath{TODO}}
+      \else \newunicodechar{ℿ}{\ensuremath{\mathbb{\Pi}}} \fi
+
+\ifpdflatex \newunicodechar{ℼ}{\ensuremath{TODO}}
+      \else \newunicodechar{ℼ}{\ensuremath{\mathbb{\pi}}} \fi
+
+\ifpdflatex \newunicodechar{⅀}{\ensuremath{TODO}}
+      \else \newunicodechar{⅀}{\ensuremath{\mathbb{\Sum}}} \fi
 #+end_src
 
-** Math calligraphic                           :possiblycomplete:
+** COMMENT Math calligraphic                           :possiblycomplete:
 
 #+begin_src latex
 %-----------------------------------------------------------
@@ -414,7 +510,7 @@ There are unfortunately not many included in Unicode.
 \newunicodechar{𝓏}{\ensuremath{\mathcal{z}}}
 #+end_src
 
-*** Uppercase latin                           :complete:
+*** COMMENT Uppercase latin                           :complete:
 
 #+begin_src latex
 %-------------------------------------------------
@@ -484,7 +580,7 @@ There are unfortunately not many included in Unicode.
 \newunicodechar{𝒵}{\ensuremath{\mathcal{Z}}}
 #+end_src
 
-* Other letters or letterlike symbols           :incomplete:
+* COMMENT Other letters or letterlike symbols           :incomplete:
 
 #+begin_src emacs-lisp
 <<generator>>
@@ -498,7 +594,7 @@ There are unfortunately not many included in Unicode.
 \newunicodechar{ℓ}{\ensuremath{\ell}}
 #+end_src
 
-* Greek alphabet                                :incomplete:
+* COMMENT Greek alphabet                                :incomplete:
 
 ** Normal                                      :complete:
 
@@ -637,7 +733,7 @@ of some other package to add support for it.
 \newunicodechar{φ}{\ensuremath{\varphi}}
 #+end_src
 
-* Subscripts, superscripts, underscripts, and overscripts :incomplete:
+* COMMENT Subscripts, superscripts, underscripts, and overscripts :incomplete:
 
 Note that while the alphabetic lists
 are complete, *there are missing letters*,
@@ -741,7 +837,7 @@ Note there are no uppercase letter subscripts.
 
 ** Superscripts                                :incomplete:
 
-*** Uppercase alphabet 
+*** Uppercase alphabet
 
 #+begin_src emacs-lisp
 <<generator>>
@@ -899,7 +995,7 @@ Note there are no uppercase letter subscripts.
 \newunicodechar{⁺}{\ensuremath{{}^{+}}}
 #+end_src
 
-* Punctuation and delimiters                    :incomplete:
+* COMMENT Punctuation and delimiters                    :incomplete:
 
 ** Dots                                        :incomplete:
 
@@ -1014,7 +1110,7 @@ it is in fact a ~~~ in the LaTeX.
 
 I am a very long line whose words are separated by non-breaking spaces so I should run off the page at least at any reasonable font size 😀.
 
-* Logic                                         :incomplete:
+* COMMENT Logic                                         :incomplete:
 
 ** Quantifiers                                 :incomplete:
 
@@ -1078,7 +1174,7 @@ I am a very long line whose words are separated by non-breaking spac
 \newunicodechar{⊨}{\ensuremath{\vDash}}
 #+end_src
 
-* Sets, relations and functions                 :incomplete:
+* COMMENT Sets, relations and functions                 :incomplete:
 
 ** Sets                                        :incomplete:
 
@@ -1230,7 +1326,7 @@ Note that equivalences are within the [[Logic]] section.
 \newunicodechar{∣}{\ensuremath{\mid}}
 #+end_src
 
-* Generic or other operators
+* COMMENT Generic or other operators
 
 ** Arrows
 
@@ -1402,7 +1498,7 @@ Probably some of these belong somewhere else.
 \newunicodechar{∞}{\ensuremath{\infty}}
 #+end_src
 
-* Emoticons
+* COMMENT Emoticons
 
 ** Check and X-marks
 
@@ -1420,7 +1516,7 @@ Probably some of these belong somewhere else.
 \newunicodechar{❌}{\ensuremath{\times}}
 #+end_src
 
-** Smilies
+** COMMENT Smilies
 
 I have not found a reliable way to produce smilies in LaTeX.
 In LuaLaTeX and XeLaTeX, it should work to just use
