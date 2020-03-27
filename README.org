@@ -33,6 +33,11 @@ subtrees are apparently the best choice.
 So this section describes how to include this repo as a subtree
 of your project.
 
+In the below, we add this repository under the directory ~unicode-sty~.
+Change the prefix if you wish to place it elsewhere.
+I do recommend making symbolic links to ~unicode-sty/unicode.sty~
+throughout your project.
+
 Adding the subtree is simple enough.
 #+begin_src shell
 git subtree add --prefix unicode-sty https://github.com/armkeh/unicode-sty.git master --squash
@@ -51,11 +56,10 @@ Again, note the ~--squash~ flag.
 To update the repository when changes occur to your subtree,
 simply run
 #+begin_src shell
-git subtree push --prefix unicode-sty https://github.com/armkeh/unicode-sty.git remote master
+git subtree push --prefix unicode-sty https://github.com/armkeh/unicode-sty.git master
 #+end_src
-with ~remote~ set as appropriate (you may wish to fork the project
-to make your changes.)
-:TODO: test this out; I haven't actually tried it yet.
+Or replace ~https://github.com/armkeh/unicode-sty.git~ with the link
+for your fork, if you wish to fork the project and then make a pull request.
 
 * Instructions on using ~unicode.sty~
 
