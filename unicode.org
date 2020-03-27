@@ -8,9 +8,19 @@
 
 * About this file
 
+** Preamble                                    :ignore:
+
 In order to write LaTeX documents using unicode in the source code,
 we must often tell LaTeX what we want the unicode characters
 to be rendered as.
+
+There are at least two ways to inform
+LaTeX of unicode character translations;
+- ~\DeclareUnicodeCharacter~; this command does not work with
+  XeLaTeX or LuaLaTeX, which I use.
+- ~\newunicodechar~; this command is provided by the
+  newunicodechar package, which may not be pre-installed for all LaTeX users.
+This collection uses the second.
 
 ** Usage
 
@@ -39,21 +49,15 @@ on various OS's.
 - Windows XP
   - =C:\Documents and Settings\<user name>\texmf\tex\latex\local\=
 
-** Requirements
+** Required LaTeX packages
 
-This package depends upon the packages listed herein.
-
-There are two ways to inform LaTeX of unicode character translations;
-- ~\DeclareUnicodeCharacter~; this command does not work with
-  XeLaTeX or LuaLaTeX, which I use.
-- ~\newunicodechar~; this command is provided by the
-  newunicodechar package, which may not be pre-installed for all LaTeX users.
-This collection uses the second.
+Of course we require the ~newunicodechar~ package
+to use that command.
 #+begin_src latex
 \usepackage{newunicodechar}
 #+end_src
 
-The unicode-math package “provides a complete implementation of
+The ~unicode-math~ package “provides a complete implementation of
 unicode maths for XeLaTeX and LuaLaTeX”.
 #+begin_src latex
 \usepackage{unicode-math}

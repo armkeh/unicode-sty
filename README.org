@@ -4,7 +4,7 @@
 
 * Introduction
 
-A collection of ~\NewUnicodeChar~ declarations for use in LaTeX.
+A collection of ~\newunicodechar~ declarations for use in LaTeX.
 
 The file [[file:unicode.pdf][unicode.pdf]] is generated from [[file:unicode.org][unicode.org]] as
 evidence that the unicode characters are declared correctly.
@@ -44,9 +44,18 @@ omit the flag.
 To update the subtree when changes occur to this repository,
 simply run
 #+begin_src shell
-git subtree pull --prefix unicode-sty https://github.com/armkeh/unicode-sty.git --squash
+git subtree pull --prefix unicode-sty https://github.com/armkeh/unicode-sty.git master --squash
 #+end_src
 Again, note the ~--squash~ flag.
+
+To update the repository when changes occur to your subtree,
+simply run
+#+begin_src shell
+git subtree push --prefix unicode-sty https://github.com/armkeh/unicode-sty.git remote master
+#+end_src
+with ~remote~ set as appropriate (you may wish to fork the project
+to make your changes.)
+:TODO: test this out; I haven't actually tried it yet.
 
 * Instructions on using ~unicode.sty~
 
