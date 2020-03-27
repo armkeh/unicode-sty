@@ -1243,6 +1243,7 @@ Note that equivalences are within the [[Logic]] section.
 (let ((the-translations
         '((→ . \\rightarrow)
           (← . \\leftarrow)
+          (↔ . \\leftrightarrow)
           (↑ . \\uparrow)
           (↓ . \\downarrow)
           (⟶ . \\longrightarrow)
@@ -1396,7 +1397,8 @@ Probably some of these belong somewhere else.
 <<generator>>
 (let ((the-translations
         '((∙ . \\cdot)
-          (∞ . \\infty))))
+          (∞ . \\infty)
+          (∷ . \\dblcolon))))
   (generate-newunicodechars the-translations))
 #+end_src
 
