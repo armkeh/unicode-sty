@@ -126,14 +126,14 @@ to map the pairs into ~newunicodechar~ declarations.
                       pdflatex-form)))))
 
 ; (generate-newunicodechars '( (𝕩 \\mathbb{x})           (𝕪 t \\mathbb{y}) ))
-#+end_SRC
+#+end_src
 
-** COMMENT Sample symbols
+** Sample symbols
 
 Here are some of the symbols we account for:
-#+BEGIN_SRC emacs-lisp :results table
+#+begin_src emacs-lisp :results table
 all-unicode-symbols
-#+END_SRC
+#+end_src
 
  ❌ ✔ ∷ ∞ ∙ ⊝ ⊛ ⊚ ⊙ ⊘ ⊗ ⊖ ⊕ ⟵ ⟶ ↓ ↑ ↔ ← → ∣ ⊒ ⊐ ⊑ ⊏ ≳ ≲ ≩ ≧ ≨ ≦ ≯ ≮ ≱ ≥ ≰ ≤ ≔ ≁
  ∼ ≉ ≈ ≄ ≃ ≇ ≅ ≟ ≐ ≠ ∘ ⊓ ⊔ ⊥ ⊤ ⊎ ⊍ ∪ ∩ ∋ ∉ ∈ ∅ ø ⊨ ⊣ ⊢ ⇔ ⇐ ⇒ ∧ ∨ ≢ ¬ ≡ ∃ ∀ ⌋ ⌊ ⌉
@@ -174,7 +174,7 @@ current position. Perhaps relocate, or delete altogether.
 %---------------------------------------------------------------------
 % Blackboard, calligraphic, etc.
 %---------------------------------------------------------------------
-#+end_Src
+#+end_src
 
 These lists are most likely complete, unless I have missed some characters aside
 from Latin letters, Greek letters and Arabic numerals which should be included.
@@ -185,7 +185,7 @@ from Latin letters, Greek letters and Arabic numerals which should be included.
 %-----------------------------------------------------------
 % Blackboard
 %-----------------------------------------------------------
-#+end_Src
+#+end_src
 
 *** Lowercase latin                           :complete:
 
@@ -195,7 +195,7 @@ from Latin letters, Greek letters and Arabic numerals which should be included.
 %-------------------------------------------------
 
 \usepackage{bbm} % for double stroke lower case letters
-#+end_Src
+#+end_src
 
 #+begin_src emacs-lisp
 <<generator>>
@@ -369,7 +369,7 @@ from Latin letters, Greek letters and Arabic numerals which should be included.
 %-------------------------------------------------
 % Uppercase latin
 %-------------------------------------------------
-#+end_Src
+#+end_src
 
 #+begin_src emacs-lisp
 <<generator>>
@@ -441,7 +441,7 @@ from Latin letters, Greek letters and Arabic numerals which should be included.
 %-------------------------------------------------
 
 \usepackage{dsfont} % For double stroke digits
-#+end_Src
+#+end_src
 
 #+begin_src emacs-lisp
 <<generator>>
@@ -519,7 +519,7 @@ from Latin letters, Greek letters and Arabic numerals which should be included.
 %-------------------------------------------------
 % Greek
 %-------------------------------------------------
-#+end_Src
+#+end_src
 
 There are unfortunately not many included in Unicode.
 
@@ -569,7 +569,7 @@ There are unfortunately not many included in Unicode.
 %-----------------------------------------------------------
 % Math calligraphic
 %-----------------------------------------------------------
-#+end_Src
+#+end_src
 
 *** Lowercase latin                           :complete:
 
@@ -577,7 +577,7 @@ There are unfortunately not many included in Unicode.
 %-------------------------------------------------
 % Uppercase latin
 %-------------------------------------------------
-#+end_Src
+#+end_src
 
 #+begin_src emacs-lisp
 <<generator>>
@@ -751,7 +751,7 @@ There are unfortunately not many included in Unicode.
 %-------------------------------------------------
 % Uppercase latin
 %-------------------------------------------------
-#+end_Src
+#+end_src
 
 #+begin_src emacs-lisp
 <<generator>>
