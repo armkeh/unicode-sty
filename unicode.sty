@@ -726,6 +726,8 @@
 
 %% [[file:~/unicode-sty/unicode.org::*Other][Other:2]]
 \newunicodechar{₊}{\ensuremath{{}_{+}}}
+\newunicodechar{₋}{\ensuremath{{}_{-}}}
+\newunicodechar{₌}{\ensuremath{{}_{=}}}
 %% Other:2 ends here
 
 %% [[file:~/unicode-sty/unicode.org::*Uppercase alphabet][Uppercase alphabet:2]]
@@ -793,6 +795,8 @@
 
 %% [[file:~/unicode-sty/unicode.org::*Other][Other:2]]
 \newunicodechar{⁺}{\ensuremath{{}^{+}}}
+\newunicodechar{⁻}{\ensuremath{{}^{-}}}
+\newunicodechar{⁼}{\ensuremath{{}^{=}}}
 %% Other:2 ends here
 
 %% [[file:~/unicode-sty/unicode.org::*Dots][Dots:2]]
@@ -820,6 +824,11 @@
 \newunicodechar{｛}{\ensuremath{\{}}
 \newunicodechar{｝}{\ensuremath{\}}}
 %% Parentheses, braces and brackets:2 ends here
+
+%% [[file:~/unicode-sty/unicode.org::*Parentheses, braces and brackets][Parentheses, braces and brackets:3]]
+\newunicodechar{⟦}{\ensuremath{[\![}}
+\newunicodechar{⟧}{\ensuremath{]\!]}}
+%% Parentheses, braces and brackets:3 ends here
 
 %% [[file:~/unicode-sty/unicode.org::*Other paired delimiters][Other paired delimiters:2]]
 \newunicodechar{⌜}{\ensuremath{\ulcorner}}
@@ -853,18 +862,90 @@
 \newunicodechar{∃}{\ensuremath{\exists}}
 %% Predicate:2 ends here
 
+%% [[file:~/unicode-sty/unicode.org::*Predicate][Predicate:3]]
+\newunicodechar{❙}{\ensuremath{\,\mid\,}}
+\newunicodechar{•}{\ensuremath{\,\bullet\,}}
+%% Predicate:3 ends here
+
 %% [[file:~/unicode-sty/unicode.org::*Model ---Entailment][Model ---Entailment:2]]
 \newunicodechar{⊢}{\ensuremath{\vdash}}
 \newunicodechar{⊣}{\ensuremath{\dashv}}
 \newunicodechar{⊨}{\ensuremath{\vDash}}
 %% Model ---Entailment:2 ends here
 
+%% [[file:~/unicode-sty/unicode.org::*Sets][Sets:2]]
+\newunicodechar{ø}{\ensuremath{\emptyset}}
+\newunicodechar{∅}{\ensuremath{\emptyset}}
+\newunicodechar{∈}{\ensuremath{\in}}
+\newunicodechar{∉}{\ensuremath{\not\in}}
+\newunicodechar{∋}{\ensuremath{\ni}}
+\newunicodechar{⊆}{\ensuremath{\subseteq}}
+\newunicodechar{∩}{\ensuremath{\cap}}
+\newunicodechar{∪}{\ensuremath{\cup}}
+\newunicodechar{⊍}{\ensuremath{\uplus}}
+\newunicodechar{⊎}{\ensuremath{\uplus}}
+%% Sets:2 ends here
+
+%% [[file:~/unicode-sty/unicode.org::*Relation operators][Relation operators:2]]
+\newunicodechar{⊤}{\ensuremath{\top}}
+\newunicodechar{⊥}{\ensuremath{\bot}}
+\newunicodechar{⊔}{\ensuremath{\sqcup}}
+\newunicodechar{⊓}{\ensuremath{\sqcap}}
+\newunicodechar{╲}{\ensuremath{\backslash}}
+\newunicodechar{╱}{\ensuremath{/}}
+%% Relation operators:2 ends here
+
+%% [[file:~/unicode-sty/unicode.org::*Function operators][Function operators:2]]
+\newunicodechar{∘}{\ensuremath{\circ}}
+\newunicodechar{↦}{\ensuremath{\mapsto}}
+\newunicodechar{↪}{\ensuremath{\hookrightarrow}}
+%% Function operators:2 ends here
+
+%% [[file:~/unicode-sty/unicode.org::*Equality like][Equality like:2]]
+\newunicodechar{≠}{\ensuremath{\neq}}
+\newunicodechar{≐}{\ensuremath{\doteq}}
+\newunicodechar{≟}{\ensuremath{\stackrel{?}{=}}}
+\newunicodechar{≅}{\ensuremath{\cong}}
+\newunicodechar{≇}{\ensuremath{\ncong}}
+\newunicodechar{≃}{\ensuremath{\simeq}}
+\newunicodechar{≄}{\ensuremath{\not\simeq}}
+\newunicodechar{≈}{\ensuremath{\approx}}
+\newunicodechar{≉}{\ensuremath{\not\approx}}
+\newunicodechar{∼}{\ensuremath{\sim}}
+\newunicodechar{≁}{\ensuremath{\not\sim}}
+\newunicodechar{≔}{\ensuremath{:\!=}}
+%% Equality like:2 ends here
+
+%% [[file:~/unicode-sty/unicode.org::*Order like][Order like:2]]
+\newunicodechar{≤}{\ensuremath{\leq}}
+\newunicodechar{≰}{\ensuremath{\nleq}}
+\newunicodechar{≥}{\ensuremath{\geq}}
+\newunicodechar{≱}{\ensuremath{\ngeq}}
+\newunicodechar{≮}{\ensuremath{\nless}}
+\newunicodechar{≯}{\ensuremath{\ngtr}}
+\newunicodechar{≦}{\ensuremath{\leqq}}
+\newunicodechar{≨}{\ensuremath{\lneqq}}
+\newunicodechar{≧}{\ensuremath{\geqq}}
+\newunicodechar{≩}{\ensuremath{\gneqq}}
+\newunicodechar{≲}{\ensuremath{\lesssim}}
+\newunicodechar{≳}{\ensuremath{\gtrsim}}
+\newunicodechar{⊏}{\ensuremath{\sqsubset}}
+\newunicodechar{⊑}{\ensuremath{\sqsubseteq}}
+\newunicodechar{⊐}{\ensuremath{\sqsupset}}
+\newunicodechar{⊒}{\ensuremath{\sqsupseteq}}
+\newunicodechar{∣}{\ensuremath{\mid}}
+%% Order like:2 ends here
+
 %% [[file:~/unicode-sty/unicode.org::*Arrows][Arrows:2]]
 \newunicodechar{→}{\ensuremath{\rightarrow}}
+\newunicodechar{⇨}{\ensuremath{\rightarrow}}
+\newunicodechar{➩}{\ensuremath{\rightarrow}}
+\newunicodechar{⟿}{\ensuremath{\rightsquigarrow}}
 \newunicodechar{←}{\ensuremath{\leftarrow}}
 \newunicodechar{↔}{\ensuremath{\leftrightarrow}}
 \newunicodechar{↑}{\ensuremath{\uparrow}}
 \newunicodechar{↓}{\ensuremath{\downarrow}}
+\newunicodechar{⇊}{\ensuremath{\downarrow\downarrow}}
 \newunicodechar{⟶}{\ensuremath{\longrightarrow}}
 \newunicodechar{⟵}{\ensuremath{\longleftarrow}}
 %% Arrows:2 ends here
@@ -883,6 +964,11 @@
 \newunicodechar{⊝}{\ensuremath{\circleddash}}
 %% “o”-operators:2 ends here
 
+%% [[file:~/unicode-sty/unicode.org::*“o”-operators][“o”-operators:3]]
+\DeclareMathOperator{\VCCompose}{\longrightarrow\hspace{-3.5ex}\oplus\;}
+\newunicodechar{⟴}{\ensuremath{\!\!\VCCompose}}
+%% “o”-operators:3 ends here
+
 %% [[file:~/unicode-sty/unicode.org::*Punctuation-like][Punctuation-like:2]]
 \newunicodechar{‼}{\ensuremath{!\!!}}
 \newunicodechar{∶}{\ensuremath{:}}
@@ -898,15 +984,17 @@
 \fi
 %% Others:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Check- and X-marks, and Primes][Check- and X-marks, and Primes:2]]
+%% [[file:~/unicode-sty/unicode.org::*Check- & X-marks, and Primes & Ticks][Check- & X-marks, and Primes & Ticks:2]]
 \newunicodechar{✔}{\ensuremath{\checkmark}}
 \newunicodechar{❌}{\ensuremath{\times}}
-%% Check- and X-marks, and Primes:2 ends here
+%% Check- & X-marks, and Primes & Ticks:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Check- and X-marks, and Primes][Check- and X-marks, and Primes:3]]
+%% [[file:~/unicode-sty/unicode.org::*Check- & X-marks, and Primes & Ticks][Check- & X-marks, and Primes & Ticks:3]]
 \newunicodechar{′}{'}
 \newunicodechar{″}{''}
-%% Check- and X-marks, and Primes:3 ends here
+\newunicodechar{‵}{\ensuremath{`}}
+\newunicodechar{‶}{\ensuremath{``}}
+%% Check- & X-marks, and Primes & Ticks:3 ends here
 
 %% [[file:~/unicode-sty/unicode.org::*Package footer][Package footer:1]]
 \endinput
