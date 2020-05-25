@@ -1348,13 +1348,18 @@ Note there are no uppercase letter subscripts.
 #+begin_src emacs-lisp
 <<generator>>
 (let ((the-translations
-        '((₊ {}_{+}))))
+        '((₊ {}_{+})
+          (₋ {}_{-})
+          (₌ {}_{=})
+          )))
   (generate-newunicodechars the-translations))
 #+end_src
 
 #+RESULTS:
 #+begin_src latex
 \newunicodechar{₊}{\ensuremath{{}_{+}}}
+\newunicodechar{₋}{\ensuremath{{}_{-}}}
+\newunicodechar{₌}{\ensuremath{{}_{=}}}
 #+end_src
 
 # To contrast with subscript addition ‘₊’, one may use subscript letter ‘x’ as a
@@ -1512,13 +1517,18 @@ Note there are no uppercase letter subscripts.
 #+begin_src emacs-lisp
 <<generator>>
 (let ((the-translations
-        '((⁺  {}^{+}))))
+        '((⁺  {}^{+})
+          (⁻  {}^{-})
+          (⁼  {}^{=})
+          )))
   (generate-newunicodechars the-translations))
 #+end_src
 
 #+RESULTS:
 #+begin_src latex
 \newunicodechar{⁺}{\ensuremath{{}^{+}}}
+\newunicodechar{⁻}{\ensuremath{{}^{-}}}
+\newunicodechar{⁼}{\ensuremath{{}^{=}}}
 #+end_src
 
 * Punctuation and Delimiters
@@ -1600,6 +1610,13 @@ so they cannot be used in names.
 \newunicodechar{⁆}{\ensuremath{\}}}
 \newunicodechar{｛}{\ensuremath{\{}}
 \newunicodechar{｝}{\ensuremath{\}}}
+#+end_src
+
+# Brackets, [], are Emacs Lisp syntax for vectors.
+# So we declare the following manually.
+#+begin_src latex
+\newunicodechar{⟦}{\ensuremath{[\![}}
+\newunicodechar{⟧}{\ensuremath{]\!]}}
 #+end_src
 
 ** Other paired delimiters
@@ -1710,7 +1727,7 @@ I am a very long line whose words are separated by non-breaking spac
 \newunicodechar{⊨}{\ensuremath{\vDash}}
 #+end_src
 
-* COMMENT Sets, relations and functions
+* Sets, relations and functions
 
 ** Sets
 
@@ -1775,13 +1792,16 @@ I am a very long line whose words are separated by non-breaking spac
 #+begin_src emacs-lisp
 <<generator>>
 (let ((the-translations
-        '((∘ \\circ))))
+        '((∘ \\circ)
+          (↦ \\mapsto)
+          )))
   (generate-newunicodechars the-translations))
 #+end_src
 
 #+RESULTS:
 #+begin_src latex
 \newunicodechar{∘}{\ensuremath{\circ}}
+\newunicodechar{↦}{\ensuremath{\mapsto}}
 #+end_src
 
 ** Relations
@@ -2104,10 +2124,8 @@ Probably some of these belong somewhere else.
 \newunicodechar{□}{\ensuremath{QED}}
 % +latex_header: \newunicodechar{∎}{\ensuremath{QED}}
 \newunicodechar{○}{\ensuremath{\circ}}
-\newunicodechar{𝒇}{\ensuremath{f}}
-\newunicodechar{𝔁}{\ensuremath{x}}
 
-\newunicodechar{↦}{\ensuremath{\mapsto}}
+
 \newunicodechar{♯}{\ensuremath{SHARP}}
 \newunicodechar{❙}{\ensuremath{\,\mid\,}}
 \newunicodechar{́}{\ensuremath{'}}
@@ -2126,18 +2144,12 @@ Probably some of these belong somewhere else.
  \newunicodechar{𝑜}{o}
  \newunicodechar{𝑓}{f}
 
- \newunicodechar{𝟘}{\textbf{0}}
-
- \newunicodechar{⟦}{\ensuremath{[\![}}
-  \newunicodechar{⟧}{\ensuremath{]\!]}}
-
  \newunicodechar{⟿}{\ensuremath{\rightsquigarrow}}
 
   \DeclareMathOperator{\VCCompose}{\longrightarrow\hspace{-3.5ex}\oplus\;}
   \newunicodechar{⟴}{\ensuremath{\!\!\VCCompose}}
   \newunicodechar{𝓋}{\ensuremath{v}}
-  \newunicodechar{₋}{\ensuremath{_-}}
-  \newunicodechar{𝒱}{\ensuremath{\mathcal{V}}}
+
   \newunicodechar{↪}{\ensuremath{\hookrightarrow}}
 
 \newunicodechar{‵}{\ensuremath{`}}
