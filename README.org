@@ -2,6 +2,10 @@
 #+Author: Mark Armstrong
 #+Description: A collection of ~\NewUnicodeChar~ declarations for use in LaTeX.
 
+#+begin_quote
+See the associated [[http://armkeh.github.io/unicode-sty][webpage]] or [[https://armkeh.github.io/unicode-sty/unicode.pdf][PDF]] ^_^
+#+end_quote
+
 * Introduction
 
 A collection of ~\newunicodechar~ declarations for use in LaTeX.

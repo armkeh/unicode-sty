@@ -1,9 +1,10 @@
-#+Title: Unicode declarations for LaTeX documents.
+#+Title: Unicode declarations for LaTeX documents
 #+Author: Mark Armstrong
 #+Description: Generating ~newunicodechar~ declarations for
 #+Description: LaTeX documents which use unicode.
 #+Property: header-args:emacs-lisp :noweb yes :tangle no :exports results :wrap src latex
 #+Property: header-args:latex :tangle unicode.sty :exports code :comments link
+#+options: toc:nil
 #+LaTeX_header: \usepackage{unicode}
 
 # Usage:
@@ -13,13 +14,57 @@
 # Mention users can use \newunicodechar{op}{elaboration} to make their own.
 # +latex_header: \usepackage{newunicodechar}
 
+:Make_HTML:
+#+begin_src emacs-lisp
+(f-move (org-html-export-to-html) "index.html")
+#+end_src
+:End:
+
+* Sample symbols                                                     :ignore:
+  :PROPERTIES:
+  :CUSTOM_ID: Sample-symbols
+  :END:
+
+#+begin_src emacs-lisp :results value :wrap "delme" :noeval
+; (setq all-unicode-symbols nil)
+(s-join " " (--map (format "%s" it) all-unicode-symbols))
+#+end_src
+
+❌ ✔ ∷ ∞ ∙ ∶ ‼ ⊝ ⊛ ⊚ ⨀ ⊙ ⊘ ⨂ ⊗ ⊖ ⨁ ⊕ ⟵ ⟶ ⇊ ↓ ↑ ↔ ← ⟿ ➩ ⇨ → ∣ ⊒ ⊐ ⊑ ⊏ ≳ ≲ ≩ ≧ ≨ ≦
+≯ ≮ ≱ ≥ ≰ ≤ ≔ ≁ ∼ ≉ ≈ ≄ ≃ ≇ ≅ ≟ ≐ ≠ ↪ ↦ ∘ ╱ ╲ ⊓ ⊔ ⊥ ⊤ ⊎ ⊍ ∪ ∩ ⊆ ∋ ∉ ∈ ∅ ø ⊨ ⊣ ⊢
+∃ ∀ ⇔ ⟺ ⇐ ⇒ ∧ ∨ ≢ ¬ ≡ ⌋ ⌊ ⌉ ⌈ ⌟ ⌞ ⌝ ⌜ ｝ ｛ ⁆ ⁅ ⟫ ⟪ ⦄ ⦃ ⟩ ⟨ ⦆ ⦅ — – ⋮ ⋯ … ⁼ ⁻ ⁺
+⁹ ⁸ ⁷ ⁶ ⁵ ⁴ ³ ² ¹ ⁰ ᶻ ʸ ˣ ʷ ᵛ ᵘ ᵗ ˢ ʳ ᵖ ᵒ ⁿ ᵐ ˡ ᵏ ʲ ⁱ ʰ ᵍ ᶠ ᵉ ᵈ ᶜ ᵇ ᵃ ᵂ ⱽ ᵁ ᵀ ᴿ
+ᴾ ᴼ ᴺ ᴹ ᴸ ᴷ ᴶ ᴵ ᴴ ᴳ ᴱ ᴰ ᴮ ᴬ ₌ ₋ ₊ ₉ ₈ ₇ ₆ ₅ ₄ ₃ ₂ ₁ ₀ ₓ ᵥ ᵤ ₜ ₛ ᵣ ₚ ₒ ₙ ₘ ₗ ₖ ⱼ
+ᵢ ₕ ₑ ₐ φ ς ϖ ϰ ϑ ε Ω ω Ψ ψ Χ χ Φ ϕ Υ υ Τ τ Σ σ Ρ ρ Π π Ο ο Ξ ξ Ν ν Μ μ Λ λ Κ κ
+Ι ι Θ θ Η η Ζ ζ Ε ϵ Δ δ Γ γ Β β Α α ℓ 𝓩 𝓨 𝓧 𝓦 𝓥 𝓤 𝓣 𝓢 𝓡 𝓠 𝓟 𝓞 𝓝 𝓜 𝓛 𝓚 𝓙 𝓘 𝓗 𝓖 𝓕
+𝓔 𝓓 𝓒 𝓑 𝓐 𝔃 𝔂 𝔁 𝔀 𝓿 𝓾 𝓽 𝓼 𝓻 𝓺 𝓹 𝓸 𝓷 𝓶 𝓵 𝓴 𝓳 𝓲 𝓱 𝓰 𝓯 𝓮 𝓭 𝓬 𝓫 𝓪 𝒁 𝒀 𝑿 𝑾 𝑽 𝑼 𝑻 𝑺 𝑹
+𝑸 𝑷 𝑶 𝑵 𝑴 𝑳 𝑲 𝑱 𝑰 𝑯 𝑮 𝑭 𝑬 𝑫 𝑪 𝑩 𝑨 𝒛 𝒚 𝒙 𝒘 𝒗 𝒖 𝒕 𝒔 𝒓 𝒒 𝒑 𝒐 𝒏 𝒍 𝒌 𝒋 𝒊 𝒉 𝒈 𝒇 𝒆 𝒅 𝒄
+𝒃 𝒂 𝒵 𝒴 𝒳 𝒲 𝒱 𝒰 𝒯 𝒮 ℛ 𝒬 𝒫 𝒪 𝒩 ℳ ℒ 𝒦 𝒥 ℐ ℋ 𝒢 ℱ ℰ 𝒟 𝒞 ℬ 𝒜 𝓏 𝓎 𝓍 𝓌 𝓋 𝓊 𝓉 𝓈 𝓇 𝓆 𝓅 ℴ
+𝓃 𝓂 𝓁 𝓀 𝒿 𝒾 𝒽 ℊ 𝒻 ℯ 𝒹 𝒸 𝒷 𝒶 𝟘 𝟡 𝟠 𝟟 𝟞 𝟝 𝟜 𝟛 𝟚 𝟙 ℤ 𝕐 𝕏 𝕎 𝕍 𝕌 𝕋 𝕊 ℝ ℚ ℙ 𝕆 ℕ 𝕄 𝕃 𝕂
+𝕁 𝕀 ℍ 𝔾 𝔽 𝔼 𝔻 ℂ 𝔹 𝔸 𝕫 𝕪 𝕩 𝕨 𝕧 𝕦 𝕥 𝕤 𝕣 𝕢 𝕡 𝕠 𝕟 𝕞 𝕝 𝕜 𝕛 𝕚 𝕙 𝕘 𝕗 𝕖 𝕕 𝕔 𝕓 𝕒
+
+#+latex: \centerline{\emph{Some} of the supported symbols}
+#+toc: headlines 4
+
 * About this file
+  :PROPERTIES:
+  :CUSTOM_ID: About-this-file
+  :END:
 
 # Wide margins: The PDF will likely never be printed, so avoid superfluous
 # whitespace
 #+LATEX_HEADER: \usepackage[hmargin=15mm,vmargin=15mm]{geometry}
 
+# Let's squeez code to avoid needless whitespace
+# +LATEX_HEADER: \usepackage{minted, multicol}
+# +LATEX_HEADER: \BeforeBeginEnvironment{minted}{\begin{minipage}[t]{\linewidth}\begin{multicols}{2}}%
+# +LATEX_HEADER: \AfterEndEnvironment{minted}{\end{multicols}\end{minipage}}%
+# +latex_header: \setlength{\columnseprule}{0.1ex}
+
 ** Preamble                                    :ignore:
+   :PROPERTIES:
+   :CUSTOM_ID: Preamble
+   :END:
 
 In order to write LaTeX documents using unicode in the source code, we must
 often tell LaTeX what we want the unicode characters to be rendered as.
@@ -33,6 +78,9 @@ There are at least two ways to inform LaTeX of unicode character translations;
 This collection uses the second.
 
 ** Usage
+   :PROPERTIES:
+   :CUSTOM_ID: Usage
+   :END:
 
 This file generates (via Org Babel tangling) the file ~unicode.sty~.
 
@@ -69,6 +117,9 @@ if you are using XeLaTeX or LuaLaTeX, then simply declare:
 #+end_example
 
 ** Required LaTeX packages
+   :PROPERTIES:
+   :CUSTOM_ID: Required-LaTeX-packages
+   :END:
 
 Of course we require the ~newunicodechar~ package to use that command.
 #+begin_src latex
@@ -145,6 +196,9 @@ for XeLaTeX and LuaLaTeX”.
 #+end_export
 
 ** Contributing to this document
+   :PROPERTIES:
+   :CUSTOM_ID: Contributing-to-this-document
+   :END:
 
 This document is written in Emacs using Org mode.
 While the exported PDF version, etc., show a collection of
@@ -156,6 +210,9 @@ should modify the Emacs Lisp script,
 not ~unicode.sty~ or the LaTeX source blocks themselves.
 
 ** The Emacs Lisp script
+   :PROPERTIES:
+   :CUSTOM_ID: The-Emacs-Lisp-script
+   :END:
 
 In this document, several lists of unicode character, LaTeX translation pairs
 are declared, and then “wrapped” into ~latex~ source blocks, using this function
@@ -181,49 +238,10 @@ to map the pairs into ~newunicodechar~ declarations.
 ;; C-c C-v C-b ⇒ Evaluate all source blocks
 #+end_src
 
-** Sample symbols
-
-Here are /some/ of the symbols we account for:
-#+begin_src emacs-lisp :results value :wrap "delme" :noeval
-; (setq all-unicode-symbols nil)
-(s-join " " (--map (format "%s" it) all-unicode-symbols))
-#+end_src
-
-
- ❌ ✔ ∷ ∞ ∙ ⊝ ⊛ ⊚ ⊙ ⊘ ⊗ ⊖ ⊕ ⟵ ⟶ ↓ ↑ ↔ ← → ∣ ⊒ ⊐ ⊑ ⊏ ≳ ≲ ≩ ≧ ≨ ≦ ≯ ≮ ≱ ≥ ≰ ≤ ≔ ≁
- ∼ ≉ ≈ ≄ ≃ ≇ ≅ ≟ ≐ ≠ ∘ ⊓ ⊔ ⊥ ⊤ ⊎ ⊍ ∪ ∩ ∋ ∉ ∈ ∅ ø ⊨ ⊣ ⊢ ⇔ ⇐ ⇒ ∧ ∨ ≢ ¬ ≡ ∃ ∀ ⌋ ⌊ ⌉
- ⌈ ⌟ ⌞ ⌝ ⌜ ｝ ｛ ⁆ ⁅ ⟫ ⟪ ⟩ ⟨ ⦆ ⦅ — – ⋮ ⋯ … ⁺ ⁹ ⁸ ⁷ ⁶ ⁵ ⁴ ³ ² ¹ ⁰ ᶻ ʸ ˣ ʷ ᵛ ᵘ ᵗ ˢ
- ʳ ᵖ ᵒ ⁿ ᵐ ˡ ᵏ ʲ ⁱ ʰ ᵍ ᶠ ᵉ ᵈ ᶜ ᵇ ᵃ ᵂ ⱽ ᵁ ᵀ ᴿ ᴾ ᴼ ᴺ ᴹ ᴸ ᴷ ᴶ ᴵ ᴴ ᴳ ᴱ ᴰ ᴮ ᴬ ₊ ₉ ₈ ₇
- ₆ ₅ ₄ ₃ ₂ ₁ ₀ ₓ ᵥ ᵤ ₜ ₛ ᵣ ₚ ₒ ₙ ₘ ₗ ₖ ⱼ ᵢ ₕ ₑ ₐ φ ς ϖ ϰ ϑ ε Ω ω Ψ ψ Χ χ Φ ϕ Υ υ
- Τ τ Σ σ Ρ ρ Π π Ο ο Ξ ξ Ν ν Μ μ Λ λ Κ κ Ι ι Θ θ Η η Ζ ζ Ε ϵ Δ δ Γ γ Β β Α α ℓ 𝒵
- 𝒴 𝒳 𝒲 𝒱 𝒰 𝒯 𝒮 ℛ 𝒬 𝒫 𝒪 𝒩 ℳ ℒ 𝒦 𝒥 ℐ ℋ 𝒢 ℱ ℰ 𝒟 𝒞 ℬ 𝒜 𝓏 𝓎 𝓍 𝓌 𝓋 𝓊 𝓉 𝓈 𝓇 𝓆 𝓅 ℴ 𝓃 𝓂 𝓁
- 𝓀 𝒿 𝒾 𝒽 ℊ 𝒻 ℯ 𝒹 𝒸 𝒷 𝒶 ⅀ ℼ ℿ ℽ ℾ ℤ 𝕐 𝕏 𝕎 𝕍 𝕌 𝕋 𝕊 ℝ ℚ ℙ 𝕆 ℕ 𝕄 𝕃 𝕂 𝕁 𝕀 ℍ 𝔾 𝔽 𝔼 𝔻 ℂ
- 𝔹 𝔸 𝕫 𝕪 𝕩 𝕨 𝕧 𝕦 𝕥 𝕤 𝕣 𝕢 𝕡 𝕠 𝕟 𝕞 𝕝 𝕜 𝕛 𝕚 𝕙 𝕘 𝕗 𝕖 𝕕 𝕔 𝕓 𝕒 ₓ ᵥ ᵤ ₜ ₛ ᵣ ₚ ₒ ₙ ₘ ₗ ₖ
- ⱼ ᵢ ₕ ₑ ₐ φ ς ϖ ϰ ϑ ε Ω ω Ψ ψ Χ χ Φ ϕ Υ υ Τ τ Σ σ Ρ ρ Π π Ο ο Ξ ξ Ν ν Μ μ Λ λ Κ
- κ Ι ι Θ θ Η η Ζ ζ Ε ϵ Δ δ Γ γ Β β Α α ℓ 𝒵 𝒴 𝒳 𝒲 𝒱 𝒰 𝒯 𝒮 ℛ 𝒬 𝒫 𝒪 𝒩 ℳ ℒ 𝒦 𝒥 ℐ ℋ 𝒢
- ℱ ℰ 𝒟 𝒞 ℬ 𝒜 𝓏 𝓎 𝓍 𝓌 𝓋 𝓊 𝓉 𝓈 𝓇 𝓆 𝓅 ℴ 𝓃 𝓂 𝓁 𝓀 𝒿 𝒾 𝒽 ℊ 𝒻 ℯ 𝒹 𝒸 𝒷 𝒶 ℤ 𝕐 𝕏
- 𝕎 𝕍 𝕌 𝕋 𝕊 ℝ ℚ ℙ 𝕆 ℕ 𝕄 𝕃 𝕂 𝕁 𝕀 ℍ 𝔾 𝔽 𝔼 𝔻 ℂ 𝔹 𝔸 𝕫 𝕪 𝕩 𝕨 𝕧 𝕦 𝕥 𝕤 𝕣 𝕢 𝕡 𝕠 𝕟 𝕞 𝕝 𝕜 𝕛
- 𝕚 𝕙 𝕘 𝕗 𝕖 𝕕 𝕔 𝕓 𝕒
-
-* COMMENT Notes :maybe_delete:
-
-# TODO: move the comments about missing characters here?
-
-As discussed [[https://tex.stackexchange.com/questions/486120/][here]], the prime characters are redefined by unicode-math at
-~\begindocument~. To redefine them, we would need to override that by wrapping out
-~\newunicodechar~ declarations in ~\AtBeginDocument~. Unfortunately we would then
-lose prime collapsing. The better solution is to use a font which has prime, or
-else avoid using double primes, etc..
-
-TODO: Musa: I don't see the relevance of this section, at least not in its
-current position. Perhaps relocate, or delete altogether.
-- Mark: I agree; this knowledge was placed in my original file
-  above commented out prime character definitions;
-  I don't want to lose the information,
-  because I have had trouble typesetting primes in certain fonts,
-  but it doesn't need to be here in such a prominent place.
-
 * 𝔹lackboard, 𝒞alligraphic, and 𝑩old-font
+  :PROPERTIES:
+  :CUSTOM_ID: 𝔹lackboard-𝒞alligraphic-and-𝑩old-font
+  :END:
 
 These lists are most likely complete, unless I have missed some characters aside
 from Latin letters, Greek letters and Arabic numerals which should be included.
@@ -245,8 +263,14 @@ sequences:
 #+end_export
 
 ** Blackboard
+   :PROPERTIES:
+   :CUSTOM_ID: Blackboard
+   :END:
 
 *** Lowercase Latin
+  :PROPERTIES:
+  :CUSTOM_ID: Blackboard-Lowercase-Latin
+  :END:
 
 #+begin_src emacs-lisp
 <<generator>>
@@ -549,6 +573,9 @@ sequences:
 #+end_export
 
 *** Uppercase Latin
+  :PROPERTIES:
+  :CUSTOM_ID: Blackboard-Uppercase-Latin
+  :END:
 
 #+begin_src emacs-lisp
 <<generator>>
@@ -643,7 +670,9 @@ sequences:
 #+end_export
 
 *** Arabic Numerals
-
+  :PROPERTIES:
+  :CUSTOM_ID: Blackboard-Arabic-Numerals
+  :END:
 # \newunicodechar{𝟙}{\ensuremath{\mathbf{1}}}
 
 #+begin_src latex
@@ -783,82 +812,15 @@ sequences:
 \fi
 #+end_export
 
-*** Greek
-
-There are unfortunately not many included in Unicode.
-
-#+begin_src emacs-lisp
-<<generator>>
-(let ((the-translations
-        '((ℾ TODO \\mathbb{\\Gamma})
-          (ℽ TODO \\mathbb{\\gamma})
-          (ℿ TODO \\mathbb{\\Pi})
-          (ℼ TODO \\mathbb{\\pi})
-          (⅀ TODO \\mathbb{\\Sum}))))
-  (generate-newunicodechars the-translations))
-#+end_src
-
-#+RESULTS:
-#+begin_src latex
-\ifpdflatex
-  \newunicodechar{ℾ}{\ensuremath{TODO}}
-\else
-  \newunicodechar{ℾ}{\ensuremath{\mathbb{\Gamma}}}
-\fi
-\ifpdflatex
-  \newunicodechar{ℽ}{\ensuremath{TODO}}
-\else
-  \newunicodechar{ℽ}{\ensuremath{\mathbb{\gamma}}}
-\fi
-\ifpdflatex
-  \newunicodechar{ℿ}{\ensuremath{TODO}}
-\else
-  \newunicodechar{ℿ}{\ensuremath{\mathbb{\Pi}}}
-\fi
-\ifpdflatex
-  \newunicodechar{ℼ}{\ensuremath{TODO}}
-\else
-  \newunicodechar{ℼ}{\ensuremath{\mathbb{\pi}}}
-\fi
-\ifpdflatex
-  \newunicodechar{⅀}{\ensuremath{TODO}}
-\else
-  \newunicodechar{⅀}{\ensuremath{\mathbb{\Sum}}}
-\fi
-#+end_src
-
-#+RESULTS:
-#+begin_export latex
-\ifpdflatex
-  \newunicodechar{ℾ}{\ensuremath{TODO}}
-\else
-  \newunicodechar{ℾ}{\ensuremath{\mathbb{\Gamma}}}
-\fi
-\ifpdflatex
-  \newunicodechar{ℽ}{\ensuremath{TODO}}
-\else
-  \newunicodechar{ℽ}{\ensuremath{\mathbb{\gamma}}}
-\fi
-\ifpdflatex
-  \newunicodechar{ℿ}{\ensuremath{TODO}}
-\else
-  \newunicodechar{ℿ}{\ensuremath{\mathbb{\Pi}}}
-\fi
-\ifpdflatex
-  \newunicodechar{ℼ}{\ensuremath{TODO}}
-\else
-  \newunicodechar{ℼ}{\ensuremath{\mathbb{\pi}}}
-\fi
-\ifpdflatex
-  \newunicodechar{⅀}{\ensuremath{TODO}}
-\else
-  \newunicodechar{⅀}{\ensuremath{\mathbb{\Sum}}}
-\fi
-#+end_export
-
 ** Calligraphic
+   :PROPERTIES:
+   :CUSTOM_ID: Calligraphic
+   :END:
 
 *** Lowercase Latin
+  :PROPERTIES:
+  :CUSTOM_ID: Calligraphic-Lowercase-Latin
+  :END:
 
 #+begin_src emacs-lisp
 <<generator>>
@@ -1161,7 +1123,9 @@ There are unfortunately not many included in Unicode.
 #+end_export
 
 *** Uppercase Latin
-
+  :PROPERTIES:
+  :CUSTOM_ID: Calligraphic-Uppercase-Latin
+  :END:
 #+begin_src emacs-lisp
 <<generator>>
 (let ((the-translations
@@ -1255,8 +1219,13 @@ There are unfortunately not many included in Unicode.
 #+end_export
 
 ** Bold-font
+   :PROPERTIES:
+   :CUSTOM_ID: Bold-font
+   :END:
 *** Lowercase Latin
-
+  :PROPERTIES:
+  :CUSTOM_ID: Bold-font-Lowercase-Latin
+  :END:
 
 #+begin_src emacs-lisp
 <<generator>>
@@ -1351,6 +1320,9 @@ There are unfortunately not many included in Unicode.
 #+end_export
 
 *** Uppercase Latin
+  :PROPERTIES:
+  :CUSTOM_ID: Bold-font-Uppercase-Latin
+  :END:
 
 #+begin_src emacs-lisp
 <<generator>>
@@ -1445,6 +1417,9 @@ There are unfortunately not many included in Unicode.
 #+end_export
 
 ** 𝓑old 𝓒alligraphic
+   :PROPERTIES:
+   :CUSTOM_ID: 𝓑old-𝓒alligraphic
+   :END:
 
 #+begin_src latex
 % For bold calligraphic letters
@@ -1458,6 +1433,9 @@ There are unfortunately not many included in Unicode.
 #+end_export
 
 *** Lowercase Latin
+  :PROPERTIES:
+  :CUSTOM_ID: Bold-Calligraphic-Lowercase-Latin
+  :END:
 
 #+begin_src emacs-lisp
 <<generator>>
@@ -1552,6 +1530,9 @@ There are unfortunately not many included in Unicode.
 #+end_export
 
 *** Uppercase Latin
+  :PROPERTIES:
+  :CUSTOM_ID: Bold-Calligraphic-Uppercase-Latin
+  :END:
 
 #+begin_src emacs-lisp
 <<generator>>
@@ -1646,6 +1627,9 @@ There are unfortunately not many included in Unicode.
 #+end_export
 
 * Other letters or letterlike symbols
+  :PROPERTIES:
+  :CUSTOM_ID: Other-letters-or-letterlike-symbols
+  :END:
 
 #+begin_src emacs-lisp
 <<generator>>
@@ -1665,7 +1649,13 @@ There are unfortunately not many included in Unicode.
 #+end_export
 
 * Greek alphabet
+  :PROPERTIES:
+  :CUSTOM_ID: Greek-alphabet
+  :END:
 ** Normal
+   :PROPERTIES:
+   :CUSTOM_ID: Normal
+   :END:
 
 #+begin_src emacs-lisp
 <<generator>>
@@ -1938,6 +1928,9 @@ There are unfortunately not many included in Unicode.
 #+end_export
 
 ** ~var~-variants :incomplete:
+   :PROPERTIES:
+   :CUSTOM_ID: var-variants
+   :END:
 
 Note that some of the default Agda input entries are in this list, rather than
 the default above.
@@ -1977,16 +1970,25 @@ support for it.
 #+end_export
 
 * Sub-, Super-, Under-, and Over-scripts
+  :PROPERTIES:
+  :CUSTOM_ID: Sub-Super-Under-and-Over-scripts
+  :END:
 
 Note that while the alphabetic lists are complete, *there are missing letters*,
 because unfortunately Unicode does not have characters for every letter
 subscript and superscript.
 
 ** Subscripts
+   :PROPERTIES:
+   :CUSTOM_ID: Subscripts
+   :END:
 
 Note there are no uppercase letter subscripts.
 
 *** Lowercase alphabet
+  :PROPERTIES:
+  :CUSTOM_ID: Subscripts-Lowercase-alphabet
+  :END:
 
 #+begin_src emacs-lisp
 <<generator>>
@@ -2054,7 +2056,9 @@ Note there are no uppercase letter subscripts.
 #+end_export
 
 *** Numeric
-
+  :PROPERTIES:
+  :CUSTOM_ID: Subscripts-Numeric
+  :END:
 #+begin_src emacs-lisp :wrap src latex
 (let ((the-translations
         '((₀  {}_{0})
@@ -2099,6 +2103,9 @@ Note there are no uppercase letter subscripts.
 #+end_export
 
 *** Other
+  :PROPERTIES:
+  :CUSTOM_ID: Subscripts-Other
+  :END:
 
 #+begin_src emacs-lisp
 <<generator>>
@@ -2129,8 +2136,14 @@ Note there are no uppercase letter subscripts.
 # \newunicodechar{ₓ}{\ensuremath{_{\times}}}
 
 ** Superscripts
+   :PROPERTIES:
+   :CUSTOM_ID: Superscripts
+   :END:
 
 *** Uppercase alphabet
+  :PROPERTIES:
+  :CUSTOM_ID: Supscripts-Uppercase-alphabet
+  :END:
 
 #+begin_src emacs-lisp
 <<generator>>
@@ -2204,6 +2217,9 @@ Note there are no uppercase letter subscripts.
 #+end_export
 
 *** Lowercase alphabet
+  :PROPERTIES:
+  :CUSTOM_ID: Supscripts-Lowercase-alphabet
+  :END:
 
 #+begin_src emacs-lisp
 <<generator>>
@@ -2295,6 +2311,9 @@ Note there are no uppercase letter subscripts.
 #+end_export
 
 *** Numeric
+    :PROPERTIES:
+    :CUSTOM_ID: Numeric
+    :END:
 
 #+begin_src emacs-lisp
 <<generator>>
@@ -2341,6 +2360,9 @@ Note there are no uppercase letter subscripts.
 #+end_export
 
 *** Other
+  :PROPERTIES:
+  :CUSTOM_ID: Superscripts-Other
+  :END:
 
 #+begin_src emacs-lisp
 <<generator>>
@@ -2367,8 +2389,14 @@ Note there are no uppercase letter subscripts.
 #+end_export
 
 * Punctuation and Delimiters
+  :PROPERTIES:
+  :CUSTOM_ID: Punctuation-and-Delimiters
+  :END:
 
 ** Dots
+   :PROPERTIES:
+   :CUSTOM_ID: Dots
+   :END:
 
 #+begin_src emacs-lisp
 <<generator>>
@@ -2394,6 +2422,9 @@ Note there are no uppercase letter subscripts.
 #+end_export
 
 ** Dashes
+   :PROPERTIES:
+   :CUSTOM_ID: Dashes
+   :END:
 
 #+begin_src emacs-lisp
 <<generator>>
@@ -2418,6 +2449,9 @@ Note there are no uppercase letter subscripts.
 # \newunicodechar{─}{\text{---}}
 
 ** Parentheses, braces and brackets
+   :PROPERTIES:
+   :CUSTOM_ID: Parentheses-braces-and-brackets
+   :END:
 
 # This section will yell at you if you have parentheses matching
 # turned on for these symbols.
@@ -2490,6 +2524,9 @@ so they cannot be used in names.
 #+end_export
 
 ** Other paired delimiters
+   :PROPERTIES:
+   :CUSTOM_ID: Other-paired-delimiters
+   :END:
 
 #+begin_src emacs-lisp
 <<generator>>
@@ -2530,6 +2567,9 @@ so they cannot be used in names.
 #+end_export
 
 ** Whitespace
+   :PROPERTIES:
+   :CUSTOM_ID: Whitespace
+   :END:
 
 # ~ is a special variable in Lisp, so the usual generator fails here.
 # We just write this manually.
@@ -2549,8 +2589,14 @@ I am a very long line whose words are separated by non-breaking spac
 # TODO: Musa: Unicode smileys do not work for me using pdflatex.
 
 * Logic
+  :PROPERTIES:
+  :CUSTOM_ID: Logic
+  :END:
 
 ** Prepositional
+   :PROPERTIES:
+   :CUSTOM_ID: Prepositional
+   :END:
 
 #+begin_src emacs-lisp
 <<generator>>
@@ -2594,6 +2640,9 @@ I am a very long line whose words are separated by non-breaking spac
 #+end_export
 
 ** Predicate
+   :PROPERTIES:
+   :CUSTOM_ID: Predicate
+   :END:
 
 #+begin_src emacs-lisp
 <<generator>>
@@ -2629,6 +2678,9 @@ I am a very long line whose words are separated by non-breaking spac
 #+end_export
 
 ** Model ---Entailment
+   :PROPERTIES:
+   :CUSTOM_ID: Model-Entailment
+   :END:
 
 #+begin_src emacs-lisp
 <<generator>>
@@ -2654,8 +2706,14 @@ I am a very long line whose words are separated by non-breaking spac
 #+end_export
 
 * Sets, relations and functions
+  :PROPERTIES:
+  :CUSTOM_ID: Sets-relations-and-functions
+  :END:
 
 ** Sets
+   :PROPERTIES:
+   :CUSTOM_ID: Sets
+   :END:
 
 #+begin_src emacs-lisp
 <<generator>>
@@ -2702,6 +2760,9 @@ I am a very long line whose words are separated by non-breaking spac
 #+end_export
 
 ** Relation operators
+   :PROPERTIES:
+   :CUSTOM_ID: Relation-operators
+   :END:
 
 #+begin_src emacs-lisp
 <<generator>>
@@ -2738,6 +2799,9 @@ I am a very long line whose words are separated by non-breaking spac
 #+end_export
 
 ** Function operators
+   :PROPERTIES:
+   :CUSTOM_ID: Function-operators
+   :END:
 
 #+begin_src emacs-lisp
 <<generator>>
@@ -2764,8 +2828,14 @@ I am a very long line whose words are separated by non-breaking spac
 #+end_export
 
 ** Relations
+   :PROPERTIES:
+   :CUSTOM_ID: Relations
+   :END:
 
 *** Equality like
+    :PROPERTIES:
+    :CUSTOM_ID: Equality-like
+    :END:
 
 Along with negations where they exist. Note that equivalences are within the
 [[Logic]] section.
@@ -2820,6 +2890,9 @@ Along with negations where they exist. Note that equivalences are within the
 #+end_export
 
 *** Order like
+    :PROPERTIES:
+    :CUSTOM_ID: Order-like
+    :END:
 
 #+begin_src emacs-lisp
 <<generator>>
@@ -2887,8 +2960,14 @@ Along with negations where they exist. Note that equivalences are within the
 #+end_export
 
 * Generic or other operators
+  :PROPERTIES:
+  :CUSTOM_ID: Generic-or-other-operators
+  :END:
 
 ** Arrows
+   :PROPERTIES:
+   :CUSTOM_ID: Arrows
+   :END:
 
 #+begin_src emacs-lisp
 <<generator>>
@@ -2937,7 +3016,10 @@ Along with negations where they exist. Note that equivalences are within the
 \newunicodechar{⟵}{\ensuremath{\longleftarrow}}
 #+end_export
 
-** “o”-operators :incomplete:
+** “o”-operators
+   :PROPERTIES:
+   :CUSTOM_ID: o-operators
+   :END:
 
 Agda users invoke =\o𝓍= and =\O𝓍=.
 
@@ -3002,106 +3084,10 @@ using =\r=.
 \newunicodechar{⟴}{\ensuremath{\!\!\VCCompose}}
 #+end_export
 
-** TODO COMMENT Small, halfwidth and fullwidth math symbols
-
-For small characters, we use ~scalebox~ on the corresponding symbols, and ~raisebox~
-to correct for height.
-#+begin_src emacs-lisp
-<<generator>>
-(let ((the-translations
-        '((﹡ \\raisebox{.4\\height}{\\scalebox{.6}{*}})
-          (﹢ \\raisebox{.4\\height}{\\scalebox{.6}{+}})
-          (﹣ \\raisebox{.4\\height}{\\scalebox{.6}{-}})
-          (﹤ \\raisebox{.4\\height}{\\scalebox{.6}{<}})
-          (﹥ \\raisebox{.4\\height}{\\scalebox{.6}{>}})
-          (﹦ \\raisebox{.4\\height}{\\scalebox{.6}{=}})
-          (﹨ \\raisebox{.4\\height}{\\scalebox{.6}{\\backslash}}))))
-  (generate-newunicodechars the-translations))
-#+end_src
-
-#+RESULTS:
-#+begin_src latex
-\newunicodechar{﹡}{\ensuremath{\raisebox{.4\height}{\scalebox{.6}{*}}}}
-\newunicodechar{﹢}{\ensuremath{\raisebox{.4\height}{\scalebox{.6}{+}}}}
-\newunicodechar{﹣}{\ensuremath{\raisebox{.4\height}{\scalebox{.6}{-}}}}
-\newunicodechar{﹤}{\ensuremath{\raisebox{.4\height}{\scalebox{.6}{<}}}}
-\newunicodechar{﹥}{\ensuremath{\raisebox{.4\height}{\scalebox{.6}{>}}}}
-\newunicodechar{﹦}{\ensuremath{\raisebox{.4\height}{\scalebox{.6}{=}}}}
-\newunicodechar{﹨}{\ensuremath{\raisebox{.4\height}{\scalebox{.6}{\backslash}}}}
-#+end_src
-
-#+RESULTS:
-#+begin_export latex
-\newunicodechar{﹡}{\ensuremath{\raisebox{.4\height}{\scalebox{.6}{*}}}}
-\newunicodechar{﹢}{\ensuremath{\raisebox{.4\height}{\scalebox{.6}{+}}}}
-\newunicodechar{﹣}{\ensuremath{\raisebox{.4\height}{\scalebox{.6}{-}}}}
-\newunicodechar{﹤}{\ensuremath{\raisebox{.4\height}{\scalebox{.6}{<}}}}
-\newunicodechar{﹥}{\ensuremath{\raisebox{.4\height}{\scalebox{.6}{>}}}}
-\newunicodechar{﹦}{\ensuremath{\raisebox{.4\height}{\scalebox{.6}{=}}}}
-\newunicodechar{﹨}{\ensuremath{\raisebox{.4\height}{\scalebox{.6}{\backslash}}}}
-#+end_export
-
-For fullwidth characters, we place them in a ~1em~ box.
-Note the “plain TeX” method for obtaining a non-raised tilde here.
-#+begin_src emacs-lisp
-<<generator>>
-(let ((the-translations
-         '((＋  \\makebox\[1em\]{+})
-          (＜  \\makebox\[1em\]{<})
-          (＝  \\makebox\[1em\]{=})
-          (＞  \\makebox\[1em\]{>})
-          (＾  \\makebox\[1em\]{\\textasciicircum})
-          (｜  \\makebox\[1em\]{|})
-          (～  \\makebox\[1em\]{\\char\`\\~})
-          (￢  \\makebox\[1em\]{\\lnot}))))
-  (generate-newunicodechars the-translations))
-#+end_src
-
-#+RESULTS:
-#+begin_src latex
-\newunicodechar{＋}{\ensuremath{\makebox[1em]{+}}}
-\newunicodechar{＜}{\ensuremath{\makebox[1em]{<}}}
-\newunicodechar{＝}{\ensuremath{\makebox[1em]{=}}}
-\newunicodechar{＞}{\ensuremath{\makebox[1em]{>}}}
-\newunicodechar{＾}{\ensuremath{\makebox[1em]{\textasciicircum}}}
-\newunicodechar{｜}{\ensuremath{\makebox[1em]{|}}}
-\newunicodechar{～}{\ensuremath{\makebox[1em]{\char`\~}}}
-\newunicodechar{￢}{\ensuremath{\makebox[1em]{\lnot}}}
-#+end_src
-
-#+RESULTS:
-#+begin_export latex
-\newunicodechar{＋}{\ensuremath{\makebox[1em]{+}}}
-\newunicodechar{＜}{\ensuremath{\makebox[1em]{<}}}
-\newunicodechar{＝}{\ensuremath{\makebox[1em]{=}}}
-\newunicodechar{＞}{\ensuremath{\makebox[1em]{>}}}
-\newunicodechar{＾}{\ensuremath{\makebox[1em]{\textasciicircum}}}
-\newunicodechar{｜}{\ensuremath{\makebox[1em]{|}}}
-\newunicodechar{～}{\ensuremath{\makebox[1em]{\char`\~}}}
-\newunicodechar{￢}{\ensuremath{\makebox[1em]{\lnot}}}
-#+end_export
-
-So far, I haven't devised a good solution for the halfwidth arrows.
-I just substitute the regular arrows in.
-#+begin_src emacs-lisp
-<<generator>>
-(let ((the-translations
-        '((￩  \\leftarrow)
-          (￪  \\uparrow)
-          (￫  \\rightarrow)
-          (￬  \\downarrow))))
-  (generate-newunicodechars the-translations))
-#+end_src
-
-#+RESULTS:
-#+begin_src latex
-\newunicodechar{￩}{\ensuremath{\leftarrow}}
-\newunicodechar{￪}{\ensuremath{\uparrow}}
-\newunicodechar{￫}{\ensuremath{\rightarrow}}
-\newunicodechar{￬}{\ensuremath{\downarrow}}
-#+end_src
-
 ** Punctuation-like
+   :PROPERTIES:
+   :CUSTOM_ID: Punctuation-like
+   :END:
 
 # TODO: Musa: These do not even appear in the PDF generated by Mark.
 # ⇒ Mark, are you using a --nonstopmode when generating PDFs?
@@ -3138,6 +3124,9 @@ quantifier notation to indicate the type of dummy variables.
 #+end_export
 
 ** Others
+   :PROPERTIES:
+   :CUSTOM_ID: Others
+   :END:
 
 # TODO: Mark: I changed the lualatex command for ∷; perhaps
 # it will work for pdflatex as well?
@@ -3175,6 +3164,9 @@ Probably some of these belong somewhere else.
 #+end_export
 
 * Check- & X-marks, and Primes & Ticks
+  :PROPERTIES:
+  :CUSTOM_ID: Check-X-marks-and-Primes-Ticks
+  :END:
 
 #+begin_src emacs-lisp
 <<generator>>
@@ -3213,169 +3205,10 @@ Probably some of these belong somewhere else.
 \newunicodechar{‶}{\ensuremath{``}}
 #+end_export
 
-* TODO COMMENT misc
-
-#+begin_src latex
-\newunicodechar{̈}{\ensuremath{^{..}}}
-
-% +latex_header: \newunicodechar{⨾}{;}
-
-\newunicodechar{‿}{CONVERSE}
-\newunicodechar{⁻}{\ensuremath{{}^{-}}}
-\newunicodechar{□}{\ensuremath{QED}}
-% +latex_header: \newunicodechar{∎}{\ensuremath{QED}}
-\newunicodechar{○}{\ensuremath{\circ}}
-
-\newunicodechar{♯}{\ensuremath{SHARP}}
-\newunicodechar{́}{\ensuremath{'}}
-
-% Agda: \Mi𝓍
- \newunicodechar{𝑝}{p}
- \newunicodechar{𝑎}{a}
- \newunicodechar{𝑟}{r}
- \newunicodechar{𝑒}{e}
- \newunicodechar{𝑛}{n}
- \newunicodechar{𝑡}{t}
- \newunicodechar{𝑚}{m}
- \newunicodechar{𝑙}{l}
- \newunicodechar{𝑠}{s}
- \newunicodechar{𝑜}{o}
- \newunicodechar{𝑓}{f}
-#+end_src
-
-#+RESULTS:
-#+begin_export latex
-\newunicodechar{̈}{\ensuremath{^{..}}}
-
-% +latex_header: \newunicodechar{⨾}{;}
-
-\newunicodechar{‿}{CONVERSE}
-\newunicodechar{⁻}{\ensuremath{{}^{-}}}
-\newunicodechar{□}{\ensuremath{QED}}
-% +latex_header: \newunicodechar{∎}{\ensuremath{QED}}
-\newunicodechar{○}{\ensuremath{\circ}}
-
-\newunicodechar{♯}{\ensuremath{SHARP}}
-\newunicodechar{́}{\ensuremath{'}}
-
-% Agda: \Mi𝓍
- \newunicodechar{𝑝}{p}
- \newunicodechar{𝑎}{a}
- \newunicodechar{𝑟}{r}
- \newunicodechar{𝑒}{e}
- \newunicodechar{𝑛}{n}
- \newunicodechar{𝑡}{t}
- \newunicodechar{𝑚}{m}
- \newunicodechar{𝑙}{l}
- \newunicodechar{𝑠}{s}
- \newunicodechar{𝑜}{o}
- \newunicodechar{𝑓}{f}
-#+end_export
-
-* TODO COMMENT Smilies                                         :XeLaTeX_Only:
-
-I have not found a reliable way to produce smilies in LaTeX.
-In LuaLaTeX and XeLaTeX, it should work to just use
-the unicode characters themselves,
-making sure to use a font that supports them.
-DejaVu Sans does so.
-#+begin_src latex
-\ifpdflatex\else
-  \newfontfamily\DejaSans{DejaVu Sans}
-}
-#+end_src
-
-#+RESULTS:
-#+begin_export latex
-\ifpdflatex\else
-  \newfontfamily\DejaSans{DejaVu Sans}
-}
-#+end_export
-
-So these characters can only be used if you use LuaLaTeX or XeLaTeX.
-#+begin_src emacs-lisp
-(when nil
-<<generator>>
-(let ((the-translations
-        '((😀  😀)
-          (😁  😁)
-          (😐  😐)
-          (😵  😵)
-          (🙁  🙁))))
-  (generate-newunicodechars the-translations "{\\DejaSans ")))
-#+end_src
-
-#+RESULTS:
-#+begin_src latex
-#+end_src
-
-#+RESULTS:
-#+begin_export latex
-#+end_export
-
-
-# accomodate for only xelatex
-#+begin_src latex
-\ifpdflatex\else
-  \newunicodechar{😀}{{\DejaSans 😀}}
-  \newunicodechar{😁}{{\DejaSans 😁}}
-  \newunicodechar{😐}{{\DejaSans 😐}}
-  \newunicodechar{😵}{{\DejaSans 😵}}
-  \newunicodechar{🙁}{{\DejaSans 🙁}}
-}
-#+end_src
-
-#+RESULTS:
-#+begin_export latex
-\ifpdflatex\else
-  \newunicodechar{😀}{{\DejaSans 😀}}
-  \newunicodechar{😁}{{\DejaSans 😁}}
-  \newunicodechar{😐}{{\DejaSans 😐}}
-  \newunicodechar{😵}{{\DejaSans 😵}}
-  \newunicodechar{🙁}{{\DejaSans 🙁}}
-}
-#+end_export
-
-* COMMENT Old
-
-** Other operators
-
-#+begin_src latex
-%---------------------------------------------------------------------
-% Other operators
-%---------------------------------------------------------------------
-\newunicodechar{⊕}{\ensuremath{\mathrm{⊕}}}
-\newunicodechar{⊗}{\ensuremath{\mathrm{⊗}}}
-\newunicodechar{⊛}{\ensuremath{\mathrm{⊛}}}
-\newunicodechar{⊘}{\ensuremath{\mathrm{⊘}}}
-\newunicodechar{∣}{\ensuremath{\mathrm{∣}}}
-\newunicodechar{∷}{\ensuremath{\mathrm{∷}}}
-\newunicodechar{≟}{\ensuremath{\mathrm{≟}}}
-\newunicodechar{≔}{\ensuremath{\mathrm{≔}}}
-\newunicodechar{≈}{\ensuremath{\mathrm{≈}}}
-\newunicodechar{⟶}{\ensuremath{\mathrm{⟶}}}
-\newunicodechar{⇓}{\ensuremath{\mathrm{⇓}}}
-#+end_src
-
-#+RESULTS:
-#+begin_export latex
-%---------------------------------------------------------------------
-% Other operators
-%---------------------------------------------------------------------
-\newunicodechar{⊕}{\ensuremath{\mathrm{⊕}}}
-\newunicodechar{⊗}{\ensuremath{\mathrm{⊗}}}
-\newunicodechar{⊛}{\ensuremath{\mathrm{⊛}}}
-\newunicodechar{⊘}{\ensuremath{\mathrm{⊘}}}
-\newunicodechar{∣}{\ensuremath{\mathrm{∣}}}
-\newunicodechar{∷}{\ensuremath{\mathrm{∷}}}
-\newunicodechar{≟}{\ensuremath{\mathrm{≟}}}
-\newunicodechar{≔}{\ensuremath{\mathrm{≔}}}
-\newunicodechar{≈}{\ensuremath{\mathrm{≈}}}
-\newunicodechar{⟶}{\ensuremath{\mathrm{⟶}}}
-\newunicodechar{⇓}{\ensuremath{\mathrm{⇓}}}
-#+end_export
-
 * Package footer                                :noexport:
+  :PROPERTIES:
+  :CUSTOM_ID: Package-footer
+  :END:
 
 #+begin_src latex
 \endinput
