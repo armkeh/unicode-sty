@@ -1,0 +1,1936 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2020-05-25 Mon 12:38 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Unicode declarations for LaTeX documents</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Mark Armstrong" />
+<meta name="description" content="Generating ~newunicodechar~ declarations for
+LaTeX documents which use unicode."
+ />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link href="https://alhassy.github.io/org-notes-style.css" rel="stylesheet" type="text/css" />
+<link href="https://alhassy.github.io/floating-toc.css" rel="stylesheet" type="text/css" />
+
+        <style>
+        /* From: https://endlessparentheses.com/public/css/endless.css */
+        /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+        kbd
+        {
+          -moz-border-radius: 6px;
+          -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+          -webkit-border-radius: 6px;
+          -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+          background-color: #f7f7f7;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+          color: #333;
+          display: inline-block;
+          font-family: 'Droid Sans Mono', monospace;
+          font-size: 80%;
+          font-weight: normal;
+          line-height: inherit;
+          margin: 0 .1em;
+          padding: .08em .4em;
+          text-shadow: 0 1px 0 #fff;
+          word-spacing: -4px;
+
+          box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+        }
+        </style>
+        <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+
+        <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+
+        <script type="text/javascript">
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+            }
+        </script>
+
+         <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+
+          <script>
+                 $(document).ready(function() {
+                     $('.tooltip').tooltipster({
+                         theme: 'tooltipster-punk',
+                         contentAsHTML: true,
+                         animation: 'grow',
+                         delay: [100,500],
+                         // trigger: 'click'
+                         trigger: 'custom',
+                         triggerOpen: {
+                             mouseenter: true
+                         },
+                         triggerClose: {
+                             originClick: true,
+                             scroll: true
+                         }
+         });
+                 });
+             </script>
+
+        <style>
+           abbr {color: red;}
+
+           .tooltip { border-bottom: 1px dotted #000;
+                      color:red;
+                      text-decoration: none;}
+        </style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Unicode declarations for LaTeX documents</h1>
+
+<p>
+❌ ✔ ∷ ∞ ∙ ∶ ‼ ⊝ ⊛ ⊚ ⨀ ⊙ ⊘ ⨂ ⊗ ⊖ ⨁ ⊕ ⟵ ⟶ ⇊ ↓ ↑ ↔ ← ⟿ ➩ ⇨ → ∣ ⊒ ⊐ ⊑ ⊏ ≳ ≲ ≩ ≧ ≨ ≦
+≯ ≮ ≱ ≥ ≰ ≤ ≔ ≁ ∼ ≉ ≈ ≄ ≃ ≇ ≅ ≟ ≐ ≠ ↪ ↦ ∘ ╱ ╲ ⊓ ⊔ ⊥ ⊤ ⊎ ⊍ ∪ ∩ ⊆ ∋ ∉ ∈ ∅ ø ⊨ ⊣ ⊢
+∃ ∀ ⇔ ⟺ ⇐ ⇒ ∧ ∨ ≢ ¬ ≡ ⌋ ⌊ ⌉ ⌈ ⌟ ⌞ ⌝ ⌜ ｝ ｛ ⁆ ⁅ ⟫ ⟪ ⦄ ⦃ ⟩ ⟨ ⦆ ⦅ — – ⋮ ⋯ … ⁼ ⁻ ⁺
+⁹ ⁸ ⁷ ⁶ ⁵ ⁴ ³ ² ¹ ⁰ ᶻ ʸ ˣ ʷ ᵛ ᵘ ᵗ ˢ ʳ ᵖ ᵒ ⁿ ᵐ ˡ ᵏ ʲ ⁱ ʰ ᵍ ᶠ ᵉ ᵈ ᶜ ᵇ ᵃ ᵂ ⱽ ᵁ ᵀ ᴿ
+ᴾ ᴼ ᴺ ᴹ ᴸ ᴷ ᴶ ᴵ ᴴ ᴳ ᴱ ᴰ ᴮ ᴬ ₌ ₋ ₊ ₉ ₈ ₇ ₆ ₅ ₄ ₃ ₂ ₁ ₀ ₓ ᵥ ᵤ ₜ ₛ ᵣ ₚ ₒ ₙ ₘ ₗ ₖ ⱼ
+ᵢ ₕ ₑ ₐ φ ς ϖ ϰ ϑ ε Ω ω Ψ ψ Χ χ Φ ϕ Υ υ Τ τ Σ σ Ρ ρ Π π Ο ο Ξ ξ Ν ν Μ μ Λ λ Κ κ
+Ι ι Θ θ Η η Ζ ζ Ε ϵ Δ δ Γ γ Β β Α α ℓ 𝓩 𝓨 𝓧 𝓦 𝓥 𝓤 𝓣 𝓢 𝓡 𝓠 𝓟 𝓞 𝓝 𝓜 𝓛 𝓚 𝓙 𝓘 𝓗 𝓖 𝓕
+𝓔 𝓓 𝓒 𝓑 𝓐 𝔃 𝔂 𝔁 𝔀 𝓿 𝓾 𝓽 𝓼 𝓻 𝓺 𝓹 𝓸 𝓷 𝓶 𝓵 𝓴 𝓳 𝓲 𝓱 𝓰 𝓯 𝓮 𝓭 𝓬 𝓫 𝓪 𝒁 𝒀 𝑿 𝑾 𝑽 𝑼 𝑻 𝑺 𝑹
+𝑸 𝑷 𝑶 𝑵 𝑴 𝑳 𝑲 𝑱 𝑰 𝑯 𝑮 𝑭 𝑬 𝑫 𝑪 𝑩 𝑨 𝒛 𝒚 𝒙 𝒘 𝒗 𝒖 𝒕 𝒔 𝒓 𝒒 𝒑 𝒐 𝒏 𝒍 𝒌 𝒋 𝒊 𝒉 𝒈 𝒇 𝒆 𝒅 𝒄
+𝒃 𝒂 𝒵 𝒴 𝒳 𝒲 𝒱 𝒰 𝒯 𝒮 ℛ 𝒬 𝒫 𝒪 𝒩 ℳ ℒ 𝒦 𝒥 ℐ ℋ 𝒢 ℱ ℰ 𝒟 𝒞 ℬ 𝒜 𝓏 𝓎 𝓍 𝓌 𝓋 𝓊 𝓉 𝓈 𝓇 𝓆 𝓅 ℴ
+𝓃 𝓂 𝓁 𝓀 𝒿 𝒾 𝒽 ℊ 𝒻 ℯ 𝒹 𝒸 𝒷 𝒶 𝟘 𝟡 𝟠 𝟟 𝟞 𝟝 𝟜 𝟛 𝟚 𝟙 ℤ 𝕐 𝕏 𝕎 𝕍 𝕌 𝕋 𝕊 ℝ ℚ ℙ 𝕆 ℕ 𝕄 𝕃 𝕂
+𝕁 𝕀 ℍ 𝔾 𝔽 𝔼 𝔻 ℂ 𝔹 𝔸 𝕫 𝕪 𝕩 𝕨 𝕧 𝕦 𝕥 𝕤 𝕣 𝕢 𝕡 𝕠 𝕟 𝕞 𝕝 𝕜 𝕛 𝕚 𝕙 𝕘 𝕗 𝕖 𝕕 𝕔 𝕓 𝕒
+</p>
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#About-this-file">1. <a href="#About-this-file">About this file</a></a>
+<ul>
+<li><a href="#Usage">1.1. <a href="#Usage">Usage</a></a></li>
+<li><a href="#Required-LaTeX-packages">1.2. <a href="#Required-LaTeX-packages">Required LaTeX packages</a></a></li>
+<li><a href="#Contributing-to-this-document">1.3. <a href="#Contributing-to-this-document">Contributing to this document</a></a></li>
+<li><a href="#The-Emacs-Lisp-script">1.4. <a href="#The-Emacs-Lisp-script">The Emacs Lisp script</a></a></li>
+</ul>
+</li>
+<li><a href="#𝔹lackboard-𝒞alligraphic-and-𝑩old-font">2. <a href="#𝔹lackboard-𝒞alligraphic-and-𝑩old-font">𝔹lackboard, 𝒞alligraphic, and 𝑩old-font</a></a>
+<ul>
+<li><a href="#Blackboard">2.1. <a href="#Blackboard">Blackboard</a></a>
+<ul>
+<li><a href="#Blackboard-Lowercase-Latin">2.1.1. <a href="#Blackboard-Lowercase-Latin">Lowercase Latin</a></a></li>
+<li><a href="#Blackboard-Uppercase-Latin">2.1.2. <a href="#Blackboard-Uppercase-Latin">Uppercase Latin</a></a></li>
+<li><a href="#Blackboard-Arabic-Numerals">2.1.3. <a href="#Blackboard-Arabic-Numerals">Arabic Numerals</a></a></li>
+</ul>
+</li>
+<li><a href="#Calligraphic">2.2. <a href="#Calligraphic">Calligraphic</a></a>
+<ul>
+<li><a href="#Calligraphic-Lowercase-Latin">2.2.1. <a href="#Calligraphic-Lowercase-Latin">Lowercase Latin</a></a></li>
+<li><a href="#Calligraphic-Uppercase-Latin">2.2.2. <a href="#Calligraphic-Uppercase-Latin">Uppercase Latin</a></a></li>
+</ul>
+</li>
+<li><a href="#Bold-font">2.3. <a href="#Bold-font">Bold-font</a></a>
+<ul>
+<li><a href="#Bold-font-Lowercase-Latin">2.3.1. <a href="#Bold-font-Lowercase-Latin">Lowercase Latin</a></a></li>
+<li><a href="#Bold-font-Uppercase-Latin">2.3.2. <a href="#Bold-font-Uppercase-Latin">Uppercase Latin</a></a></li>
+</ul>
+</li>
+<li><a href="#𝓑old-𝓒alligraphic">2.4. <a href="#𝓑old-𝓒alligraphic">𝓑old 𝓒alligraphic</a></a>
+<ul>
+<li><a href="#Bold-Calligraphic-Lowercase-Latin">2.4.1. <a href="#Bold-Calligraphic-Lowercase-Latin">Lowercase Latin</a></a></li>
+<li><a href="#Bold-Calligraphic-Uppercase-Latin">2.4.2. <a href="#Bold-Calligraphic-Uppercase-Latin">Uppercase Latin</a></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#Other-letters-or-letterlike-symbols">3. <a href="#Other-letters-or-letterlike-symbols">Other letters or letterlike symbols</a></a></li>
+<li><a href="#Greek-alphabet">4. <a href="#Greek-alphabet">Greek alphabet</a></a>
+<ul>
+<li><a href="#Normal">4.1. <a href="#Normal">Normal</a></a></li>
+<li><a href="#var-variants">4.2. <a href="#var-variants">Also: <code>var</code>-variants</a>&#xa0;&#xa0;&#xa0;<span class="tag"><span class="incomplete">incomplete</span></span></a></li>
+</ul>
+</li>
+<li><a href="#Sub-Super-Under-and-Over-scripts">5. <a href="#Sub-Super-Under-and-Over-scripts">Sub-, Super-, Under-, and Over-scripts</a></a>
+<ul>
+<li><a href="#Subscripts">5.1. <a href="#Subscripts">Subscripts</a></a>
+<ul>
+<li><a href="#Subscripts-Lowercase-alphabet">5.1.1. <a href="#Subscripts-Lowercase-alphabet">Lowercase alphabet</a></a></li>
+<li><a href="#Subscripts-Numeric">5.1.2. <a href="#Subscripts-Numeric">Numeric</a></a></li>
+<li><a href="#Subscripts-Other">5.1.3. <a href="#Subscripts-Other">Other</a></a></li>
+</ul>
+</li>
+<li><a href="#Superscripts">5.2. <a href="#Superscripts">Superscripts</a></a>
+<ul>
+<li><a href="#Supscripts-Uppercase-alphabet">5.2.1. <a href="#Supscripts-Uppercase-alphabet">Uppercase alphabet</a></a></li>
+<li><a href="#Supscripts-Lowercase-alphabet">5.2.2. <a href="#Supscripts-Lowercase-alphabet">Lowercase alphabet</a></a></li>
+<li><a href="#Numeric">5.2.3. <a href="#Numeric">Numeric</a></a></li>
+<li><a href="#Superscripts-Other">5.2.4. <a href="#Superscripts-Other">Other</a></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#Punctuation-and-Delimiters">6. <a href="#Punctuation-and-Delimiters">Punctuation and Delimiters</a></a>
+<ul>
+<li><a href="#Dots">6.1. <a href="#Dots">Dots</a></a></li>
+<li><a href="#Dashes">6.2. <a href="#Dashes">Dashes</a></a></li>
+<li><a href="#Parentheses-braces-and-brackets">6.3. <a href="#Parentheses-braces-and-brackets">Parentheses, braces and brackets</a></a></li>
+<li><a href="#Other-paired-delimiters">6.4. <a href="#Other-paired-delimiters">Other paired delimiters</a></a></li>
+<li><a href="#Whitespace">6.5. <a href="#Whitespace">Whitespace</a></a></li>
+</ul>
+</li>
+<li><a href="#Logic">7. <a href="#Logic">Logic</a></a>
+<ul>
+<li><a href="#Prepositional">7.1. <a href="#Prepositional">Prepositional</a></a></li>
+<li><a href="#Predicate">7.2. <a href="#Predicate">Predicate</a></a></li>
+<li><a href="#Model-Entailment">7.3. <a href="#Model-Entailment">Model &#x2014;Entailment</a></a></li>
+</ul>
+</li>
+<li><a href="#Sets-relations-and-functions">8. <a href="#Sets-relations-and-functions">Sets, relations and functions</a></a>
+<ul>
+<li><a href="#Sets">8.1. <a href="#Sets">Sets</a></a></li>
+<li><a href="#Relation-operators">8.2. <a href="#Relation-operators">Relation operators</a></a></li>
+<li><a href="#Function-operators">8.3. <a href="#Function-operators">Function operators</a></a></li>
+<li><a href="#Relations">8.4. <a href="#Relations">Relations</a></a>
+<ul>
+<li><a href="#Equality-like">8.4.1. <a href="#Equality-like">Equality like</a></a></li>
+<li><a href="#Order-like">8.4.2. <a href="#Order-like">Order like</a></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#Generic-or-other-operators">9. <a href="#Generic-or-other-operators">Generic or other operators</a></a>
+<ul>
+<li><a href="#Arrows">9.1. <a href="#Arrows">Arrows</a></a></li>
+<li><a href="#o-operators">9.2. <a href="#o-operators">“o”-operators</a></a></li>
+<li><a href="#Punctuation-like">9.3. <a href="#Punctuation-like">Punctuation-like</a></a></li>
+<li><a href="#Others">9.4. <a href="#Others">Others</a></a></li>
+</ul>
+</li>
+<li><a href="#Check-X-marks-and-Primes-Ticks">10. <a href="#Check-X-marks-and-Primes-Ticks">Check- &amp; X-marks, and Primes &amp; Ticks</a></a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org155bc5b" class="outline-2">
+<h2 id="About-this-file"><span class="section-number-2">1</span> <a href="#About-this-file">About this file</a></h2>
+<div class="outline-text-2" id="text-About-this-file">
+<p>
+In order to write LaTeX documents using unicode in the source code, we must
+often tell LaTeX what we want the unicode characters to be rendered as.
+</p>
+
+<p>
+There are at least two ways to inform LaTeX of unicode character translations;
+</p>
+<ul class="org-ul">
+<li><code>\DeclareUnicodeCharacter</code>; this command does not work with XeLaTeX or LuaLaTeX,
+which I use.</li>
+<li><code>\newunicodechar</code>; this command is provided by the newunicodechar package, which
+may not be pre-installed for all LaTeX users.</li>
+</ul>
+
+<p>
+This collection uses the second.
+</p>
+</div>
+
+<div id="outline-container-org1667b3d" class="outline-3">
+<h3 id="Usage"><span class="section-number-3">1.1</span> <a href="#Usage">Usage</a></h3>
+<div class="outline-text-3" id="text-Usage">
+<p>
+This file generates (via Org Babel tangling) the file <code>unicode.sty</code>.
+</p>
+
+<p>
+To use it, either place it in the same directory as your <code>.tex</code> file, and require
+it via <code>\usepackage{unicode}</code>.
+</p>
+
+<p>
+Alternatively, place it in your <code>texmf</code> directory to allow global usage on your
+system. That directory is commonly located at the following locations on various
+OS's.
+</p>
+<ul class="org-ul">
+<li>Linux
+<ul class="org-ul">
+<li><code>~/texmf/tex/latex/local/</code></li>
+</ul></li>
+<li>Mac OS X
+<ul class="org-ul">
+<li><code>/Users/&lt;user name&gt;/Library/texmf/tex/latex/local/</code></li>
+</ul></li>
+<li>Windows 10 (and miktex)
+<ul class="org-ul">
+<li><code>C:\Users\&lt;user name&gt;\Appdata\Local\MikTex\&lt;number&gt;\tex\latex\local\</code></li>
+</ul></li>
+<li>Windows Vista/7
+<ul class="org-ul">
+<li><code>C:\Users\&lt;user name&gt;\texmf\tex\latex\local\</code></li>
+</ul></li>
+<li>Windows XP
+<ul class="org-ul">
+<li><code>C:\Documents and Settings\&lt;user name&gt;\texmf\tex\latex\local\</code></li>
+</ul></li>
+</ul>
+
+<p>
+By default, we assume the standard <code>pdflatex</code> typesetting engine is used,
+if you are using XeLaTeX or LuaLaTeX, then simply declare:
+</p>
+<pre class="example">
+\pdflatexfalse
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org9912d70" class="outline-3">
+<h3 id="Required-LaTeX-packages"><span class="section-number-3">1.2</span> <a href="#Required-LaTeX-packages">Required LaTeX packages</a></h3>
+<div class="outline-text-3" id="text-Required-LaTeX-packages">
+<p>
+Of course we require the <code>newunicodechar</code> package to use that command.
+</p>
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\usepackage</span>{<span style="color: #d33682; font-style: italic;">newunicodechar</span>}
+
+<span style="color: #859900; font-weight: bold;">\usepackage</span>{<span style="color: #d33682; font-style: italic;">ifxetex, ifluatex</span>} <span style="color: #96A7A9; font-style: italic;">% Also used in agda.sty: xifthen</span>
+
+<span style="color: #96A7A9; font-style: italic;">% </span><span style="color: #96A7A9; font-style: italic;">https://tex.stackexchange.com/questions/47576/combining-ifxetex-and-ifluatex-with-the-logical-or-operation</span>
+<span style="color: #859900; font-weight: bold;">\newif\ifpdflatex</span>
+<span style="color: #859900; font-weight: bold;">\ifxetex</span>
+  <span style="color: #859900; font-weight: bold;">\pdflatexfalse</span>
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\ifluatex</span>
+    <span style="color: #859900; font-weight: bold;">\pdflatexfalse</span>
+  <span style="color: #859900; font-weight: bold;">\else</span>
+    <span style="color: #859900; font-weight: bold;">\pdflatextrue</span>
+  <span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\fi</span>
+
+<span style="color: #96A7A9; font-style: italic;">%</span><span style="color: #96A7A9; font-style: italic;">\newif\ifpdflatex</span>
+<span style="color: #96A7A9; font-style: italic;">%</span><span style="color: #96A7A9; font-style: italic;">\pdflatextrue</span>
+<span style="color: #96A7A9; font-style: italic;">%% </span><span style="color: #96A7A9; font-style: italic;">To use other typesetting engines, declare the following:</span>
+<span style="color: #96A7A9; font-style: italic;">%% </span><span style="color: #96A7A9; font-style: italic;">\pdflatexfalse</span>
+</pre>
+</div>
+
+<p>
+The unicode-math package “provides a complete implementation of unicode maths
+for XeLaTeX and LuaLaTeX”.
+</p>
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\usepackage</span>{<span style="color: #d33682; font-style: italic;">pifont</span>}
+  <span style="color: #859900; font-weight: bold;">\usepackage</span>{<span style="color: #d33682; font-style: italic;">stmaryrd</span>}
+  <span style="color: #859900; font-weight: bold;">\usepackage</span>{<span style="color: #d33682; font-style: italic;">amsmath, amssymb, amsthm, latexsym, amscd, enumerate, bbm, etex, nicefrac, mathrsfs</span>}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\usepackage</span>{<span style="color: #d33682; font-style: italic;">unicode-math</span>}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org341d04b" class="outline-3">
+<h3 id="Contributing-to-this-document"><span class="section-number-3">1.3</span> <a href="#Contributing-to-this-document">Contributing to this document</a></h3>
+<div class="outline-text-3" id="text-Contributing-to-this-document">
+<p>
+This document is written in Emacs using Org mode.
+While the exported PDF version, etc., show a collection of
+LaTeX source blocks, these are in fact generated
+by an Emacs Lisp script below.
+</p>
+
+<p>
+That means that contributions to this document
+should modify the Emacs Lisp script,
+not <code>unicode.sty</code> or the LaTeX source blocks themselves.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org78b934d" class="outline-3">
+<h3 id="The-Emacs-Lisp-script"><span class="section-number-3">1.4</span> <a href="#The-Emacs-Lisp-script">The Emacs Lisp script</a></h3>
+<div class="outline-text-3" id="text-The-Emacs-Lisp-script">
+<p>
+In this document, several lists of unicode character, LaTeX translation pairs
+are declared, and then “wrapped” into <code>latex</code> source blocks, using this function
+to map the pairs into <code>newunicodechar</code> declarations.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org31034fb" class="outline-2">
+<h2 id="𝔹lackboard-𝒞alligraphic-and-𝑩old-font"><span class="section-number-2">2</span> <a href="#𝔹lackboard-𝒞alligraphic-and-𝑩old-font">𝔹lackboard, 𝒞alligraphic, and 𝑩old-font</a></h2>
+<div class="outline-text-2" id="text-𝔹lackboard-𝒞alligraphic-and-𝑩old-font">
+<p>
+These lists are most likely complete, unless I have missed some characters aside
+from Latin letters, Greek letters and Arabic numerals which should be included.
+</p>
+
+<p>
+For Agda users, the unicode symbols may be entered using the following
+sequences:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Blackboard</td>
+<td class="org-left"><code>\b𝓍</code></td>
+</tr>
+
+<tr>
+<td class="org-left">Calligraphic</td>
+<td class="org-left"><code>\Mc𝓍</code></td>
+</tr>
+
+<tr>
+<td class="org-left">Bold-font</td>
+<td class="org-left"><code>\MI𝓍</code></td>
+</tr>
+
+<tr>
+<td class="org-left">Bold Calligraphic</td>
+<td class="org-left"><code>\MC𝓍</code></td>
+</tr>
+</tbody>
+</table>
+
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\DeclareMathAlphabet\mathbfcal</span>{OMS}{cmsy}{b}{n}
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org0209db5" class="outline-3">
+<h3 id="Blackboard"><span class="section-number-3">2.1</span> <a href="#Blackboard">Blackboard</a></h3>
+<div class="outline-text-3" id="text-Blackboard">
+</div>
+
+<div id="outline-container-org45150dc" class="outline-4">
+<h4 id="Blackboard-Lowercase-Latin"><span class="section-number-4">2.1.1</span> <a href="#Blackboard-Lowercase-Latin">Lowercase Latin</a></h4>
+<div class="outline-text-4" id="text-Blackboard-Lowercase-Latin">
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120146;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbm</span>{a}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120146;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{a}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120147;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbm</span>{b}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120147;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{b}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120148;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbm</span>{c}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120148;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{c}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120149;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbm</span>{d}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120149;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{d}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120150;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbm</span>{e}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120150;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{e}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120151;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbm</span>{f}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120151;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{f}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120152;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbm</span>{g}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120152;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{g}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120153;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbm</span>{h}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120153;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{h}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120154;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbm</span>{i}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120154;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{i}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120155;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbm</span>{j}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120155;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{j}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120156;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbm</span>{k}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120156;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{k}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120157;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbm</span>{l}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120157;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{l}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120158;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbm</span>{m}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120158;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{m}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120159;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbm</span>{n}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120159;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{n}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120160;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbm</span>{o}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120160;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{o}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120161;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbm</span>{p}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120161;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{p}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120162;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbm</span>{q}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120162;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{q}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120163;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbm</span>{r}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120163;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{r}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120164;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbm</span>{s}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120164;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{s}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120165;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbm</span>{t}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120165;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{t}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120166;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbm</span>{u}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120166;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{u}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120167;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbm</span>{v}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120167;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{v}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120168;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbm</span>{w}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120168;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{w}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120169;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbm</span>{x}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120169;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{x}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120170;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbm</span>{y}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120170;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{y}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120171;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbm</span>{z}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120171;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{z}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org72dda04" class="outline-4">
+<h4 id="Blackboard-Uppercase-Latin"><span class="section-number-4">2.1.2</span> <a href="#Blackboard-Uppercase-Latin">Uppercase Latin</a></h4>
+<div class="outline-text-4" id="text-Blackboard-Uppercase-Latin">
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120120;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{A}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120121;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{B}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8450;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{C}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120123;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{D}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120124;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{E}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120125;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{F}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120126;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{G}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8461;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{H}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120128;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{I}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120129;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{J}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120130;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{K}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120131;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{L}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120132;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{M}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8469;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{N}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120134;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{O}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8473;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{P}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8474;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{Q}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8477;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{R}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120138;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{S}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120139;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{T}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120140;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{U}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120141;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{V}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120142;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{W}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120143;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{X}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120144;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{Y}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8484;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{Z}}}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8183677" class="outline-4">
+<h4 id="Blackboard-Arabic-Numerals"><span class="section-number-4">2.1.3</span> <a href="#Blackboard-Arabic-Numerals">Arabic Numerals</a></h4>
+<div class="outline-text-4" id="text-Blackboard-Arabic-Numerals">
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #96A7A9; font-style: italic;">% </span><span style="color: #96A7A9; font-style: italic;">For double stroke digits with pdflatex</span>
+<span style="color: #859900; font-weight: bold;">\usepackage</span>[bbgreekl]{<span style="color: #d33682; font-style: italic;">mathbbol</span>}
+<span style="color: #859900; font-weight: bold;">\DeclareSymbolFontAlphabet</span>{<span style="color: #859900; font-weight: bold;">\mathbbl</span>}{bbold}
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120793;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbl</span>{1}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120793;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{1}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120794;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbl</span>{2}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120794;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{2}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120795;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbl</span>{3}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120795;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{3}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120796;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbl</span>{4}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120796;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{4}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120797;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbl</span>{5}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120797;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{5}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120798;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbl</span>{6}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120798;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{6}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120799;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbl</span>{7}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120799;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{7}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120800;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbl</span>{8}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120800;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{8}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120801;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbl</span>{9}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120801;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{9}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120792;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbbl</span>{0}}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120792;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbb</span>{0}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd760bea" class="outline-3">
+<h3 id="Calligraphic"><span class="section-number-3">2.2</span> <a href="#Calligraphic">Calligraphic</a></h3>
+<div class="outline-text-3" id="text-Calligraphic">
+</div>
+
+<div id="outline-container-org0ed2cb5" class="outline-4">
+<h4 id="Calligraphic-Lowercase-Latin"><span class="section-number-4">2.2.1</span> <a href="#Calligraphic-Lowercase-Latin">Lowercase Latin</a></h4>
+<div class="outline-text-4" id="text-Calligraphic-Lowercase-Latin">
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119990;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{a}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119990;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{a}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119991;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{b}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119991;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{b}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119992;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{c}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119992;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{c}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119993;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{d}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119993;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{d}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8495;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{e}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8495;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{e}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119995;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{f}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119995;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{f}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8458;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{g}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8458;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{g}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119997;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{h}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119997;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{h}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119998;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{i}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119998;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{i}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119999;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{j}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119999;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{j}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120000;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{j}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120000;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{k}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120001;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{l}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120001;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{l}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120002;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{m}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120002;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{m}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120003;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{n}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120003;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{n}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8500;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{o}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8500;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{o}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120005;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{p}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120005;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{p}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120006;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{q}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120006;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{q}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120007;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{r}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120007;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{r}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120008;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{s}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120008;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{s}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120009;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{t}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120009;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{t}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120010;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{u}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120010;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{u}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120011;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{v}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120011;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{v}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120012;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{w}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120012;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{w}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120013;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{x}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120013;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{x}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120014;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{y}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120014;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{y}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120015;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{z}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120015;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{z}}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd62f378" class="outline-4">
+<h4 id="Calligraphic-Uppercase-Latin"><span class="section-number-4">2.2.2</span> <a href="#Calligraphic-Uppercase-Latin">Uppercase Latin</a></h4>
+<div class="outline-text-4" id="text-Calligraphic-Uppercase-Latin">
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119964;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{A}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8492;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{B}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119966;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{C}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119967;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{D}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8496;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{E}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8497;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{F}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119970;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{G}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8459;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{H}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8464;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{I}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119973;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{J}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119974;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{K}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8466;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{L}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8499;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{M}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119977;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{N}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119978;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{O}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119979;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{P}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119980;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{Q}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8475;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{R}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119982;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{S}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119983;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{T}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119984;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{U}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119985;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{V}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119986;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{W}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119987;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{X}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119988;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{Y}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119989;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathcal</span>{Z}}}
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org243a63b" class="outline-3">
+<h3 id="Bold-font"><span class="section-number-3">2.3</span> <a href="#Bold-font">Bold-font</a></h3>
+<div class="outline-text-3" id="text-Bold-font">
+</div>
+<div id="outline-container-orga6e45b1" class="outline-4">
+<h4 id="Bold-font-Lowercase-Latin"><span class="section-number-4">2.3.1</span> <a href="#Bold-font-Lowercase-Latin">Lowercase Latin</a></h4>
+<div class="outline-text-4" id="text-Bold-font-Lowercase-Latin">
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119938;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{a}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119939;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{b}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119940;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{c}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119941;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{d}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119942;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{e}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119943;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{f}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119944;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{g}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119945;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{h}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119946;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{i}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119947;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{j}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119948;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{k}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119948;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{l}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119949;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{m}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119951;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{n}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119952;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{o}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119953;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{p}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119954;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{q}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119955;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{r}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119956;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{s}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119957;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{t}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119958;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{u}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119959;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{v}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119960;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{w}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119961;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{x}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119962;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{y}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119963;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{z}}}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org61977cf" class="outline-4">
+<h4 id="Bold-font-Uppercase-Latin"><span class="section-number-4">2.3.2</span> <a href="#Bold-font-Uppercase-Latin">Uppercase Latin</a></h4>
+<div class="outline-text-4" id="text-Bold-font-Uppercase-Latin">
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119912;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{A}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119913;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{B}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119914;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{C}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119915;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{D}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119916;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{E}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119917;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{F}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119918;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{G}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119919;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{H}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119920;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{I}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119921;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{J}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119922;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{K}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119923;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{L}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119924;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{M}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119925;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{N}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119926;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{O}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119927;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{P}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119928;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{Q}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119929;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{R}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119930;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{S}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119931;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{T}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119932;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{U}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119933;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{V}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119934;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{W}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119935;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{X}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119936;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{Y}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#119937;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbf</span>{Z}}}
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8717be9" class="outline-3">
+<h3 id="𝓑old-𝓒alligraphic"><span class="section-number-3">2.4</span> <a href="#𝓑old-𝓒alligraphic">𝓑old 𝓒alligraphic</a></h3>
+<div class="outline-text-3" id="text-𝓑old-𝓒alligraphic">
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #96A7A9; font-style: italic;">% </span><span style="color: #96A7A9; font-style: italic;">For bold calligraphic letters</span>
+<span style="color: #859900; font-weight: bold;">\DeclareMathAlphabet\mathbfcal</span>{OMS}{cmsy}{b}{n}
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org9236c3f" class="outline-4">
+<h4 id="Bold-Calligraphic-Lowercase-Latin"><span class="section-number-4">2.4.1</span> <a href="#Bold-Calligraphic-Lowercase-Latin">Lowercase Latin</a></h4>
+<div class="outline-text-4" id="text-Bold-Calligraphic-Lowercase-Latin">
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120042;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{a}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120043;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{b}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120044;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{c}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120045;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{d}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120046;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{e}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120047;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{f}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120048;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{g}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120049;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{h}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120050;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{i}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120051;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{j}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120052;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{k}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120053;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{l}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120054;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{m}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120055;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{n}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120056;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{o}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120057;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{p}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120058;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{q}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120059;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{r}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120060;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{s}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120061;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{t}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120062;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{u}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120063;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{v}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120064;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{w}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120065;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{x}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120066;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{y}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120067;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{z}}}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0d7fcaf" class="outline-4">
+<h4 id="Bold-Calligraphic-Uppercase-Latin"><span class="section-number-4">2.4.2</span> <a href="#Bold-Calligraphic-Uppercase-Latin">Uppercase Latin</a></h4>
+<div class="outline-text-4" id="text-Bold-Calligraphic-Uppercase-Latin">
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120016;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{A}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120017;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{B}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120018;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{C}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120019;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{D}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120020;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{E}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120021;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{F}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120022;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{G}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120023;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{H}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120024;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{I}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120025;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{J}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120026;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{K}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120027;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{L}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120028;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{M}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120029;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{N}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120030;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{O}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120031;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{P}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120032;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{Q}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120033;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{R}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120034;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{S}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120035;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{T}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120036;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{U}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120037;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{V}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120038;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{W}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120039;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{X}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120040;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{Y}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#120041;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mathbfcal</span>{Z}}}
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgedacff3" class="outline-2">
+<h2 id="Other-letters-or-letterlike-symbols"><span class="section-number-2">3</span> <a href="#Other-letters-or-letterlike-symbols">Other letters or letterlike symbols</a></h2>
+<div class="outline-text-2" id="text-Other-letters-or-letterlike-symbols">
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8467;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\ell</span>}}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org22b3552" class="outline-2">
+<h2 id="Greek-alphabet"><span class="section-number-2">4</span> <a href="#Greek-alphabet">Greek alphabet</a></h2>
+<div class="outline-text-2" id="text-Greek-alphabet">
+</div>
+<div id="outline-container-org99f88e8" class="outline-3">
+<h3 id="Normal"><span class="section-number-3">4.1</span> <a href="#Normal">Normal</a></h3>
+<div class="outline-text-3" id="text-Normal">
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#945;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\alpha</span>}}
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#913;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{A}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#913;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\Alpha</span>}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#946;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\beta</span>}}
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#914;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{B}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#914;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\Beta</span>}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#947;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\gamma</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#915;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\Gamma</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#948;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\delta</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#916;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\Delta</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#1013;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\epsilon</span>}}
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#917;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{E}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#917;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\Epsilon</span>}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#950;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\zeta</span>}}
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#918;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{Z}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#918;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\Zeta</span>}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#951;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\eta</span>}}
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#919;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{H}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#919;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\Eta</span>}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#952;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\theta</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#920;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\Theta</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#953;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\iota</span>}}
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#921;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{I}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#921;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\Iota</span>}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#954;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\kappa</span>}}
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#922;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{K}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#922;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\Kappa</span>}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#955;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\lambda</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#923;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\Lambda</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#956;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mu</span>}}
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#924;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{M}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#924;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\Mu</span>}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#957;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\nu</span>}}
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#925;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{N}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#925;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\Nu</span>}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#958;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\xi</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#926;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\Xi</span>}}
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#959;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{o}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#959;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\omicron</span>}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#927;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{O}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#927;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\Omicron</span>}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#960;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\pi</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#928;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\Pi</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#961;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\rho</span>}}
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#929;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{P}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#929;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\Rho</span>}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#963;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\sigma</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#931;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\Sigma</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#964;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\tau</span>}}
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#932;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{T}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#932;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\Tau</span>}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#965;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\upsilon</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#933;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\Upsilon</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#981;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\phi</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#934;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\Phi</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#967;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\chi</span>}}
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#935;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{X}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#935;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\Chi</span>}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#968;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\psi</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#936;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\Psi</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#969;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\omega</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#937;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\Omega</span>}}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org48acf52" class="outline-3">
+<h3 id="var-variants"><span class="section-number-3">4.2</span> <a href="#var-variants">Also: <code>var</code>-variants</a>&#xa0;&#xa0;&#xa0;<span class="tag"><span class="incomplete">incomplete</span></span></h3>
+<div class="outline-text-3" id="text-var-variants">
+<p>
+Note that some of the default Agda input entries are in this list, rather than
+the default above.
+</p>
+
+<p>
+Also, <code>varbeta</code> is missing here; it requires a choice of some other package to add
+support for it.
+</p>
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#949;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\varepsilon</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#977;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\vartheta</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#1008;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\varkappa</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#982;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\varpi</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#962;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\varsigma</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#966;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\varphi</span>}}
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org32397f3" class="outline-2">
+<h2 id="Sub-Super-Under-and-Over-scripts"><span class="section-number-2">5</span> <a href="#Sub-Super-Under-and-Over-scripts">Sub-, Super-, Under-, and Over-scripts</a></h2>
+<div class="outline-text-2" id="text-Sub-Super-Under-and-Over-scripts">
+<p>
+Note that while the alphabetic lists are complete, <b>there are missing letters</b>,
+because unfortunately Unicode does not have characters for every letter
+subscript and superscript.
+</p>
+</div>
+
+<div id="outline-container-org5a971a3" class="outline-3">
+<h3 id="Subscripts"><span class="section-number-3">5.1</span> <a href="#Subscripts">Subscripts</a></h3>
+<div class="outline-text-3" id="text-Subscripts">
+<p>
+Note there are no uppercase letter subscripts.
+</p>
+</div>
+
+<div id="outline-container-org9d94987" class="outline-4">
+<h4 id="Subscripts-Lowercase-alphabet"><span class="section-number-4">5.1.1</span> <a href="#Subscripts-Lowercase-alphabet">Lowercase alphabet</a></h4>
+<div class="outline-text-4" id="text-Subscripts-Lowercase-alphabet">
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8336;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}_{a}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8337;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}_{e}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8341;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}_{h}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7522;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}_{i}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#11388;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}_{j}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8342;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}_{k}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8343;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}_{l}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8344;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}_{m}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8345;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}_{n}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8338;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}_{o}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8346;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}_{p}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7523;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}_{r}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8347;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}_{s}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8348;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}_{t}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7524;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}_{u}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7525;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}_{v}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8339;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}_{x}}}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org84c67c6" class="outline-4">
+<h4 id="Subscripts-Numeric"><span class="section-number-4">5.1.2</span> <a href="#Subscripts-Numeric">Numeric</a></h4>
+<div class="outline-text-4" id="text-Subscripts-Numeric">
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8320;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}_{0}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8321;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}_{1}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8322;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}_{2}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8323;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}_{3}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8324;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}_{4}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8325;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}_{5}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8326;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}_{6}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8327;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}_{7}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8328;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}_{8}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8329;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}_{9}}}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6901327" class="outline-4">
+<h4 id="Subscripts-Other"><span class="section-number-4">5.1.3</span> <a href="#Subscripts-Other">Other</a></h4>
+<div class="outline-text-4" id="text-Subscripts-Other">
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8330;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}_{+}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8331;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}_{-}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8332;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}_{=}}}
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1a608dc" class="outline-3">
+<h3 id="Superscripts"><span class="section-number-3">5.2</span> <a href="#Superscripts">Superscripts</a></h3>
+<div class="outline-text-3" id="text-Superscripts">
+</div>
+
+<div id="outline-container-orge3fe322" class="outline-4">
+<h4 id="Supscripts-Uppercase-alphabet"><span class="section-number-4">5.2.1</span> <a href="#Supscripts-Uppercase-alphabet">Uppercase alphabet</a></h4>
+<div class="outline-text-4" id="text-Supscripts-Uppercase-alphabet">
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7468;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{A}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7470;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{B}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7472;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{D}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7473;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{E}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7475;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{G}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7476;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{H}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7477;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{I}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7478;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{J}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7479;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{K}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7480;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{L}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7481;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{M}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7482;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{N}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7484;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{O}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7486;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{P}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7487;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{R}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7488;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{T}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7489;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{U}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#11389;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{V}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7490;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{W}}}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6e6648a" class="outline-4">
+<h4 id="Supscripts-Lowercase-alphabet"><span class="section-number-4">5.2.2</span> <a href="#Supscripts-Lowercase-alphabet">Lowercase alphabet</a></h4>
+<div class="outline-text-4" id="text-Supscripts-Lowercase-alphabet">
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7491;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{a}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7495;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{b}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7580;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{c}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7496;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{d}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7497;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{e}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7584;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{f}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7501;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{g}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#688;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{h}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8305;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{i}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#690;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{j}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7503;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{k}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#737;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{l}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7504;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{m}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8319;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{n}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7506;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{o}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7510;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{p}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#691;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{r}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#738;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{s}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7511;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{t}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7512;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{u}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7515;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{v}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#695;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{w}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#739;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{x}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#696;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{y}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#7611;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{z}}}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgaa151e5" class="outline-4">
+<h4 id="Numeric"><span class="section-number-4">5.2.3</span> <a href="#Numeric">Numeric</a></h4>
+<div class="outline-text-4" id="text-Numeric">
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8304;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{0}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#185;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{1}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#178;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{2}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#179;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{3}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8308;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{4}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8309;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{5}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8310;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{6}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8311;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{7}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8312;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{8}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8313;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{9}}}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd9d138a" class="outline-4">
+<h4 id="Superscripts-Other"><span class="section-number-4">5.2.4</span> <a href="#Superscripts-Other">Other</a></h4>
+<div class="outline-text-4" id="text-Superscripts-Other">
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8314;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{+}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8315;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{-}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8316;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{{}^{=}}}
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org56d8ee3" class="outline-2">
+<h2 id="Punctuation-and-Delimiters"><span class="section-number-2">6</span> <a href="#Punctuation-and-Delimiters">Punctuation and Delimiters</a></h2>
+<div class="outline-text-2" id="text-Punctuation-and-Delimiters">
+</div>
+
+<div id="outline-container-org7f877a5" class="outline-3">
+<h3 id="Dots"><span class="section-number-3">6.1</span> <a href="#Dots">Dots</a></h3>
+<div class="outline-text-3" id="text-Dots">
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8230;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\ldots</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8943;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\cdots</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8942;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\vdots</span>}}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga456ee3" class="outline-3">
+<h3 id="Dashes"><span class="section-number-3">6.2</span> <a href="#Dashes">Dashes</a></h3>
+<div class="outline-text-3" id="text-Dashes">
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8211;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\text</span>{--}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8212;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\text</span>{---}}}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge22d0bf" class="outline-3">
+<h3 id="Parentheses-braces-and-brackets"><span class="section-number-3">6.3</span> <a href="#Parentheses-braces-and-brackets">Parentheses, braces and brackets</a></h3>
+<div class="outline-text-3" id="text-Parentheses-braces-and-brackets">
+<p>
+Note there are a few different braces I translate the same way.
+Braces and parentheses themselves are special characters in Agda,
+so they cannot be used in names.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#10629;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{(<span style="color: #859900; font-weight: bold;">\!</span>|}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#10630;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{|<span style="color: #859900; font-weight: bold;">\!</span>)}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#10216;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\langle</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#10217;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\rangle</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#10627;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\{\!\mid</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#10628;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mid\!\}</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#10218;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\langle\!\langle</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#10219;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\rangle\!\rangle</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8261;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\{</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8262;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\}</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#65371;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\{</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#65373;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\}</span>}}
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#10214;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{[<span style="color: #859900; font-weight: bold;">\!</span>[}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#10215;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{]<span style="color: #859900; font-weight: bold;">\!</span>]}}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org15a6b6d" class="outline-3">
+<h3 id="Other-paired-delimiters"><span class="section-number-3">6.4</span> <a href="#Other-paired-delimiters">Other paired delimiters</a></h3>
+<div class="outline-text-3" id="text-Other-paired-delimiters">
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8988;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\ulcorner</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8989;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\urcorner</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8990;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\llcorner</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8991;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\lrcorner</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8968;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\lceil</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8969;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\rceil</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8970;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\lfloor</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8971;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\rfloor</span>}}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgfb40199" class="outline-3">
+<h3 id="Whitespace"><span class="section-number-3">6.5</span> <a href="#Whitespace">Whitespace</a></h3>
+<div class="outline-text-3" id="text-Whitespace">
+<p>
+Non-breaking space. Though it may appear as a normal space, it is in fact a <code>~</code> in
+the LaTeX &#x2014;in classic LaTeX one writes <code>\,</code>.
+</p>
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#160;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{~}}
+</pre>
+</div>
+
+<p>
+I am a very long line whose words are separated by non-breaking spaces so I should run off the page at least at any reasonable font size ^_^.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge7139f0" class="outline-2">
+<h2 id="Logic"><span class="section-number-2">7</span> <a href="#Logic">Logic</a></h2>
+<div class="outline-text-2" id="text-Logic">
+</div>
+
+<div id="outline-container-orgc2d1476" class="outline-3">
+<h3 id="Prepositional"><span class="section-number-3">7.1</span> <a href="#Prepositional">Prepositional</a></h3>
+<div class="outline-text-3" id="text-Prepositional">
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8801;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\equiv</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#172;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\lnot</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8802;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\not\equiv</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8744;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\lor</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8743;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\land</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8658;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\;\Rightarrow\;</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8656;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\;\Leftarrow\;</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#10234;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\iff</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8660;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\iff</span>}}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org23c06ae" class="outline-3">
+<h3 id="Predicate"><span class="section-number-3">7.2</span> <a href="#Predicate">Predicate</a></h3>
+<div class="outline-text-3" id="text-Predicate">
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8704;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\forall</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8707;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\exists</span>}}
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#10073;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\,\mid\,</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8226;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\,\bullet\,</span>}}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga1236a3" class="outline-3">
+<h3 id="Model-Entailment"><span class="section-number-3">7.3</span> <a href="#Model-Entailment">Model &#x2014;Entailment</a></h3>
+<div class="outline-text-3" id="text-Model-Entailment">
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8866;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\vdash</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8867;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\dashv</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8872;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\vDash</span>}}
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd182597" class="outline-2">
+<h2 id="Sets-relations-and-functions"><span class="section-number-2">8</span> <a href="#Sets-relations-and-functions">Sets, relations and functions</a></h2>
+<div class="outline-text-2" id="text-Sets-relations-and-functions">
+</div>
+
+<div id="outline-container-orgbd0b1a7" class="outline-3">
+<h3 id="Sets"><span class="section-number-3">8.1</span> <a href="#Sets">Sets</a></h3>
+<div class="outline-text-3" id="text-Sets">
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#248;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\emptyset</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8709;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\emptyset</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8712;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\in</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8713;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\not\in</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8715;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\ni</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8838;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\subseteq</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8745;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\cap</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8746;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\cup</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8845;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\uplus</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8846;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\uplus</span>}}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdb1f65d" class="outline-3">
+<h3 id="Relation-operators"><span class="section-number-3">8.2</span> <a href="#Relation-operators">Relation operators</a></h3>
+<div class="outline-text-3" id="text-Relation-operators">
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8868;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\top</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8869;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\bot</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8852;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\sqcup</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8851;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\sqcap</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#9586;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\backslash</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#9585;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{/}}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org79d4dc3" class="outline-3">
+<h3 id="Function-operators"><span class="section-number-3">8.3</span> <a href="#Function-operators">Function operators</a></h3>
+<div class="outline-text-3" id="text-Function-operators">
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8728;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\circ</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8614;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mapsto</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8618;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\hookrightarrow</span>}}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga246004" class="outline-3">
+<h3 id="Relations"><span class="section-number-3">8.4</span> <a href="#Relations">Relations</a></h3>
+<div class="outline-text-3" id="text-Relations">
+</div>
+
+<div id="outline-container-org5894ceb" class="outline-4">
+<h4 id="Equality-like"><span class="section-number-4">8.4.1</span> <a href="#Equality-like">Equality like</a></h4>
+<div class="outline-text-4" id="text-Equality-like">
+<p>
+Along with negations where they exist. Note that equivalences are within the
+<a href="#Logic">7</a> section.
+</p>
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8800;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\neq</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8784;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\doteq</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8799;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\stackrel</span>{?}{=}}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8773;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\cong</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8775;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\ncong</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8771;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\simeq</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8772;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\not\simeq</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8776;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\approx</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8777;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\not\approx</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8764;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\sim</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8769;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\not\sim</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8788;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{:<span style="color: #859900; font-weight: bold;">\!</span>=}}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org77ffb3c" class="outline-4">
+<h4 id="Order-like"><span class="section-number-4">8.4.2</span> <a href="#Order-like">Order like</a></h4>
+<div class="outline-text-4" id="text-Order-like">
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8804;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\leq</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8816;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\nleq</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8805;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\geq</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8817;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\ngeq</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8814;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\nless</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8815;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\ngtr</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8806;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\leqq</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8808;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\lneqq</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8807;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\geqq</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8809;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\gneqq</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8818;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\lesssim</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8819;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\gtrsim</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8847;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\sqsubset</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8849;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\sqsubseteq</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8848;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\sqsupset</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8850;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\sqsupseteq</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8739;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\mid</span>}}
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org921ac41" class="outline-2">
+<h2 id="Generic-or-other-operators"><span class="section-number-2">9</span> <a href="#Generic-or-other-operators">Generic or other operators</a></h2>
+<div class="outline-text-2" id="text-Generic-or-other-operators">
+</div>
+
+<div id="outline-container-orgb61c0f5" class="outline-3">
+<h3 id="Arrows"><span class="section-number-3">9.1</span> <a href="#Arrows">Arrows</a></h3>
+<div class="outline-text-3" id="text-Arrows">
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8594;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\rightarrow</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8680;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\rightarrow</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#10153;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\rightarrow</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#10239;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\rightsquigarrow</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8592;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\leftarrow</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8596;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\leftrightarrow</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8593;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\uparrow</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8595;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\downarrow</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8650;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\downarrow\downarrow</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#10230;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\longrightarrow</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#10229;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\longleftarrow</span>}}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4461714" class="outline-3">
+<h3 id="o-operators"><span class="section-number-3">9.2</span> <a href="#o-operators">“o”-operators</a></h3>
+<div class="outline-text-3" id="text-o-operators">
+<p>
+Agda users invoke <code>\o𝓍</code> and <code>\O𝓍</code>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8853;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\oplus</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#10753;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\bigoplus</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8854;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\ominus</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8855;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\otimes</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#10754;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\bigotimes</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8856;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\oslash</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8857;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\odot</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#10752;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\bigodot</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8858;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\circledcirc</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8859;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\circledast</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8861;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\circleddash</span>}}
+</pre>
+</div>
+
+<p>
+The “directed aggregation” operator ‘⟴’ is obtained with the Agda input method
+using <code>\r</code>.
+</p>
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\DeclareMathOperator</span>{<span style="color: #859900; font-weight: bold;">\VCCompose</span>}{<span style="color: #859900; font-weight: bold;">\longrightarrow\hspace</span>{-3.5ex}<span style="color: #859900; font-weight: bold;">\oplus\;</span>}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#10228;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\!\!\VCCompose</span>}}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5581c27" class="outline-3">
+<h3 id="Punctuation-like"><span class="section-number-3">9.3</span> <a href="#Punctuation-like">Punctuation-like</a></h3>
+<div class="outline-text-3" id="text-Punctuation-like">
+<p>
+The ‘∶’ below is a “ghost colon” that Agda users enter with <code>\:</code>. Its function is
+to provide an identifier that looks like a colon, but is not a colon &#x2014;which is
+a reserved syntactical item in Agda. Main uses of the ghost colon are for
+quantifier notation to indicate the type of dummy variables.
+</p>
+<ul class="org-ul">
+<li>We almost always want to display it as a normal colon.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8252;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{!<span style="color: #859900; font-weight: bold;">\!</span>!}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8758;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{:}}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org812bdb0" class="outline-3">
+<h3 id="Others"><span class="section-number-3">9.4</span> <a href="#Others">Others</a></h3>
+<div class="outline-text-3" id="text-Others">
+<p>
+Probably some of these belong somewhere else.
+</p>
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8729;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\cdot</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8734;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\infty</span>}}
+<span style="color: #859900; font-weight: bold;">\ifpdflatex</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8759;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{::}}
+<span style="color: #859900; font-weight: bold;">\else</span>
+  <span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8759;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\Colon</span>}}
+<span style="color: #859900; font-weight: bold;">\fi</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge0c11e0" class="outline-2">
+<h2 id="Check-X-marks-and-Primes-Ticks"><span class="section-number-2">10</span> <a href="#Check-X-marks-and-Primes-Ticks">Check- &amp; X-marks, and Primes &amp; Ticks</a></h2>
+<div class="outline-text-2" id="text-Check-X-marks-and-Primes-Ticks">
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#10004;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\checkmark</span>}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#10060;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{<span style="color: #859900; font-weight: bold;">\times</span>}}
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8242;}{'}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8243;}{''}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8245;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{`}}
+<span style="color: #859900; font-weight: bold;">\newunicodechar</span>{&#8246;}{<span style="color: #859900; font-weight: bold;">\ensuremath</span>{``}}
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Mark Armstrong</p>
+<p class="date">Created: 2020-05-25 Mon 12:38</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
