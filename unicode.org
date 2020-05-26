@@ -3340,7 +3340,6 @@ Probably some of these belong somewhere else.
 \newunicodechar{❌}{\ensuremath{\times}}
 #+end_src
 
-<<<<<<< HEAD
 #+RESULTS:
 #+begin_export latex
 \newunicodechar{✔}{\ensuremath{\checkmark}}
@@ -3359,8 +3358,6 @@ else avoid using double primes, etc..
 Note that the below solution for ~pdflatex~ also does not provide
 prime collapsing.
 
-=======
->>>>>>> 98bb8178d0434a9dc84733ba1d2699b8781488c3
 # Quote, ', is an operator in Lisp, so we write these ones out manually.
 #+begin_src latex
 \newunicodechar{′}{'}
