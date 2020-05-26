@@ -1,5 +1,5 @@
 #+Title: Unicode declarations for LaTeX documents
-#+Author: Mark Armstrong
+#+Author: Mark Armstrong & Musa Al-Hassy
 #+Description: Generating ~newunicodechar~ declarations for
 #+Description: LaTeX documents which use unicode.
 #+Property: header-args:emacs-lisp :noweb yes :tangle no :exports results :wrap src latex
@@ -3188,6 +3188,18 @@ Probably some of these belong somewhere else.
 \newunicodechar{✔}{\ensuremath{\checkmark}}
 \newunicodechar{❌}{\ensuremath{\times}}
 #+end_export
+
+Regarding prime characters in LuaLatex and XeLaTeX,
+as discussed [[https://tex.stackexchange.com/questions/486120/][here]], the prime characters are redefined
+by the ~unicode-math~ package at
+~\begindocument~. To redefine them, we would need to override that by wrapping our
+~\newunicodechar~ declarations in ~\AtBeginDocument~.
+Unfortunately we would then lose prime collapsing.
+The better solution is to use a font which has prime, or
+else avoid using double primes, etc..
+
+Note that the below solution for ~pdflatex~ also does not provide
+prime collapsing.
 
 # Quote, ', is an operator in Lisp, so we write these ones out manually.
 #+begin_src latex
