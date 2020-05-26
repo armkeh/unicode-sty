@@ -2,8 +2,8 @@
 #+Author: Mark Armstrong & Musa Al-Hassy
 #+Description: Generating ~newunicodechar~ declarations for
 #+Description: LaTeX documents which use unicode.
-#+Property: header-args:emacs-lisp :noweb yes :tangle no :exports results :wrap src latex
-#+Property: header-args:latex :tangle unicode.sty :exports code :comments link
+#+Property: header-args:emacs-lisp :noweb yes :tangle no :exports results :wrap src latex  :eval never-export
+#+Property: header-args:latex :tangle unicode.sty :exports code :comments link :noeval
 #+options: toc:nil
 #+LaTeX_header: \usepackage{unicode}
 
@@ -14,11 +14,10 @@
 # Mention users can use \newunicodechar{op}{elaboration} to make their own.
 # +latex_header: \usepackage{newunicodechar}
 
-:Make_HTML:
-#+begin_src emacs-lisp
-(f-move (org-html-export-to-html) "index.html")
-#+end_src
-:End:
+# Make HTML
+# (f-move (org-html-export-to-html) "index.html")
+#+HTML_HEAD: <link href="https://alhassy.github.io/org-notes-style.css" rel="stylesheet" type="text/css" />
+#+HTML_HEAD: <link href="https://alhassy.github.io/floating-toc.css" rel="stylesheet" type="text/css" />
 
 * Sample symbols                                                     :ignore:
   :PROPERTIES:
@@ -809,6 +808,83 @@ sequences:
   \newunicodechar{𝟘}{\ensuremath{\mathbbl{0}}}
 \else
   \newunicodechar{𝟘}{\ensuremath{\mathbb{0}}}
+\fi
+#+end_export
+
+*** COMMENT Greek
+    :PROPERTIES:
+    :CUSTOM_ID: COMMENT-Greek
+    :END:
+
+There are unfortunately not many included in Unicode.
+
+#+begin_src emacs-lisp
+(when nil
+<<generator>>
+(let ((the-translations
+        '((ℾ TODO \\mathbb{\\Gamma})
+          (ℽ TODO \\mathbb{\\gamma})
+          (ℿ TODO \\mathbb{\\Pi})
+          (ℼ TODO \\mathbb{\\pi})
+          (⅀ TODO \\mathbb{\\Sum}))))
+  (generate-newunicodechars the-translations)))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+\ifpdflatex
+  \newunicodechar{ℾ}{\ensuremath{TODO}}
+\else
+  \newunicodechar{ℾ}{\ensuremath{\mathbb{\Gamma}}}
+\fi
+\ifpdflatex
+  \newunicodechar{ℽ}{\ensuremath{TODO}}
+\else
+  \newunicodechar{ℽ}{\ensuremath{\mathbb{\gamma}}}
+\fi
+\ifpdflatex
+  \newunicodechar{ℿ}{\ensuremath{TODO}}
+\else
+  \newunicodechar{ℿ}{\ensuremath{\mathbb{\Pi}}}
+\fi
+\ifpdflatex
+  \newunicodechar{ℼ}{\ensuremath{TODO}}
+\else
+  \newunicodechar{ℼ}{\ensuremath{\mathbb{\pi}}}
+\fi
+\ifpdflatex
+  \newunicodechar{⅀}{\ensuremath{TODO}}
+\else
+  \newunicodechar{⅀}{\ensuremath{\mathbb{\Sum}}}
+\fi
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+\ifpdflatex
+  \newunicodechar{ℾ}{\ensuremath{TODO}}
+\else
+  \newunicodechar{ℾ}{\ensuremath{\mathbb{\Gamma}}}
+\fi
+\ifpdflatex
+  \newunicodechar{ℽ}{\ensuremath{TODO}}
+\else
+  \newunicodechar{ℽ}{\ensuremath{\mathbb{\gamma}}}
+\fi
+\ifpdflatex
+  \newunicodechar{ℿ}{\ensuremath{TODO}}
+\else
+  \newunicodechar{ℿ}{\ensuremath{\mathbb{\Pi}}}
+\fi
+\ifpdflatex
+  \newunicodechar{ℼ}{\ensuremath{TODO}}
+\else
+  \newunicodechar{ℼ}{\ensuremath{\mathbb{\pi}}}
+\fi
+\ifpdflatex
+  \newunicodechar{⅀}{\ensuremath{TODO}}
+\else
+  \newunicodechar{⅀}{\ensuremath{\mathbb{\Sum}}}
 \fi
 #+end_export
 
@@ -1657,7 +1733,7 @@ sequences:
    :CUSTOM_ID: Normal
    :END:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :eval no-export
 <<generator>>
 (let ((the-translations
         '((α  \\alpha)
@@ -1927,17 +2003,20 @@ sequences:
 \newunicodechar{Ω}{\ensuremath{\Omega}}
 #+end_export
 
-** ~var~-variants :incomplete:
+** Also: ~var~-variants                                            :incomplete:
    :PROPERTIES:
    :CUSTOM_ID: var-variants
    :END:
+
+# To make headline clickable, according to Musa's init, We cannot have them
+# begin with markup, whence the superflous prefix “Also:”.
 
 Note that some of the default Agda input entries are in this list, rather than
 the default above.
 
 Also, ~varbeta~ is missing here; it requires a choice of some other package to add
 support for it.
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :eval no-export
 <<generator>>
 (let ((the-translations
         '((ε  \\varepsilon)
@@ -3084,6 +3163,82 @@ using =\r=.
 \newunicodechar{⟴}{\ensuremath{\!\!\VCCompose}}
 #+end_export
 
+** TODO COMMENT Small, halfwidth and fullwidth math symbols
+   :PROPERTIES:
+   :CUSTOM_ID: COMMENT-Small-halfwidth-and-fullwidth-math-symbols
+   :END:
+
+For small characters, we use ~scalebox~ on the corresponding symbols, and ~raisebox~
+to correct for height.
+#+begin_src emacs-lisp
+(when nil
+<<generator>>
+(let ((the-translations
+        '((﹡ \\raisebox{.4\\height}{\\scalebox{.6}{*}})
+          (﹢ \\raisebox{.4\\height}{\\scalebox{.6}{+}})
+          (﹣ \\raisebox{.4\\height}{\\scalebox{.6}{-}})
+          (﹤ \\raisebox{.4\\height}{\\scalebox{.6}{<}})
+          (﹥ \\raisebox{.4\\height}{\\scalebox{.6}{>}})
+          (﹦ \\raisebox{.4\\height}{\\scalebox{.6}{=}})
+          (﹨ \\raisebox{.4\\height}{\\scalebox{.6}{\\backslash}}))))
+  (generate-newunicodechars the-translations)))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
+
+For fullwidth characters, we place them in a ~1em~ box.
+Note the “plain TeX” method for obtaining a non-raised tilde here.
+#+begin_src emacs-lisp
+(when nil
+<<generator>>
+(let ((the-translations
+         '((＋  \\makebox\[1em\]{+})
+          (＜  \\makebox\[1em\]{<})
+          (＝  \\makebox\[1em\]{=})
+          (＞  \\makebox\[1em\]{>})
+          (＾  \\makebox\[1em\]{\\textasciicircum})
+          (｜  \\makebox\[1em\]{|})
+          (～  \\makebox\[1em\]{\\char\`\\~})
+          (￢  \\makebox\[1em\]{\\lnot}))))
+  (generate-newunicodechars the-translations)))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
+So far, I haven't devised a good solution for the halfwidth arrows.
+I just substitute the regular arrows in.
+#+begin_src emacs-lisp
+(when nil
+<<generator>>
+(let ((the-translations
+        '((￩  \\leftarrow)
+          (￪  \\uparrow)
+          (￫  \\rightarrow)
+          (￬  \\downarrow))))
+  (generate-newunicodechars the-translations)))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
 ** Punctuation-like
    :PROPERTIES:
    :CUSTOM_ID: Punctuation-like
@@ -3172,6 +3327,7 @@ Probably some of these belong somewhere else.
 <<generator>>
 (let ((the-translations
         '((✔ \\checkmark)
+          (✓ \\checkmark)
           (❌ \\times)
           )))
   (generate-newunicodechars the-translations))
@@ -3180,9 +3336,11 @@ Probably some of these belong somewhere else.
 #+RESULTS:
 #+begin_src latex
 \newunicodechar{✔}{\ensuremath{\checkmark}}
+\newunicodechar{✓}{\ensuremath{\checkmark}}
 \newunicodechar{❌}{\ensuremath{\times}}
 #+end_src
 
+<<<<<<< HEAD
 #+RESULTS:
 #+begin_export latex
 \newunicodechar{✔}{\ensuremath{\checkmark}}
@@ -3201,6 +3359,8 @@ else avoid using double primes, etc..
 Note that the below solution for ~pdflatex~ also does not provide
 prime collapsing.
 
+=======
+>>>>>>> 98bb8178d0434a9dc84733ba1d2699b8781488c3
 # Quote, ', is an operator in Lisp, so we write these ones out manually.
 #+begin_src latex
 \newunicodechar{′}{'}
@@ -3209,12 +3369,149 @@ prime collapsing.
 \newunicodechar{‶}{\ensuremath{``}}
 #+end_src
 
+* TODO Misc
+  :PROPERTIES:
+  :CUSTOM_ID: COMMENT-misc
+  :END:
+
+# +latex_header: \newunicodechar{⨾}{;}
+
+#+begin_src latex :noeval
+\newunicodechar{̈}{\ensuremath{^{..}}}
+
+\newunicodechar{‿}{CONVERSE}
+\newunicodechar{⁻}{\ensuremath{{}^{-}}}
+\newunicodechar{□}{\ensuremath{QED}}
+% +latex_header: \newunicodechar{∎}{\ensuremath{QED}}
+\newunicodechar{○}{\ensuremath{\circ}}
+
+\newunicodechar{♯}{\ensuremath{SHARP}}
+\newunicodechar{́}{\ensuremath{'}}
+
+% Agda: \Mi𝓍
+ \newunicodechar{𝑝}{p}
+ \newunicodechar{𝑎}{a}
+ \newunicodechar{𝑟}{r}
+ \newunicodechar{𝑒}{e}
+ \newunicodechar{𝑛}{n}
+ \newunicodechar{𝑡}{t}
+ \newunicodechar{𝑚}{m}
+ \newunicodechar{𝑙}{l}
+ \newunicodechar{𝑠}{s}
+ \newunicodechar{𝑜}{o}
+ \newunicodechar{𝑓}{f}
+#+end_src
+
+* TODO COMMENT Smilies                                         :XeLaTeX_Only:
+  :PROPERTIES:
+  :CUSTOM_ID: COMMENT-Smilies
+  :END:
+
+I have not found a reliable way to produce smilies in LaTeX.
+In LuaLaTeX and XeLaTeX, it should work to just use
+the unicode characters themselves,
+making sure to use a font that supports them.
+DejaVu Sans does so.
+#+begin_src latex
+\ifpdflatex\else
+  \newfontfamily\DejaSans{DejaVu Sans}
+}
+#+end_src
+
 #+RESULTS:
 #+begin_export latex
-\newunicodechar{′}{'}
-\newunicodechar{″}{''}
-\newunicodechar{‵}{\ensuremath{`}}
-\newunicodechar{‶}{\ensuremath{``}}
+\ifpdflatex\else
+  \newfontfamily\DejaSans{DejaVu Sans}
+}
+#+end_export
+
+So these characters can only be used if you use LuaLaTeX or XeLaTeX.
+#+begin_src emacs-lisp
+(when nil
+<<generator>>
+(let ((the-translations
+        '((😀  😀)
+          (😁  😁)
+          (😐  😐)
+          (😵  😵)
+          (🙁  🙁))))
+  (generate-newunicodechars the-translations "{\\DejaSans ")))
+#+end_src
+
+#+RESULTS:
+#+begin_src latex
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
+
+# accomodate for only xelatex
+#+begin_src latex
+\ifpdflatex\else
+  \newunicodechar{😀}{{\DejaSans 😀}}
+  \newunicodechar{😁}{{\DejaSans 😁}}
+  \newunicodechar{😐}{{\DejaSans 😐}}
+  \newunicodechar{😵}{{\DejaSans 😵}}
+  \newunicodechar{🙁}{{\DejaSans 🙁}}
+}
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+\ifpdflatex\else
+  \newunicodechar{😀}{{\DejaSans 😀}}
+  \newunicodechar{😁}{{\DejaSans 😁}}
+  \newunicodechar{😐}{{\DejaSans 😐}}
+  \newunicodechar{😵}{{\DejaSans 😵}}
+  \newunicodechar{🙁}{{\DejaSans 🙁}}
+}
+#+end_export
+
+* COMMENT Old
+  :PROPERTIES:
+  :CUSTOM_ID: COMMENT-Old
+  :END:
+
+** Other operators
+   :PROPERTIES:
+   :CUSTOM_ID: Other-operators
+   :END:
+
+#+begin_src latex
+%---------------------------------------------------------------------
+% Other operators
+%---------------------------------------------------------------------
+\newunicodechar{⊕}{\ensuremath{\mathrm{⊕}}}
+\newunicodechar{⊗}{\ensuremath{\mathrm{⊗}}}
+\newunicodechar{⊛}{\ensuremath{\mathrm{⊛}}}
+\newunicodechar{⊘}{\ensuremath{\mathrm{⊘}}}
+\newunicodechar{∣}{\ensuremath{\mathrm{∣}}}
+\newunicodechar{∷}{\ensuremath{\mathrm{∷}}}
+\newunicodechar{≟}{\ensuremath{\mathrm{≟}}}
+\newunicodechar{≔}{\ensuremath{\mathrm{≔}}}
+\newunicodechar{≈}{\ensuremath{\mathrm{≈}}}
+\newunicodechar{⟶}{\ensuremath{\mathrm{⟶}}}
+\newunicodechar{⇓}{\ensuremath{\mathrm{⇓}}}
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+%---------------------------------------------------------------------
+% Other operators
+%---------------------------------------------------------------------
+\newunicodechar{⊕}{\ensuremath{\mathrm{⊕}}}
+\newunicodechar{⊗}{\ensuremath{\mathrm{⊗}}}
+\newunicodechar{⊛}{\ensuremath{\mathrm{⊛}}}
+\newunicodechar{⊘}{\ensuremath{\mathrm{⊘}}}
+\newunicodechar{∣}{\ensuremath{\mathrm{∣}}}
+\newunicodechar{∷}{\ensuremath{\mathrm{∷}}}
+\newunicodechar{≟}{\ensuremath{\mathrm{≟}}}
+\newunicodechar{≔}{\ensuremath{\mathrm{≔}}}
+\newunicodechar{≈}{\ensuremath{\mathrm{≈}}}
+\newunicodechar{⟶}{\ensuremath{\mathrm{⟶}}}
+\newunicodechar{⇓}{\ensuremath{\mathrm{⇓}}}
 #+end_export
 
 * Package footer                                :noexport:
