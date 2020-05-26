@@ -81,6 +81,15 @@ See that file for more details.
 # It should not be modified directly.
 *~
 
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.pyg
+*.toc
+
+# The LaTeX is generated; don't version control it.
 *.tex
 
 _minted-unicode
