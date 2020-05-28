@@ -14,8 +14,24 @@
 # Mention users can use \newunicodechar{op}{elaboration} to make their own.
 # +latex_header: \usepackage{newunicodechar}
 
-# Make HTML
-# (f-move (org-html-export-to-html) "index.html")
+* COMMENT Generators for documentation
+
+These elisp snippets are provided for convient invocation with ~C-c C-c~.
+
+To generate the PDF, first tangle to ensure the package is up to date.
+#+begin_src emacs-lisp :results none
+(org-babel-tangle)
+(org-latex-export-to-pdf)
+#+end_src
+
+The HTML export is moved to ~index.html~ to be used as the homepage.
+#+begin_src emacs-lisp :results none
+(f-move (org-html-export-to-html) "index.html")
+#+end_src
+
+* HTML header settings                          :noexport:
+
+Stylesheets!
 #+HTML_HEAD: <link href="https://alhassy.github.io/org-notes-style.css" rel="stylesheet" type="text/css" />
 #+HTML_HEAD: <link href="https://alhassy.github.io/floating-toc.css" rel="stylesheet" type="text/css" />
 
