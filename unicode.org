@@ -98,6 +98,14 @@ There are at least two ways to inform LaTeX of unicode character translations;
 
 This collection uses the second.
 
+If any characters look incorrect, that may be a font issue,
+rather than an issue with this package.
+But if you have recommendations for alternative translations,
+such recommendations (or pull requests implementing them)
+are welcome!
+
+:TODO: recommend fonts
+
 ** Usage
    :PROPERTIES:
    :CUSTOM_ID: Usage
@@ -264,6 +272,11 @@ to map the pairs into ~newunicodechar~ declarations.
   :CUSTOM_ID: 𝔹lackboard-𝒞alligraphic-and-𝑩old-font
   :END:
 
+** Preamble                                    :ignore:
+:PROPERTIES:
+:CUSTOM_ID: Preamble
+:END:
+
 These lists are most likely complete, unless I have missed some characters aside
 from Latin letters, Greek letters and Arabic numerals which should be included.
 
@@ -287,7 +300,7 @@ sequences:
 \fi
 #+end_export
 
-** Blackboard
+** 𝔹lackboard
    :PROPERTIES:
    :CUSTOM_ID: Blackboard
    :END:
@@ -914,7 +927,7 @@ There are unfortunately not many included in Unicode.
 \fi
 #+end_export
 
-** Calligraphic
+** 𝒞alligraphic
    :PROPERTIES:
    :CUSTOM_ID: Calligraphic
    :END:
@@ -1320,7 +1333,7 @@ There are unfortunately not many included in Unicode.
 \newunicodechar{𝒵}{\ensuremath{\mathcal{Z}}}
 #+end_export
 
-** Bold-font
+** 𝑩old-font
    :PROPERTIES:
    :CUSTOM_ID: Bold-font
    :END:
