@@ -3353,6 +3353,11 @@ Probably some of these belong somewhere else.
   :CUSTOM_ID: Check-X-marks-and-Primes-Ticks
   :END:
 
+** Check- and X-marks
+:PROPERTIES:
+:CUSTOM_ID: Check--and-X-marks
+:END:
+
 #+begin_src emacs-lisp
 <<generator>>
 (let ((the-translations
@@ -3375,6 +3380,11 @@ Probably some of these belong somewhere else.
 \newunicodechar{✔}{\ensuremath{\checkmark}}
 \newunicodechar{❌}{\ensuremath{\times}}
 #+end_export
+
+** COMMENT Primes and ticks
+:PROPERTIES:
+:CUSTOM_ID: COMMENT-Primes-and-ticks
+:END:
 
 Regarding prime characters in LuaLatex and XeLaTeX,
 as discussed [[https://tex.stackexchange.com/questions/486120/][here]], the prime characters are redefined

@@ -1,8 +1,5 @@
-%% [[file:~/unicode-sty/unicode.org::*Usage][Usage:1]]
 \ProvidesPackage{unicode}
-%% Usage:1 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Required LaTeX packages][Required LaTeX packages:1]]
 \usepackage{newunicodechar}
 
 \usepackage{ifxetex, ifluatex} % Also used in agda.sty: xifthen
@@ -23,9 +20,7 @@
 %\pdflatextrue
 %% To use other typesetting engines, declare the following:
 %% \pdflatexfalse
-%% Required LaTeX packages:1 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Required LaTeX packages][Required LaTeX packages:2]]
 \ifpdflatex
   \usepackage{pifont}
   \usepackage{stmaryrd}
@@ -33,13 +28,11 @@
 \else
   \usepackage{unicode-math}
 \fi
-%% Required LaTeX packages:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*𝔹lackboard, 𝒞alligraphic, and 𝑩old-font][𝔹lackboard, 𝒞alligraphic, and 𝑩old-font:1]]
-\DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n}
-%% 𝔹lackboard, 𝒞alligraphic, and 𝑩old-font:1 ends here
+\ifpdflatex
+  \DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n}
+\fi
 
-%% [[file:~/unicode-sty/unicode.org::*Lowercase Latin][Lowercase Latin:2]]
 \ifpdflatex
   \newunicodechar{𝕒}{\ensuremath{\mathbbm{a}}}
 \else
@@ -170,9 +163,7 @@
 \else
   \newunicodechar{𝕫}{\ensuremath{\mathbb{z}}}
 \fi
-%% Lowercase Latin:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Uppercase Latin][Uppercase Latin:2]]
 \newunicodechar{𝔸}{\ensuremath{\mathbb{A}}}
 \newunicodechar{𝔹}{\ensuremath{\mathbb{B}}}
 \newunicodechar{ℂ}{\ensuremath{\mathbb{C}}}
@@ -199,15 +190,11 @@
 \newunicodechar{𝕏}{\ensuremath{\mathbb{X}}}
 \newunicodechar{𝕐}{\ensuremath{\mathbb{Y}}}
 \newunicodechar{ℤ}{\ensuremath{\mathbb{Z}}}
-%% Uppercase Latin:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Arabic Numerals][Arabic Numerals:1]]
 % For double stroke digits with pdflatex
 \usepackage[bbgreekl]{mathbbol}
 \DeclareSymbolFontAlphabet{\mathbbl}{bbold}
-%% Arabic Numerals:1 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Arabic Numerals][Arabic Numerals:3]]
 \ifpdflatex
   \newunicodechar{𝟙}{\ensuremath{\mathbbl{1}}}
 \else
@@ -258,9 +245,7 @@
 \else
   \newunicodechar{𝟘}{\ensuremath{\mathbb{0}}}
 \fi
-%% Arabic Numerals:3 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Lowercase Latin][Lowercase Latin:2]]
 \ifpdflatex
   \newunicodechar{𝒶}{\ensuremath{a}}
 \else
@@ -391,9 +376,7 @@
 \else
   \newunicodechar{𝓏}{\ensuremath{\mathcal{z}}}
 \fi
-%% Lowercase Latin:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Uppercase Latin][Uppercase Latin:2]]
 \newunicodechar{𝒜}{\ensuremath{\mathcal{A}}}
 \newunicodechar{ℬ}{\ensuremath{\mathcal{B}}}
 \newunicodechar{𝒞}{\ensuremath{\mathcal{C}}}
@@ -420,9 +403,7 @@
 \newunicodechar{𝒳}{\ensuremath{\mathcal{X}}}
 \newunicodechar{𝒴}{\ensuremath{\mathcal{Y}}}
 \newunicodechar{𝒵}{\ensuremath{\mathcal{Z}}}
-%% Uppercase Latin:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Lowercase Latin][Lowercase Latin:2]]
 \newunicodechar{𝒂}{\ensuremath{\mathbf{a}}}
 \newunicodechar{𝒃}{\ensuremath{\mathbf{b}}}
 \newunicodechar{𝒄}{\ensuremath{\mathbf{c}}}
@@ -449,9 +430,7 @@
 \newunicodechar{𝒙}{\ensuremath{\mathbf{x}}}
 \newunicodechar{𝒚}{\ensuremath{\mathbf{y}}}
 \newunicodechar{𝒛}{\ensuremath{\mathbf{z}}}
-%% Lowercase Latin:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Uppercase Latin][Uppercase Latin:2]]
 \newunicodechar{𝑨}{\ensuremath{\mathbf{A}}}
 \newunicodechar{𝑩}{\ensuremath{\mathbf{B}}}
 \newunicodechar{𝑪}{\ensuremath{\mathbf{C}}}
@@ -478,14 +457,12 @@
 \newunicodechar{𝑿}{\ensuremath{\mathbf{X}}}
 \newunicodechar{𝒀}{\ensuremath{\mathbf{Y}}}
 \newunicodechar{𝒁}{\ensuremath{\mathbf{Z}}}
-%% Uppercase Latin:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*𝓑old 𝓒alligraphic][𝓑old 𝓒alligraphic:1]]
 % For bold calligraphic letters
-\DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n}
-%% 𝓑old 𝓒alligraphic:1 ends here
+\ifpdflatex
+  \DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n}
+\fi
 
-%% [[file:~/unicode-sty/unicode.org::*Lowercase Latin][Lowercase Latin:2]]
 \newunicodechar{𝓪}{\ensuremath{\mathbfcal{a}}}
 \newunicodechar{𝓫}{\ensuremath{\mathbfcal{b}}}
 \newunicodechar{𝓬}{\ensuremath{\mathbfcal{c}}}
@@ -512,9 +489,7 @@
 \newunicodechar{𝔁}{\ensuremath{\mathbfcal{x}}}
 \newunicodechar{𝔂}{\ensuremath{\mathbfcal{y}}}
 \newunicodechar{𝔃}{\ensuremath{\mathbfcal{z}}}
-%% Lowercase Latin:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Uppercase Latin][Uppercase Latin:2]]
 \newunicodechar{𝓐}{\ensuremath{\mathbfcal{A}}}
 \newunicodechar{𝓑}{\ensuremath{\mathbfcal{B}}}
 \newunicodechar{𝓒}{\ensuremath{\mathbfcal{C}}}
@@ -541,13 +516,9 @@
 \newunicodechar{𝓧}{\ensuremath{\mathbfcal{X}}}
 \newunicodechar{𝓨}{\ensuremath{\mathbfcal{Y}}}
 \newunicodechar{𝓩}{\ensuremath{\mathbfcal{Z}}}
-%% Uppercase Latin:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Other letters or letterlike symbols][Other letters or letterlike symbols:2]]
 \newunicodechar{ℓ}{\ensuremath{\ell}}
-%% Other letters or letterlike symbols:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Normal][Normal:2]]
 \newunicodechar{α}{\ensuremath{\alpha}}
 \ifpdflatex
   \newunicodechar{Α}{\ensuremath{A}}
@@ -652,18 +623,14 @@
 \newunicodechar{Ψ}{\ensuremath{\Psi}}
 \newunicodechar{ω}{\ensuremath{\omega}}
 \newunicodechar{Ω}{\ensuremath{\Omega}}
-%% Normal:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Also: ~var~-variants][Also: ~var~-variants:2]]
 \newunicodechar{ε}{\ensuremath{\varepsilon}}
 \newunicodechar{ϑ}{\ensuremath{\vartheta}}
 \newunicodechar{ϰ}{\ensuremath{\varkappa}}
 \newunicodechar{ϖ}{\ensuremath{\varpi}}
 \newunicodechar{ς}{\ensuremath{\varsigma}}
 \newunicodechar{φ}{\ensuremath{\varphi}}
-%% Also: ~var~-variants:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Lowercase alphabet][Lowercase alphabet:2]]
 \newunicodechar{ₐ}{\ensuremath{{}_{a}}}
 \newunicodechar{ₑ}{\ensuremath{{}_{e}}}
 \newunicodechar{ₕ}{\ensuremath{{}_{h}}}
@@ -681,9 +648,7 @@
 \newunicodechar{ᵤ}{\ensuremath{{}_{u}}}
 \newunicodechar{ᵥ}{\ensuremath{{}_{v}}}
 \newunicodechar{ₓ}{\ensuremath{{}_{x}}}
-%% Lowercase alphabet:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Numeric][Numeric:2]]
 \newunicodechar{₀}{\ensuremath{{}_{0}}}
 \newunicodechar{₁}{\ensuremath{{}_{1}}}
 \newunicodechar{₂}{\ensuremath{{}_{2}}}
@@ -694,15 +659,11 @@
 \newunicodechar{₇}{\ensuremath{{}_{7}}}
 \newunicodechar{₈}{\ensuremath{{}_{8}}}
 \newunicodechar{₉}{\ensuremath{{}_{9}}}
-%% Numeric:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Other][Other:2]]
 \newunicodechar{₊}{\ensuremath{{}_{+}}}
 \newunicodechar{₋}{\ensuremath{{}_{-}}}
 \newunicodechar{₌}{\ensuremath{{}_{=}}}
-%% Other:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Uppercase alphabet][Uppercase alphabet:2]]
 \newunicodechar{ᴬ}{\ensuremath{{}^{A}}}
 \newunicodechar{ᴮ}{\ensuremath{{}^{B}}}
 \newunicodechar{ᴰ}{\ensuremath{{}^{D}}}
@@ -722,9 +683,7 @@
 \newunicodechar{ᵁ}{\ensuremath{{}^{U}}}
 \newunicodechar{ⱽ}{\ensuremath{{}^{V}}}
 \newunicodechar{ᵂ}{\ensuremath{{}^{W}}}
-%% Uppercase alphabet:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Lowercase alphabet][Lowercase alphabet:2]]
 \newunicodechar{ᵃ}{\ensuremath{{}^{a}}}
 \newunicodechar{ᵇ}{\ensuremath{{}^{b}}}
 \newunicodechar{ᶜ}{\ensuremath{{}^{c}}}
@@ -750,9 +709,7 @@
 \newunicodechar{ˣ}{\ensuremath{{}^{x}}}
 \newunicodechar{ʸ}{\ensuremath{{}^{y}}}
 \newunicodechar{ᶻ}{\ensuremath{{}^{z}}}
-%% Lowercase alphabet:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Numeric][Numeric:2]]
 \newunicodechar{⁰}{\ensuremath{{}^{0}}}
 \newunicodechar{¹}{\ensuremath{{}^{1}}}
 \newunicodechar{²}{\ensuremath{{}^{2}}}
@@ -763,26 +720,18 @@
 \newunicodechar{⁷}{\ensuremath{{}^{7}}}
 \newunicodechar{⁸}{\ensuremath{{}^{8}}}
 \newunicodechar{⁹}{\ensuremath{{}^{9}}}
-%% Numeric:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Other][Other:2]]
 \newunicodechar{⁺}{\ensuremath{{}^{+}}}
 \newunicodechar{⁻}{\ensuremath{{}^{-}}}
 \newunicodechar{⁼}{\ensuremath{{}^{=}}}
-%% Other:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Dots][Dots:2]]
 \newunicodechar{…}{\ensuremath{\ldots}}
 \newunicodechar{⋯}{\ensuremath{\cdots}}
 \newunicodechar{⋮}{\ensuremath{\vdots}}
-%% Dots:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Dashes][Dashes:2]]
 \newunicodechar{–}{\ensuremath{\text{--}}}
 \newunicodechar{—}{\ensuremath{\text{---}}}
-%% Dashes:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Parentheses, braces and brackets][Parentheses, braces and brackets:2]]
 \newunicodechar{⦅}{\ensuremath{(\!|}}
 \newunicodechar{⦆}{\ensuremath{|\!)}}
 \newunicodechar{⟨}{\ensuremath{\langle}}
@@ -795,14 +744,10 @@
 \newunicodechar{⁆}{\ensuremath{\}}}
 \newunicodechar{｛}{\ensuremath{\{}}
 \newunicodechar{｝}{\ensuremath{\}}}
-%% Parentheses, braces and brackets:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Parentheses, braces and brackets][Parentheses, braces and brackets:3]]
 \newunicodechar{⟦}{\ensuremath{[\![}}
 \newunicodechar{⟧}{\ensuremath{]\!]}}
-%% Parentheses, braces and brackets:3 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Other paired delimiters][Other paired delimiters:2]]
 \newunicodechar{⌜}{\ensuremath{\ulcorner}}
 \newunicodechar{⌝}{\ensuremath{\urcorner}}
 \newunicodechar{⌞}{\ensuremath{\llcorner}}
@@ -811,13 +756,9 @@
 \newunicodechar{⌉}{\ensuremath{\rceil}}
 \newunicodechar{⌊}{\ensuremath{\lfloor}}
 \newunicodechar{⌋}{\ensuremath{\rfloor}}
-%% Other paired delimiters:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Whitespace][Whitespace:1]]
 \newunicodechar{ }{\ensuremath{~}}
-%% Whitespace:1 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Prepositional][Prepositional:2]]
 \newunicodechar{≡}{\ensuremath{\equiv}}
 \newunicodechar{¬}{\ensuremath{\lnot}}
 \newunicodechar{≢}{\ensuremath{\not\equiv}}
@@ -827,25 +768,17 @@
 \newunicodechar{⇐}{\ensuremath{\;\Leftarrow\;}}
 \newunicodechar{⟺}{\ensuremath{\iff}}
 \newunicodechar{⇔}{\ensuremath{\iff}}
-%% Prepositional:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Predicate][Predicate:2]]
 \newunicodechar{∀}{\ensuremath{\forall}}
 \newunicodechar{∃}{\ensuremath{\exists}}
-%% Predicate:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Predicate][Predicate:3]]
 \newunicodechar{❙}{\ensuremath{\,\mid\,}}
 \newunicodechar{•}{\ensuremath{\,\bullet\,}}
-%% Predicate:3 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Model ---Entailment][Model ---Entailment:2]]
 \newunicodechar{⊢}{\ensuremath{\vdash}}
 \newunicodechar{⊣}{\ensuremath{\dashv}}
 \newunicodechar{⊨}{\ensuremath{\vDash}}
-%% Model ---Entailment:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Sets][Sets:2]]
 \newunicodechar{ø}{\ensuremath{\emptyset}}
 \newunicodechar{∅}{\ensuremath{\emptyset}}
 \newunicodechar{∈}{\ensuremath{\in}}
@@ -856,24 +789,18 @@
 \newunicodechar{∪}{\ensuremath{\cup}}
 \newunicodechar{⊍}{\ensuremath{\uplus}}
 \newunicodechar{⊎}{\ensuremath{\uplus}}
-%% Sets:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Relation operators][Relation operators:2]]
 \newunicodechar{⊤}{\ensuremath{\top}}
 \newunicodechar{⊥}{\ensuremath{\bot}}
 \newunicodechar{⊔}{\ensuremath{\sqcup}}
 \newunicodechar{⊓}{\ensuremath{\sqcap}}
 \newunicodechar{╲}{\ensuremath{\backslash}}
 \newunicodechar{╱}{\ensuremath{/}}
-%% Relation operators:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Function operators][Function operators:2]]
 \newunicodechar{∘}{\ensuremath{\circ}}
 \newunicodechar{↦}{\ensuremath{\mapsto}}
 \newunicodechar{↪}{\ensuremath{\hookrightarrow}}
-%% Function operators:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Equality like][Equality like:2]]
 \newunicodechar{≠}{\ensuremath{\neq}}
 \newunicodechar{≐}{\ensuremath{\doteq}}
 \newunicodechar{≟}{\ensuremath{\stackrel{?}{=}}}
@@ -886,9 +813,7 @@
 \newunicodechar{∼}{\ensuremath{\sim}}
 \newunicodechar{≁}{\ensuremath{\not\sim}}
 \newunicodechar{≔}{\ensuremath{:\!=}}
-%% Equality like:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Order like][Order like:2]]
 \newunicodechar{≤}{\ensuremath{\leq}}
 \newunicodechar{≰}{\ensuremath{\nleq}}
 \newunicodechar{≥}{\ensuremath{\geq}}
@@ -906,9 +831,7 @@
 \newunicodechar{⊐}{\ensuremath{\sqsupset}}
 \newunicodechar{⊒}{\ensuremath{\sqsupseteq}}
 \newunicodechar{∣}{\ensuremath{\mid}}
-%% Order like:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Arrows][Arrows:2]]
 \newunicodechar{→}{\ensuremath{\rightarrow}}
 \newunicodechar{⇨}{\ensuremath{\rightarrow}}
 \newunicodechar{➩}{\ensuremath{\rightarrow}}
@@ -920,9 +843,7 @@
 \newunicodechar{⇊}{\ensuremath{\downarrow\downarrow}}
 \newunicodechar{⟶}{\ensuremath{\longrightarrow}}
 \newunicodechar{⟵}{\ensuremath{\longleftarrow}}
-%% Arrows:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*“o”-operators][“o”-operators:2]]
 \newunicodechar{⊕}{\ensuremath{\oplus}}
 \newunicodechar{⨁}{\ensuremath{\bigoplus}}
 \newunicodechar{⊖}{\ensuremath{\ominus}}
@@ -934,19 +855,13 @@
 \newunicodechar{⊚}{\ensuremath{\circledcirc}}
 \newunicodechar{⊛}{\ensuremath{\circledast}}
 \newunicodechar{⊝}{\ensuremath{\circleddash}}
-%% “o”-operators:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*“o”-operators][“o”-operators:3]]
 \DeclareMathOperator{\VCCompose}{\longrightarrow\hspace{-3.5ex}\oplus\;}
 \newunicodechar{⟴}{\ensuremath{\!\!\VCCompose}}
-%% “o”-operators:3 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Punctuation-like][Punctuation-like:2]]
 \newunicodechar{‼}{\ensuremath{!\!!}}
 \newunicodechar{∶}{\ensuremath{:}}
-%% Punctuation-like:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Others][Others:2]]
 \newunicodechar{∙}{\ensuremath{\cdot}}
 \newunicodechar{∞}{\ensuremath{\infty}}
 \ifpdflatex
@@ -954,22 +869,11 @@
 \else
   \newunicodechar{∷}{\ensuremath{\Colon}}
 \fi
-%% Others:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Check- & X-marks, and Primes & Ticks][Check- & X-marks, and Primes & Ticks:2]]
 \newunicodechar{✔}{\ensuremath{\checkmark}}
 \newunicodechar{✓}{\ensuremath{\checkmark}}
 \newunicodechar{❌}{\ensuremath{\times}}
-%% Check- & X-marks, and Primes & Ticks:2 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Check- & X-marks, and Primes & Ticks][Check- & X-marks, and Primes & Ticks:3]]
-\newunicodechar{′}{'}
-\newunicodechar{″}{''}
-\newunicodechar{‵}{\ensuremath{`}}
-\newunicodechar{‶}{\ensuremath{``}}
-%% Check- & X-marks, and Primes & Ticks:3 ends here
-
-%% [[file:~/unicode-sty/unicode.org::*Misc][Misc:1]]
 \newunicodechar{̈}{\ensuremath{^{..}}}
 
 \newunicodechar{‿}{CONVERSE}
@@ -993,8 +897,5 @@
  \newunicodechar{𝑠}{s}
  \newunicodechar{𝑜}{o}
  \newunicodechar{𝑓}{f}
-%% Misc:1 ends here
 
-%% [[file:~/unicode-sty/unicode.org::*Package footer][Package footer:1]]
 \endinput
-%% Package footer:1 ends here
