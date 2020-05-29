@@ -15,6 +15,9 @@
 # +latex_header: \usepackage{newunicodechar}
 
 * COMMENT Generators for documentation
+:PROPERTIES:
+:CUSTOM_ID: COMMENT-Generators-for-documentation
+:END:
 
 These elisp snippets are provided for convient invocation with ~C-c C-c~.
 
@@ -30,6 +33,9 @@ The HTML export is moved to ~index.html~ to be used as the homepage.
 #+end_src
 
 * HTML header settings                          :noexport:
+:PROPERTIES:
+:CUSTOM_ID: HTML-header-settings
+:END:
 
 Stylesheets!
 #+HTML_HEAD: <link href="https://alhassy.github.io/org-notes-style.css" rel="stylesheet" type="text/css" />
@@ -269,12 +275,16 @@ sequences:
 | Bold Calligraphic | =\MC𝓍= |
 
 #+begin_src latex
-\DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n}
+\ifpdflatex
+  \DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n}
+\fi
 #+end_src
 
 #+RESULTS:
 #+begin_export latex
-\DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n}
+\ifpdflatex
+  \DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n}
+\fi
 #+end_export
 
 ** Blackboard
@@ -1515,13 +1525,17 @@ There are unfortunately not many included in Unicode.
 
 #+begin_src latex
 % For bold calligraphic letters
-\DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n}
+\ifpdflatex
+  \DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n}
+\fi
 #+end_src
 
 #+RESULTS:
 #+begin_export latex
 % For bold calligraphic letters
-\DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n}
+\ifpdflatex
+  \DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n}
+\fi
 #+end_export
 
 *** Lowercase Latin
